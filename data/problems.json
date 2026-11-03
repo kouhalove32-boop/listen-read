@@ -1,0 +1,2866 @@
+[
+ {
+  "id": "p01",
+  "type": "E-mail",
+  "raw": "TITLE: New Coffee Machine on the Third Floor\nTo: All Staff / From: Linda Park, / Facilities Manager\n= 宛先：全社員／差出人：リンダ・パーク（設備管理責任者）\nThe coffee machine / on the third floor / will be replaced / on Thursday, May 8.\n= 3階のコーヒーマシンは5月8日（木）に交換されます。\nThe new machine / makes coffee quickly / and is very quiet.\n= 新しいマシンはすばやくコーヒーを入れ、とても静かです。\nUnfortunately, / it cannot make tea, / so please bring / your own tea bags.\n= 残念ながらお茶は入れられないので、ティーバッグは各自持ってきてください。\nDuring the installation, / please use the machine / in the second-floor kitchen.\n= 設置作業の間は、2階キッチンのマシンを使ってください。\nMr. Hayes in Accounting / has asked me / to remind everyone / that the second-floor machine / is not a toaster.\n= 経理部のヘイズさんから、2階のマシンはトースターではないと皆さんに念押しするよう頼まれました。\nWORDS\nreplaced = 交換される\ninstallation = 設置\nremind = 念押しする・思い出させる\nunfortunately = 残念ながら",
+  "qs": [
+   {
+    "q": "What is the purpose of the e-mail?",
+    "qj": "このメールの目的は何か。",
+    "a": 1,
+    "c": [
+     [
+      "To introduce a new employee",
+      "新入社員を紹介すること",
+      "新しい人の話は出てこない。"
+     ],
+     [
+      "To announce an equipment change",
+      "設備の変更を知らせること",
+      "正解。1文目で「コーヒーマシンが交換される」と知らせている。"
+     ],
+     [
+      "To request repairs to a kitchen",
+      "キッチンの修理を依頼すること",
+      "修理の依頼はしていない。"
+     ],
+     [
+      "To ask staff to buy coffee",
+      "社員にコーヒーを買うよう頼むこと",
+      "持ってきてと頼んでいるのはティーバッグ。"
+     ]
+    ],
+    "pt": "目的の問題は最初の1〜2文に答えがある。will be replaced が見えたら「お知らせメール」。"
+   },
+   {
+    "q": "What is indicated about the new machine?",
+    "qj": "新しいマシンについて何が示されているか。",
+    "a": 2,
+    "c": [
+     [
+      "It is larger than the old one.",
+      "古いものより大きい。",
+      "大きさには触れていない。"
+     ],
+     [
+      "It will be placed in Accounting.",
+      "経理部に置かれる。",
+      "置かれるのは3階。経理部はヘイズさんの部署。"
+     ],
+     [
+      "It does not make tea.",
+      "お茶を入れられない。",
+      "正解。cannot make tea の言い換え。"
+     ],
+     [
+      "It is louder than the old one.",
+      "古いものよりうるさい。",
+      "very quiet なので逆。"
+     ]
+    ],
+    "pt": "makes coffee quickly の quickly は副詞（-ly・動詞 makes を説明）、is very quiet の quiet は形容詞（be動詞の後）。"
+   }
+  ]
+ },
+ {
+  "id": "p02",
+  "type": "Notice",
+  "raw": "TITLE: Greenfield Library Closure\nGreenfield Public Library / will be closed / from June 2 to June 6 / for floor repairs.\n= グリーンフィールド公立図書館は、床の修理のため6月2日から6日まで休館します。\nBooks can still be returned / through the drop box / next to the main entrance.\n= 本は正面入口の横にある返却ボックスから引き続き返却できます。\nNo late fees / will be charged / during the closure.\n= 休館中は延滞料金はかかりません。\nThe library's online services, / including e-books, / will be available / as usual.\n= 電子書籍を含む図書館のオンラインサービスは、通常どおり利用できます。\nWe apologize / for any inconvenience / and thank our visitors, / especially the cat / who sleeps in the reading room, / for their patience.\n= ご不便をおかけして申し訳ありません。皆さま、特に閲覧室で寝ているネコの忍耐に感謝します。\nWORDS\nclosure = 閉鎖・休館\ndrop box = 返却ボックス\nlate fees = 延滞料金\ninconvenience = 不便\npatience = 忍耐・辛抱強さ",
+  "qs": [
+   {
+    "q": "Why will the library be closed?",
+    "qj": "図書館はなぜ休館するのか。",
+    "a": 0,
+    "c": [
+     [
+      "To repair the floors",
+      "床を修理するため",
+      "正解。for floor repairs。"
+     ],
+     [
+      "To hold a book sale",
+      "本の販売会を開くため",
+      "販売会の話はない。"
+     ],
+     [
+      "To install new computers",
+      "新しいパソコンを設置するため",
+      "パソコンの話はない。"
+     ],
+     [
+      "To move to a new building",
+      "新しい建物に移転するため",
+      "移転はしない。"
+     ]
+    ],
+    "pt": "for + 名詞 は理由・目的。for floor repairs ＝「床の修理のために」と前から読む。"
+   },
+   {
+    "q": "What is NOT mentioned as available during the closure?",
+    "qj": "休館中に利用できるものとして述べられていないものは何か。",
+    "a": 3,
+    "c": [
+     [
+      "Returning books",
+      "本の返却",
+      "drop box で返却できると書いてある。"
+     ],
+     [
+      "E-books",
+      "電子書籍",
+      "online services, including e-books とある。"
+     ],
+     [
+      "Online services",
+      "オンラインサービス",
+      "available as usual とある。"
+     ],
+     [
+      "Borrowing books at the desk",
+      "カウンターでの本の貸し出し",
+      "正解。休館中なのでカウンター貸し出しは書かれていない。"
+     ]
+    ],
+    "pt": "NOT問題は、選択肢を1つずつ本文と照らして消していく。書いてある3つを消せば残りが答え。"
+   }
+  ]
+ },
+ {
+  "id": "p03",
+  "type": "Text messages",
+  "raw": "TITLE: The Missing Umbrella\nKen Mori (9:02 A.M.): / Did anyone take / a black umbrella / from the meeting room?\n= ケン・モリ（午前9:02）：会議室から黒い傘を持っていった人はいますか？\nAmy Cho (9:04 A.M.): / I did. / I thought it was mine. / Sorry!\n= エイミー・チョウ（午前9:04）：私です。自分のだと思っていました。ごめんなさい！\nKen Mori (9:05 A.M.): / No problem. / Mine has a small duck / on the handle.\n= ケン：大丈夫です。僕のは持ち手に小さなアヒルが付いています。\nAmy Cho (9:07 A.M.): / Oh, / then this is definitely yours. / I'll leave it / at your desk / before lunch.\n= エイミー：あ、それなら間違いなくあなたのですね。お昼の前にあなたの席に置いておきます。\nKen Mori (9:08 A.M.): / Thanks. / It's going to rain heavily / this afternoon.\n= ケン：ありがとう。今日の午後はひどく雨が降るそうなので。\nWORDS\ndefinitely = 間違いなく\nhandle = 持ち手\nheavily = ひどく・激しく",
+  "qs": [
+   {
+    "q": "Why did Ms. Cho take the umbrella?",
+    "qj": "チョウさんはなぜ傘を持っていったのか。",
+    "a": 2,
+    "c": [
+     [
+      "She wanted to borrow it.",
+      "借りたかったから。",
+      "借りるつもりではなかった。"
+     ],
+     [
+      "Mr. Mori asked her to.",
+      "モリさんに頼まれたから。",
+      "頼まれていない。"
+     ],
+     [
+      "She believed it belonged to her.",
+      "自分の物だと思ったから。",
+      "正解。I thought it was mine の言い換え。"
+     ],
+     [
+      "It was raining in the morning.",
+      "朝に雨が降っていたから。",
+      "雨は午後の予報。"
+     ]
+    ],
+    "pt": "belong to 人 ＝「人の物だ」。it was mine ＝ it belonged to her。言い換えはTOEICの定番。"
+   },
+   {
+    "q": "At 9:07 A.M., what does Ms. Cho mean when she writes, 'this is definitely yours'?",
+    "qj": "午前9:07にチョウさんが「これは間違いなくあなたのですね」と書いているのはどういう意味か。",
+    "a": 1,
+    "c": [
+     [
+      "She found a different umbrella.",
+      "別の傘を見つけた。",
+      "同じ傘の話をしている。"
+     ],
+     [
+      "The umbrella has a duck on it.",
+      "傘にアヒルが付いている。",
+      "正解。直前の「持ち手にアヒル」を見て確認した。"
+     ],
+     [
+      "She will buy a new umbrella.",
+      "新しい傘を買う。",
+      "買う話はない。"
+     ],
+     [
+      "She does not want the umbrella.",
+      "その傘はいらない。",
+      "いる・いらないの話ではない。"
+     ]
+    ],
+    "pt": "意図問題は直前のメッセージを見る。definitely は副詞（-ly・文全体を強める）。heavily も副詞で rain を説明。"
+   }
+  ]
+ },
+ {
+  "id": "p04",
+  "type": "Advertisement",
+  "raw": "TITLE: FitNow Gym Spring Offer\nJoin FitNow Gym / this month / and get your first two months / at half price!\n= 今月FitNow Gymに入会すると、最初の2か月が半額に！\nOur gym is open / 24 hours a day, / and all members / can use the pool / and sauna / for free.\n= 当ジムは24時間営業で、会員は全員プールとサウナを無料で使えます。\nNew members / also receive / one free session / with a personal trainer.\n= 新規会員はパーソナルトレーナーとの無料セッションも1回受けられます。\nOur trainers are friendly, / patient, / and very good at / pretending not to see you / eating donuts in the lobby.\n= トレーナーは親切で辛抱強く、ロビーでドーナツを食べるあなたを見ないふりするのもとても上手です。\nThis offer ends / on April 30.\n= この特典は4月30日で終了します。\nWORDS\nhalf price = 半額\nreceive = 受け取る\nsession = セッション・1回分の指導\npretending = ふりをしている\noffer = 特典・申し出",
+  "qs": [
+   {
+    "q": "What do new members receive?",
+    "qj": "新規会員は何を受け取るか。",
+    "a": 3,
+    "c": [
+     [
+      "A free gym bag",
+      "無料のジムバッグ",
+      "バッグの話はない。"
+     ],
+     [
+      "A free donut",
+      "無料のドーナツ",
+      "ドーナツは冗談の部分で、もらえるとは書いていない。"
+     ],
+     [
+      "Free parking",
+      "無料の駐車場",
+      "駐車場の話はない。"
+     ],
+     [
+      "A session with a trainer",
+      "トレーナーとのセッション",
+      "正解。one free session with a personal trainer。"
+     ]
+    ],
+    "pt": "New members also receive の also は「〜も」。特典が追加で並ぶサイン。"
+   },
+   {
+    "q": "What is true about the gym?",
+    "qj": "ジムについて正しいことは何か。",
+    "a": 0,
+    "c": [
+     [
+      "It is always open.",
+      "いつも開いている。",
+      "正解。open 24 hours a day の言い換え。"
+     ],
+     [
+      "The pool costs extra.",
+      "プールは追加料金がかかる。",
+      "for free なので逆。"
+     ],
+     [
+      "The offer ends in May.",
+      "特典は5月に終わる。",
+      "4月30日で終わる。"
+     ],
+     [
+      "It has only one trainer.",
+      "トレーナーは1人だけ。",
+      "trainers と複数形。"
+     ]
+    ],
+    "pt": "friendly, patient は形容詞（are の後）。friendly は -ly だけど形容詞なので注意。"
+   }
+  ]
+ },
+ {
+  "id": "p05",
+  "type": "Memo",
+  "raw": "TITLE: New Printing Rules\nTo: All Employees / From: Office Management / Re: Printing\n= 宛先：全社員／差出人：総務部／件名：印刷について\nStarting next Monday, / each employee / will need an ID card / to use the printers.\n= 来週の月曜日から、プリンターを使うには社員一人ひとりにIDカードが必要になります。\nThis change will help us / reduce paper waste / significantly.\n= この変更は、紙の無駄を大幅に減らす助けになります。\nLast month, / more than 2,000 pages / were left on the printers / and never collected.\n= 先月、2,000ページ以上がプリンターに置き去りにされ、回収されませんでした。\nMost of them / were copies / of the same lunch menu.\n= そのほとんどは同じランチメニューのコピーでした。\nIf you have any questions, / please contact / the help desk / at extension 204.\n= ご質問があれば、内線204のヘルプデスクに連絡してください。\nWORDS\nreduce = 減らす\nwaste = 無駄\nsignificantly = 大幅に\ncollected = 回収された\nextension = 内線",
+  "qs": [
+   {
+    "q": "What will employees need to use the printers?",
+    "qj": "プリンターを使うために社員は何が必要になるか。",
+    "a": 1,
+    "c": [
+     [
+      "A password",
+      "パスワード",
+      "パスワードではない。"
+     ],
+     [
+      "An ID card",
+      "IDカード",
+      "正解。will need an ID card。"
+     ],
+     [
+      "Permission from a manager",
+      "上司の許可",
+      "許可の話はない。"
+     ],
+     [
+      "Their own paper",
+      "自分の紙",
+      "紙を持ってくる話はない。"
+     ]
+    ],
+    "pt": "need A to do ＝「〜するためにAが必要」。to use は目的。前から「必要・IDカード・使うために」と読む。"
+   },
+   {
+    "q": "The word 'significantly' in paragraph 1, line 3, is closest in meaning to",
+    "qj": "第1段落3行目の significantly に最も意味が近いのは",
+    "a": 2,
+    "c": [
+     [
+      "slowly",
+      "ゆっくりと",
+      "意味が違う。"
+     ],
+     [
+      "quietly",
+      "静かに",
+      "意味が違う。"
+     ],
+     [
+      "greatly",
+      "大いに",
+      "正解。significantly ＝ 大幅に ＝ greatly。"
+     ],
+     [
+      "recently",
+      "最近",
+      "意味が違う。"
+     ]
+    ],
+    "pt": "選択肢が全部 -ly の副詞。同じ品詞の中で意味を比べる問題。reduce（動詞）を説明する副詞。"
+   }
+  ]
+ },
+ {
+  "id": "p06",
+  "type": "E-mail",
+  "raw": "TITLE: Interview Schedule\nDear Ms. Rivera,\n= リベラ様\nThank you for applying / for the sales assistant position / at Blue Harbor Books.\n= Blue Harbor Books の販売アシスタント職にご応募いただきありがとうございます。\nWe would like to invite you / to an interview / on Tuesday, October 14, / at 2:00 P.M.\n= 10月14日（火）午後2時の面接にお越しいただきたいと思います。\nThe interview will last / about 30 minutes.\n= 面接は約30分かかります。\nPlease bring / a copy of your résumé / and a list of three books / you have recently enjoyed.\n= 履歴書のコピーと、最近楽しんだ本3冊のリストをお持ちください。\nIf this time is not convenient, / please reply / by Friday.\n= この時間のご都合が悪ければ、金曜日までにご返信ください。\nSincerely, / Tom Becker, / Store Manager\n= 敬具 店長 トム・ベッカー\nWORDS\napplying = 応募している\nposition = 職・ポジション\nlast = 続く\nrésumé = 履歴書\nconvenient = 都合がいい",
+  "qs": [
+   {
+    "q": "What is Ms. Rivera asked to bring?",
+    "qj": "リベラさんは何を持ってくるよう頼まれているか。",
+    "a": 0,
+    "c": [
+     [
+      "A list of books",
+      "本のリスト",
+      "正解。a list of three books。"
+     ],
+     [
+      "A photo",
+      "写真",
+      "写真の話はない。"
+     ],
+     [
+      "A reference letter",
+      "推薦状",
+      "推薦状の話はない。"
+     ],
+     [
+      "A book she wrote",
+      "自分が書いた本",
+      "書いた本ではなく楽しんだ本。"
+     ]
+    ],
+    "pt": "you have recently enjoyed は前の books を後ろから説明。前から「本3冊・あなたが最近楽しんだ」と読めば返り読み不要。"
+   },
+   {
+    "q": "What should Ms. Rivera do if she cannot come at 2:00 P.M.?",
+    "qj": "リベラさんが午後2時に来られない場合はどうすべきか。",
+    "a": 3,
+    "c": [
+     [
+      "Call the store on Tuesday",
+      "火曜日に店に電話する",
+      "火曜日は面接の日。"
+     ],
+     [
+      "Visit the store on Friday",
+      "金曜日に店を訪れる",
+      "訪れるのではなく返信する。"
+     ],
+     [
+      "Send her résumé again",
+      "履歴書を再送する",
+      "再送は頼まれていない。"
+     ],
+     [
+      "Respond by Friday",
+      "金曜日までに返信する",
+      "正解。please reply by Friday の言い換え。"
+     ]
+    ],
+    "pt": "not convenient ＝ cannot come。convenient は形容詞（is の後）。reply ＝ respond の言い換え。"
+   }
+  ]
+ },
+ {
+  "id": "p07",
+  "type": "Article",
+  "raw": "TITLE: Local Bakery Opens Second Shop\nSunny Crust Bakery, / famous for its cheese bread, / will open a second shop / on Main Street / next month.\n= チーズパンで有名な Sunny Crust Bakery が、来月メイン通りに2号店を開きます。\nThe owner, / Mark Ellis, / started the business / in his garage / ten years ago.\n= オーナーのマーク・エリスさんは、10年前に自宅のガレージで事業を始めました。\n\"We needed more space,\" / Mr. Ellis said.\n= 「もっと場所が必要だったんです」とエリスさんは言いました。\n\"Customers were waiting / outside for an hour, / and some of them / started bringing chairs.\"\n= 「お客さんが外で1時間待っていて、何人かは椅子を持ってくるようになったんです」\nThe new shop / will have / a small seating area / and will also sell coffee.\n= 新しい店には小さな座席スペースがあり、コーヒーも販売します。\nWORDS\nfamous for = 〜で有名な\ngarage = ガレージ\nseating area = 座席スペース",
+  "qs": [
+   {
+    "q": "Why is the bakery opening a second shop?",
+    "qj": "パン屋はなぜ2号店を開くのか。",
+    "a": 1,
+    "c": [
+     [
+      "To sell cheaper bread",
+      "より安いパンを売るため",
+      "値段の話はない。"
+     ],
+     [
+      "Because it needed more room",
+      "もっと場所が必要だったため",
+      "正解。We needed more space の言い換え（space ＝ room）。"
+     ],
+     [
+      "Because the owner moved",
+      "オーナーが引っ越したため",
+      "引っ越しの話はない。"
+     ],
+     [
+      "To start a coffee company",
+      "コーヒー会社を始めるため",
+      "コーヒーは新店で売るだけ。"
+     ]
+    ],
+    "pt": "room は「部屋」以外に「場所・余地」の意味（数えない名詞）。space ＝ room の言い換えは頻出。"
+   },
+   {
+    "q": "What is suggested about Sunny Crust Bakery?",
+    "qj": "Sunny Crust Bakery について何が分かるか。",
+    "a": 2,
+    "c": [
+     [
+      "It is a new business.",
+      "新しい店である。",
+      "10年前に始めたので新しくない。"
+     ],
+     [
+      "It sells only coffee.",
+      "コーヒーだけを売る。",
+      "有名なのはチーズパン。"
+     ],
+     [
+      "It is very popular.",
+      "とても人気がある。",
+      "正解。1時間待ち・椅子を持参する客がいる。"
+     ],
+     [
+      "It is moving to a garage.",
+      "ガレージに移転する。",
+      "ガレージは始めた場所。"
+     ]
+    ],
+    "pt": "suggested は「はっきり書いていないけど分かること」。行列や椅子持参 → 人気がある、と推測する。"
+   }
+  ]
+ },
+ {
+  "id": "p08",
+  "type": "Notice",
+  "raw": "TITLE: Elevator Maintenance\nAttention, / residents of Maple Tower:\n= メイプルタワーの住民の皆さまへ\nElevator B / will be out of service / on Saturday, / from 9:00 A.M. to 3:00 P.M., / for regular maintenance.\n= エレベーターBは定期点検のため、土曜日の午前9時から午後3時まで使用できません。\nElevator A / will operate / normally.\n= エレベーターAは通常どおり動きます。\nResidents moving furniture / that day / should contact / the building office / in advance.\n= その日に家具を運ぶ住民は、事前に管理事務所に連絡してください。\nAlso, / please do not try / to fix the elevator yourself.\n= また、ご自分でエレベーターを直そうとしないでください。\nLast time, / a resident on the eighth floor / tried, / and we had to call / two technicians / instead of one.\n= 前回は8階の住民が試みたため、技術者を1人ではなく2人呼ぶことになりました。\nWORDS\nout of service = 使用停止中\nmaintenance = 点検・保守\noperate = 動く・稼働する\nin advance = 事前に\ntechnicians = 技術者",
+  "qs": [
+   {
+    "q": "What will happen on Saturday?",
+    "qj": "土曜日に何が起こるか。",
+    "a": 0,
+    "c": [
+     [
+      "One elevator will be checked.",
+      "エレベーター1基が点検される。",
+      "正解。Elevator B が定期点検。"
+     ],
+     [
+      "Both elevators will stop.",
+      "両方のエレベーターが止まる。",
+      "A は通常どおり動く。"
+     ],
+     [
+      "Residents will move out.",
+      "住民が引っ越す。",
+      "引っ越しではない。"
+     ],
+     [
+      "The office will be closed.",
+      "事務所が閉まる。",
+      "事務所の話は連絡先として出るだけ。"
+     ]
+    ],
+    "pt": "normally は副詞（-ly・動詞 operate を説明）。normal（形容詞）なら名詞の前か be動詞の後。"
+   },
+   {
+    "q": "Who should contact the building office?",
+    "qj": "誰が管理事務所に連絡すべきか。",
+    "a": 3,
+    "c": [
+     [
+      "Residents on the eighth floor",
+      "8階の住民",
+      "8階は前回の話。"
+     ],
+     [
+      "Residents who use Elevator A",
+      "エレベーターAを使う住民",
+      "A を使う人に連絡の必要はない。"
+     ],
+     [
+      "Technicians",
+      "技術者",
+      "技術者は呼ばれる側。"
+     ],
+     [
+      "Residents moving furniture",
+      "家具を運ぶ住民",
+      "正解。Residents moving furniture ... should contact。"
+     ]
+    ],
+    "pt": "Residents moving furniture は「家具を運んでいる住民」。-ing が後ろから名詞を説明している。前から「住民・家具を運ぶ」と読む。"
+   }
+  ]
+ },
+ {
+  "id": "p09",
+  "type": "Text messages",
+  "raw": "TITLE: Where Is the Delivery?\nSara Kim (1:15 P.M.): / The office chairs / were supposed to arrive / at noon. / Any news?\n= サラ・キム（午後1:15）：事務椅子は正午に届くはずでした。何か連絡は？\nLeo Grant (1:18 P.M.): / I just called the shop. / The truck is stuck / in traffic / near the bridge.\n= レオ・グラント（午後1:18）：今お店に電話しました。トラックが橋の近くで渋滞にはまっているそうです。\nSara Kim (1:19 P.M.): / The new staff start / at 2:00. / They'll have nowhere to sit.\n= サラ：新しいスタッフは2時に来ます。座る所がありません。\nLeo Grant (1:21 P.M.): / We could borrow chairs / from the conference room / for now.\n= レオ：とりあえず会議室から椅子を借りられますよ。\nSara Kim (1:22 P.M.): / Good idea. / Let's do that / quickly / before someone sees / how comfortable they are.\n= サラ：いい考え。誰かにその座り心地の良さを知られる前に、急いでやりましょう。\nWORDS\nwere supposed to = 〜するはずだった\nstuck = 動けない\nfor now = とりあえず\ncomfortable = 快適な",
+  "qs": [
+   {
+    "q": "Why is the delivery late?",
+    "qj": "配達はなぜ遅れているのか。",
+    "a": 2,
+    "c": [
+     [
+      "The shop closed early.",
+      "店が早く閉まった。",
+      "閉店の話はない。"
+     ],
+     [
+      "The chairs were sold out.",
+      "椅子が売り切れた。",
+      "売り切れではない。"
+     ],
+     [
+      "There is heavy traffic.",
+      "渋滞している。",
+      "正解。stuck in traffic の言い換え。"
+     ],
+     [
+      "The address was wrong.",
+      "住所が間違っていた。",
+      "住所の話はない。"
+     ]
+    ],
+    "pt": "heavy traffic ＝ 渋滞。heavy は形容詞（名詞 traffic の前）。"
+   },
+   {
+    "q": "At 1:22 P.M., what does Ms. Kim agree to do?",
+    "qj": "午後1:22に、キムさんは何をすることに同意しているか。",
+    "a": 1,
+    "c": [
+     [
+      "Call the shop again",
+      "もう一度店に電話する",
+      "電話はレオがすでにした。"
+     ],
+     [
+      "Use chairs from another room",
+      "別の部屋の椅子を使う",
+      "正解。会議室の椅子を借りる案に Good idea と答えた。"
+     ],
+     [
+      "Delay the new staff's start",
+      "新しいスタッフの開始を遅らせる",
+      "遅らせる話はない。"
+     ],
+     [
+      "Buy more chairs",
+      "椅子をもっと買う",
+      "買う話はない。"
+     ]
+    ],
+    "pt": "Good idea. は直前の提案への同意。意図問題は1つ前のメッセージがカギ。quickly は副詞で do that を説明。"
+   }
+  ]
+ },
+ {
+  "id": "p10",
+  "type": "Advertisement",
+  "raw": "TITLE: Swift Move Services\nMoving to a new home / or office? / Let Swift Move help!\n= 新しい家やオフィスへ引っ越しますか？ Swift Move にお任せください！\nOur experienced staff / pack your items / carefully / and deliver them / on time.\n= 経験豊富なスタッフが荷物を丁寧に梱包し、時間どおりにお届けします。\nWe offer / free boxes / to all customers / who book / two weeks in advance.\n= 2週間前までに予約したお客様全員に、無料の段ボールを提供します。\nOur prices are reasonable, / and there are no hidden fees.\n= 料金は手頃で、隠れた手数料はありません。\nLast year, / we moved over 3,000 families / and only one goldfish / complained.\n= 昨年は3,000以上の家族を引っ越しさせ、文句を言ったのは金魚1匹だけでした。\nCall 555-0187 / for a free estimate.\n= 無料見積もりは 555-0187 へお電話を。\nWORDS\nexperienced = 経験豊富な\ncarefully = 丁寧に\nreasonable = 手頃な\nhidden fees = 隠れた手数料\nestimate = 見積もり",
+  "qs": [
+   {
+    "q": "How can customers get free boxes?",
+    "qj": "客はどうすれば無料の段ボールをもらえるか。",
+    "a": 3,
+    "c": [
+     [
+      "By moving an office",
+      "オフィスを引っ越す",
+      "オフィスかどうかは条件ではない。"
+     ],
+     [
+      "By paying in cash",
+      "現金で払う",
+      "支払い方法の話はない。"
+     ],
+     [
+      "By calling 555-0187",
+      "555-0187に電話する",
+      "電話は見積もり用。"
+     ],
+     [
+      "By booking early",
+      "早めに予約する",
+      "正解。two weeks in advance の言い換え。"
+     ]
+    ],
+    "pt": "customers who book ... の who 以下は customers の説明。in advance ＝ early の言い換え。"
+   },
+   {
+    "q": "What is NOT mentioned about Swift Move?",
+    "qj": "Swift Move について述べられていないことは何か。",
+    "a": 0,
+    "c": [
+     [
+      "It has offices in many cities.",
+      "多くの都市に事務所がある。",
+      "正解。事務所の場所は書かれていない。"
+     ],
+     [
+      "Its staff have experience.",
+      "スタッフに経験がある。",
+      "experienced staff とある。"
+     ],
+     [
+      "It has no hidden charges.",
+      "隠れた料金がない。",
+      "no hidden fees とある。"
+     ],
+     [
+      "It gives free estimates.",
+      "無料で見積もりをする。",
+      "free estimate とある。"
+     ]
+    ],
+    "pt": "experienced（形容詞・名詞 staff の前）と carefully（副詞・動詞 pack を説明）の位置を確認。"
+   }
+  ]
+ },
+ {
+  "id": "p11",
+  "type": "E-mail",
+  "raw": "TITLE: Your Reservation at Hotel Lumen\nDear Mr. Tanaka,\n= 田中様\nThis e-mail confirms / your reservation / for a single room / from March 3 to March 5.\n= このメールで、3月3日から5日までのシングルルームのご予約を確認いたします。\nCheck-in begins / at 3:00 P.M., / and check-out is / at 11:00 A.M.\n= チェックインは午後3時から、チェックアウトは午前11時です。\nBreakfast is included / and is served / in the lobby restaurant / from 6:30 to 9:30 A.M.\n= 朝食は料金に含まれており、ロビーのレストランで午前6時半から9時半まで提供されます。\nPlease note / that our parking lot / is currently under construction.\n= 現在、当ホテルの駐車場は工事中ですのでご注意ください。\nWe recommend / taking the train; / the station is only / a five-minute walk away.\n= 電車でのお越しをおすすめします。駅から徒歩わずか5分です。\nWORDS\nconfirms = 確認する\nincluded = 含まれている\ncurrently = 現在\nunder construction = 工事中\nrecommend = すすめる",
+  "qs": [
+   {
+    "q": "Why was the e-mail sent?",
+    "qj": "このメールはなぜ送られたか。",
+    "a": 1,
+    "c": [
+     [
+      "To cancel a booking",
+      "予約を取り消すため",
+      "取り消しではない。"
+     ],
+     [
+      "To confirm a booking",
+      "予約を確認するため",
+      "正解。This e-mail confirms your reservation。"
+     ],
+     [
+      "To offer a room upgrade",
+      "部屋のアップグレードを提案するため",
+      "アップグレードの話はない。"
+     ],
+     [
+      "To advertise a restaurant",
+      "レストランを宣伝するため",
+      "レストランは朝食の場所として出るだけ。"
+     ]
+    ],
+    "pt": "reservation ＝ booking の言い換え。目的は1文目。"
+   },
+   {
+    "q": "What does the hotel suggest Mr. Tanaka do?",
+    "qj": "ホテルは田中さんに何をすすめているか。",
+    "a": 2,
+    "c": [
+     [
+      "Arrive before 3:00 P.M.",
+      "午後3時より前に着く",
+      "チェックインは3時から。"
+     ],
+     [
+      "Skip breakfast",
+      "朝食を抜く",
+      "朝食は含まれている。"
+     ],
+     [
+      "Travel by train",
+      "電車で来る",
+      "正解。We recommend taking the train。"
+     ],
+     [
+      "Park on the street",
+      "路上に駐車する",
+      "駐車の案内はない。"
+     ]
+    ],
+    "pt": "recommend doing ＝「〜することをすすめる」。currently は副詞（文の情報が今のことだと示す）。"
+   }
+  ]
+ },
+ {
+  "id": "p12",
+  "type": "Letter",
+  "raw": "TITLE: A Problem with My Blender\nDear Customer Service,\n= カスタマーサービス御中\nI bought / a PowerMix blender / from your online store / on August 2.\n= 8月2日に御社のオンラインストアで PowerMix ミキサーを買いました。\nIt worked perfectly / for one week, / but now / it makes a loud noise / and stops / after a few seconds.\n= 1週間は完璧に動いていましたが、今は大きな音がして数秒で止まります。\nMy neighbors / now think / I am starting a rock band.\n= 近所の人たちは、私がロックバンドを始めたと思っています。\nI would like / to exchange it / for a new one.\n= 新しいものと交換していただきたいです。\nI have attached / a copy of my receipt.\n= レシートのコピーを添付しました。\nSincerely, / Grace Liu\n= 敬具 グレース・リウ\nWORDS\nperfectly = 完璧に\nexchange = 交換する\nattached = 添付した\nreceipt = レシート・領収書",
+  "qs": [
+   {
+    "q": "What is the problem with the blender?",
+    "qj": "ミキサーの問題は何か。",
+    "a": 0,
+    "c": [
+     [
+      "It stops working quickly.",
+      "すぐに動かなくなる。",
+      "正解。stops after a few seconds。"
+     ],
+     [
+      "It was delivered late.",
+      "届くのが遅れた。",
+      "配達の話はない。"
+     ],
+     [
+      "It is the wrong color.",
+      "色が違う。",
+      "色の話はない。"
+     ],
+     [
+      "It is too heavy.",
+      "重すぎる。",
+      "重さの話はない。"
+     ]
+    ],
+    "pt": "perfectly は副詞（worked を説明）、loud は形容詞（名詞 noise の前）。"
+   },
+   {
+    "q": "What does Ms. Liu want?",
+    "qj": "リウさんは何を望んでいるか。",
+    "a": 3,
+    "c": [
+     [
+      "A refund",
+      "返金",
+      "返金ではなく交換。"
+     ],
+     [
+      "Repair instructions",
+      "修理の説明書",
+      "説明書の話はない。"
+     ],
+     [
+      "A new receipt",
+      "新しいレシート",
+      "レシートは自分で添付した。"
+     ],
+     [
+      "A replacement product",
+      "代わりの製品",
+      "正解。exchange it for a new one の言い換え。"
+     ]
+    ],
+    "pt": "exchange A for B ＝「AをBと交換する」。a new one ＝ a replacement。refund（返金）とひっかけに注意。"
+   }
+  ]
+ },
+ {
+  "id": "p13",
+  "type": "Memo",
+  "raw": "TITLE: Office Plants\nTo: All Staff / From: Rachel Moore\n= 宛先：全社員／差出人：レイチェル・ムーア\nAs many of you know, / we added / twenty plants / to the office / last month.\n= ご存じのとおり、先月オフィスに観葉植物を20鉢置きました。\nSadly, / several of them / are already in poor condition.\n= 残念ながら、そのうち数鉢はすでに状態が悪くなっています。\nStarting this week, / each team / will be responsible for / the plants / near its desks.\n= 今週から、各チームは自分たちの机の近くの植物を担当してください。\nPlease water them / once a week, / not every day.\n= 水やりは毎日ではなく週に1回にしてください。\nThe plant / near the sales team / has received / so much coffee / that it now works / faster than some employees.\n= 営業チームのそばの植物はコーヒーをたくさんもらったので、今では一部の社員より働き者です。\nWORDS\nsadly = 残念ながら\nin poor condition = 状態が悪い\nresponsible for = 〜を担当して・〜に責任がある\nwater = 水をやる",
+  "qs": [
+   {
+    "q": "What is the main purpose of the memo?",
+    "qj": "このメモの主な目的は何か。",
+    "a": 2,
+    "c": [
+     [
+      "To order more plants",
+      "植物をもっと注文すること",
+      "注文の話はない。"
+     ],
+     [
+      "To introduce a new employee",
+      "新入社員を紹介すること",
+      "新入社員の話はない。"
+     ],
+     [
+      "To assign plant care duties",
+      "植物の世話の担当を決めること",
+      "正解。each team will be responsible for the plants。"
+     ],
+     [
+      "To ban coffee in the office",
+      "オフィスでのコーヒーを禁止すること",
+      "禁止はしていない。"
+     ]
+    ],
+    "pt": "responsible for ＝ 担当する ＝ duties（任務）。言い換えをイメージでつなぐ。"
+   },
+   {
+    "q": "How often should the plants be watered?",
+    "qj": "植物にはどのくらいの頻度で水をやるべきか。",
+    "a": 1,
+    "c": [
+     [
+      "Every day",
+      "毎日",
+      "not every day なので逆。"
+     ],
+     [
+      "Once a week",
+      "週に1回",
+      "正解。"
+     ],
+     [
+      "Twice a month",
+      "月に2回",
+      "書かれていない。"
+     ],
+     [
+      "When they look dry",
+      "乾いて見えたとき",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "water は名詞「水」だけでなく動詞「水をやる」。命令文の先頭なので動詞。"
+   }
+  ]
+ },
+ {
+  "id": "p14",
+  "type": "Online review",
+  "raw": "TITLE: Review: QuietWave Headphones\nRating: / four out of five stars\n= 評価：5つ星中4つ\nI bought / these headphones / for my long train commute, / and I am very satisfied.\n= 長い電車通勤のためにこのヘッドホンを買いましたが、とても満足しています。\nThe sound quality / is excellent, / and the battery lasts / about thirty hours.\n= 音質はすばらしく、バッテリーは約30時間もちます。\nThe noise-canceling feature / works so well / that I missed my station / twice.\n= ノイズキャンセリング機能がよく効きすぎて、駅を2回乗り過ごしました。\nMy only complaint / is that / the case is a little large / for my bag.\n= 唯一の不満は、ケースが私のカバンには少し大きいことです。\n– Daniel Ortiz\n= ダニエル・オルティス\nWORDS\ncommute = 通勤\nsatisfied = 満足した\nexcellent = すばらしい\nfeature = 機能\ncomplaint = 不満・苦情",
+  "qs": [
+   {
+    "q": "What does Mr. Ortiz dislike about the product?",
+    "qj": "オルティスさんは製品の何が気に入らないか。",
+    "a": 3,
+    "c": [
+     [
+      "The sound quality",
+      "音質",
+      "excellent と褒めている。"
+     ],
+     [
+      "The battery life",
+      "バッテリーのもち",
+      "30時間もつと褒めている。"
+     ],
+     [
+      "The price",
+      "値段",
+      "値段の話はない。"
+     ],
+     [
+      "The size of the case",
+      "ケースの大きさ",
+      "正解。My only complaint ... the case is a little large。"
+     ]
+    ],
+    "pt": "My only complaint is that ... の後ろが答え。complaint ＝ dislike。"
+   },
+   {
+    "q": "Why did Mr. Ortiz miss his station?",
+    "qj": "オルティスさんはなぜ駅を乗り過ごしたのか。",
+    "a": 0,
+    "c": [
+     [
+      "He could not hear announcements.",
+      "アナウンスが聞こえなかったから。",
+      "正解。ノイズキャンセリングが効きすぎた。"
+     ],
+     [
+      "He fell asleep.",
+      "眠ってしまったから。",
+      "寝たとは書いていない。"
+     ],
+     [
+      "The train was crowded.",
+      "電車が混んでいたから。",
+      "混雑の話はない。"
+     ],
+     [
+      "His battery ran out.",
+      "バッテリーが切れたから。",
+      "バッテリーは長持ち。"
+     ]
+    ],
+    "pt": "so well that ... ＝「とてもよく〜なので…」。well は副詞（works を説明）、excellent は形容詞（is の後）。"
+   }
+  ]
+ },
+ {
+  "id": "p15",
+  "type": "Notice",
+  "raw": "TITLE: Parking Lot Repaving\nTo all employees / of Benton Manufacturing:\n= ベントン製造の全社員へ\nThe east parking lot / will be repaved / from July 10 to July 12.\n= 東駐車場は7月10日から12日まで舗装し直されます。\nDuring this time, / please park / in the west lot / or at City Garage / on Elm Street.\n= この期間中は、西駐車場か、エルム通りの市営駐車場に停めてください。\nThe company / will pay / for City Garage parking; / simply show your employee ID / at the exit.\n= 市営駐車場の料金は会社が払います。出口で社員証を見せるだけです。\nCars left / in the east lot / will be moved / at the owner's expense.\n= 東駐車場に残された車は、所有者の費用で移動されます。\nThis includes / the blue van / that has not moved / since 2019.\n= これには2019年から動いていない青いバンも含まれます。\nWORDS\nrepaved = 舗装し直される\nlot = 区画・駐車場\nsimply = ただ〜するだけ\nexpense = 費用",
+  "qs": [
+   {
+    "q": "What are employees asked to do from July 10 to July 12?",
+    "qj": "7月10日から12日まで、社員は何をするよう頼まれているか。",
+    "a": 1,
+    "c": [
+     [
+      "Work from home",
+      "在宅勤務する",
+      "在宅勤務の話はない。"
+     ],
+     [
+      "Park in a different place",
+      "別の場所に駐車する",
+      "正解。west lot か City Garage に停める。"
+     ],
+     [
+      "Take the bus",
+      "バスで来る",
+      "バスの話はない。"
+     ],
+     [
+      "Move the blue van",
+      "青いバンを動かす",
+      "バンは冗談の部分。社員全員への指示ではない。"
+     ]
+    ],
+    "pt": "lot は「駐車場・区画」。parking lot を短く lot と言う。"
+   },
+   {
+    "q": "What is indicated about City Garage?",
+    "qj": "市営駐車場について何が示されているか。",
+    "a": 2,
+    "c": [
+     [
+      "It is on Benton Street.",
+      "ベントン通りにある。",
+      "Elm Street にある。"
+     ],
+     [
+      "It closes at noon.",
+      "正午に閉まる。",
+      "時間の話はない。"
+     ],
+     [
+      "Employees can use it for free.",
+      "社員は無料で使える。",
+      "正解。The company will pay。"
+     ],
+     [
+      "It is being repaved.",
+      "舗装し直されている。",
+      "舗装されるのは東駐車場。"
+     ]
+    ],
+    "pt": "The company will pay ＝ 社員にとっては for free。立場を変えて言い換える。simply は副詞で show を説明。"
+   }
+  ]
+ },
+ {
+  "id": "p16",
+  "type": "E-mail",
+  "raw": "TITLE: Invitation to Speak\nDear Dr. Patel,\n= パテル博士\nWe are organizing / the Green Business Conference, / which will be held / in Denver / on November 20.\n= 私たちは、11月20日にデンバーで開かれるグリーンビジネス会議を企画しています。\nWe would be honored / if you could give / a 40-minute talk / about reducing energy costs / in small offices.\n= 小規模オフィスのエネルギーコスト削減について40分の講演をしていただければ光栄です。\nWe will cover / your travel / and hotel expenses.\n= 交通費とホテル代はこちらで負担します。\nYour talk last year / was extremely popular; / many people still turn off the lights / when they leave a room / because of you.\n= 昨年のご講演は非常に好評で、今でも多くの人があなたのおかげで部屋を出るときに電気を消しています。\nPlease let us know / by September 30 / whether you are available.\n= ご都合がつくかどうか、9月30日までにお知らせください。\nWORDS\norganizing = 企画している\nhonored = 光栄な\ncover = （費用を）負担する\nextremely = 非常に\navailable = 都合がつく",
+  "qs": [
+   {
+    "q": "What is Dr. Patel asked to do?",
+    "qj": "パテル博士は何をするよう頼まれているか。",
+    "a": 0,
+    "c": [
+     [
+      "Give a presentation",
+      "講演をする",
+      "正解。give a 40-minute talk の言い換え。"
+     ],
+     [
+      "Organize a conference",
+      "会議を企画する",
+      "企画するのは差出人側。"
+     ],
+     [
+      "Book a hotel",
+      "ホテルを予約する",
+      "予約の話はない。費用は負担してもらえる。"
+     ],
+     [
+      "Visit a small office",
+      "小さなオフィスを訪れる",
+      "オフィスは講演のテーマ。"
+     ]
+    ],
+    "pt": "talk ＝ presentation ＝ speech。名詞の言い換えセット。"
+   },
+   {
+    "q": "What is suggested about Dr. Patel?",
+    "qj": "パテル博士について何が分かるか。",
+    "a": 2,
+    "c": [
+     [
+      "She lives in Denver.",
+      "デンバーに住んでいる。",
+      "交通費を出すので、むしろ遠くに住んでいそう。"
+     ],
+     [
+      "She works for a hotel.",
+      "ホテルで働いている。",
+      "書かれていない。"
+     ],
+     [
+      "She has spoken at the event before.",
+      "以前この会議で話したことがある。",
+      "正解。Your talk last year とある。"
+     ],
+     [
+      "She will leave in September.",
+      "9月に出発する。",
+      "9月30日は返事の締め切り。"
+     ]
+    ],
+    "pt": "extremely は副詞（形容詞 popular を強める）。副詞は形容詞の前にも来る。"
+   }
+  ]
+ },
+ {
+  "id": "p17",
+  "type": "Text messages",
+  "raw": "TITLE: Lunch Order\nNina Brooks (11:30 A.M.): / I'm ordering lunch / for the team meeting. / Pizza or sandwiches?\n= ニーナ・ブルックス（午前11:30）：チーム会議のお昼を注文します。ピザとサンドイッチ、どっち？\nOmar Haddad (11:32 A.M.): / Sandwiches. / Pizza makes / the presentation slides / greasy.\n= オマー・ハダッド（午前11:32）：サンドイッチ。ピザだとプレゼンの資料が油っぽくなるから。\nNina Brooks (11:33 A.M.): / Fair point. / How many people / are coming?\n= ニーナ：もっともね。何人来るの？\nOmar Haddad (11:35 A.M.): / Twelve, / but Mr. Lee / just told me / he'll join us / late.\n= オマー：12人。でもリーさんがさっき、遅れて参加すると言っていました。\nNina Brooks (11:36 A.M.): / Then I'll order / thirteen, / just in case. / He always eats two.\n= ニーナ：じゃあ念のため13個頼むね。彼はいつも2個食べるから。\nWORDS\ngreasy = 油っぽい\nfair point = もっともな意見\njust in case = 念のため",
+  "qs": [
+   {
+    "q": "Why does Mr. Haddad prefer sandwiches?",
+    "qj": "ハダッドさんはなぜサンドイッチがいいのか。",
+    "a": 3,
+    "c": [
+     [
+      "They are cheaper.",
+      "より安いから。",
+      "値段の話はない。"
+     ],
+     [
+      "Mr. Lee likes them.",
+      "リーさんが好きだから。",
+      "リーさんの好みは書かれていない。"
+     ],
+     [
+      "They arrive faster.",
+      "早く届くから。",
+      "配達時間の話はない。"
+     ],
+     [
+      "They are less messy.",
+      "汚れにくいから。",
+      "正解。ピザは資料を油っぽくする。"
+     ]
+    ],
+    "pt": "greasy ＝ 油でベタベタ → messy（散らかる・汚れる）。理由は直後に来る。"
+   },
+   {
+    "q": "At 11:33 A.M., what does Ms. Brooks mean when she writes, 'Fair point'?",
+    "qj": "午前11:33にブルックスさんが Fair point と書いているのはどういう意味か。",
+    "a": 1,
+    "c": [
+     [
+      "She thinks the price is fair.",
+      "値段が適正だと思っている。",
+      "fair を「適正な値段」と取るひっかけ。"
+     ],
+     [
+      "She agrees with Mr. Haddad.",
+      "ハダッドさんに同意している。",
+      "正解。もっともな意見だと認めている。"
+     ],
+     [
+      "She wants to order pizza.",
+      "ピザを注文したい。",
+      "この後サンドイッチの数を聞いている。"
+     ],
+     [
+      "She will ask Mr. Lee.",
+      "リーさんに聞くつもりだ。",
+      "聞く話はない。"
+     ]
+    ],
+    "pt": "Fair point ＝ Good point ＝ 同意。fair は形容詞（名詞 point の前）。"
+   }
+  ]
+ },
+ {
+  "id": "p18",
+  "type": "Article",
+  "raw": "TITLE: Central Station to Get a Makeover\nCentral Station, / one of the busiest stations / in the city, / will be renovated / starting in January.\n= 市内で最も混雑する駅の一つであるセントラル駅が、1月から改装されます。\nThe project / will add / new escalators, / brighter lighting, / and a larger waiting area.\n= この計画では、新しいエスカレーター、より明るい照明、より広い待合スペースが加わります。\nTrains / will continue to run / during the work, / but some entrances / will be closed / temporarily.\n= 工事中も電車は運行を続けますが、一部の入口は一時的に閉鎖されます。\nCity officials say / the work will take / about eighteen months.\n= 市の担当者によると、工事は約18か月かかります。\nMany passengers / welcomed the news, / especially those / who have been lost / in the station's maze of tunnels / for years.\n= 多くの乗客がこの知らせを歓迎しました。特に、駅の迷路のようなトンネルで何年も迷ってきた人たちが。\nWORDS\nrenovated = 改装される\ntemporarily = 一時的に\nofficials = 担当者・職員\npassengers = 乗客\nmaze = 迷路",
+  "qs": [
+   {
+    "q": "What will happen during the renovation?",
+    "qj": "改装中に何が起こるか。",
+    "a": 0,
+    "c": [
+     [
+      "Some entrances will not be open.",
+      "一部の入口が開いていない。",
+      "正解。some entrances will be closed temporarily。"
+     ],
+     [
+      "All trains will stop.",
+      "すべての電車が止まる。",
+      "continue to run なので逆。"
+     ],
+     [
+      "The station will move.",
+      "駅が移転する。",
+      "移転はしない。"
+     ],
+     [
+      "Tickets will be free.",
+      "切符が無料になる。",
+      "切符の話はない。"
+     ]
+    ],
+    "pt": "temporarily は副詞（-ly・will be closed を説明）。temporary は形容詞（名詞の前）。"
+   },
+   {
+    "q": "How long will the project take?",
+    "qj": "計画はどのくらいかかるか。",
+    "a": 2,
+    "c": [
+     [
+      "About six months",
+      "約6か月",
+      "書かれていない。"
+     ],
+     [
+      "About one year",
+      "約1年",
+      "18か月なので違う。"
+     ],
+     [
+      "About a year and a half",
+      "約1年半",
+      "正解。eighteen months ＝ 1年半。"
+     ],
+     [
+      "About two years",
+      "約2年",
+      "18か月なので違う。"
+     ]
+    ],
+    "pt": "数字の言い換え（18 months ＝ a year and a half）はPart 7の定番。"
+   }
+  ]
+ },
+ {
+  "id": "p19",
+  "type": "Advertisement",
+  "raw": "TITLE: Cooking Class at Olive Kitchen\nLearn to cook / simple Italian dishes / at Olive Kitchen!\n= オリーブキッチンで簡単なイタリア料理を習いましょう！\nOur evening class / meets / every Wednesday / from 7:00 to 9:00 P.M.\n= 夜のクラスは毎週水曜日の午後7時から9時です。\nNo experience is necessary; / our chef / explains each step / clearly.\n= 経験は不要です。シェフが一つ一つの手順を分かりやすく説明します。\nAll ingredients / are provided, / and you can take home / what you make.\n= 材料はすべて用意されており、作ったものは持ち帰れます。\nPast students / say the class is fun, / although one of them / still calls / every pasta \"spaghetti.\"\n= 過去の受講生は楽しいと言っています。もっとも、そのうちの一人はいまだにどのパスタも「スパゲッティ」と呼んでいますが。\nSign up / on our Web site / by the 25th / to get a 10 percent discount.\n= 25日までにウェブサイトで申し込むと10%割引になります。\nWORDS\nnecessary = 必要な\nclearly = 分かりやすく\ningredients = 材料\nprovided = 用意される\nsign up = 申し込む",
+  "qs": [
+   {
+    "q": "What is true about the class?",
+    "qj": "クラスについて正しいことは何か。",
+    "a": 2,
+    "c": [
+     [
+      "It is held in the morning.",
+      "朝に開かれる。",
+      "夜のクラス。"
+     ],
+     [
+      "Students must bring ingredients.",
+      "受講生は材料を持ってくる必要がある。",
+      "provided なので持参不要。"
+     ],
+     [
+      "Beginners can join.",
+      "初心者も参加できる。",
+      "正解。No experience is necessary の言い換え。"
+     ],
+     [
+      "It meets twice a week.",
+      "週に2回開かれる。",
+      "毎週水曜日の1回。"
+     ]
+    ],
+    "pt": "necessary は形容詞（is の後）、clearly は副詞（explains を説明）。No experience ＝ beginners OK。"
+   },
+   {
+    "q": "How can people get a discount?",
+    "qj": "どうすれば割引を受けられるか。",
+    "a": 1,
+    "c": [
+     [
+      "By bringing a friend",
+      "友人を連れてくる",
+      "書かれていない。"
+     ],
+     [
+      "By registering online early",
+      "早めにオンラインで申し込む",
+      "正解。Sign up on our Web site by the 25th。"
+     ],
+     [
+      "By taking two classes",
+      "2つのクラスを受ける",
+      "書かれていない。"
+     ],
+     [
+      "By calling the chef",
+      "シェフに電話する",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "sign up ＝ register。by the 25th ＝ 期限までに ＝ early。"
+   }
+  ]
+ },
+ {
+  "id": "p20",
+  "type": "E-mail",
+  "raw": "TITLE: Invoice Correction\nDear Mr. Novak,\n= ノヴァク様\nThank you for your recent order / of office supplies.\n= 先日は事務用品をご注文いただきありがとうございました。\nUnfortunately, / the invoice we sent / on May 14 / contained an error.\n= 残念ながら、5月14日にお送りした請求書に誤りがありました。\nYou were charged / for 500 boxes of pens / instead of 50.\n= ペン50箱のところ、500箱分を請求していました。\nA corrected invoice / is attached / to this e-mail.\n= 訂正した請求書をこのメールに添付しています。\nWe are sorry / for the mistake, / although we were impressed / that you did not immediately call us / to ask why your office needed / 25,000 pens.\n= ミスをお詫びします。もっとも、なぜオフィスに2万5千本のペンが必要なのかとすぐにお電話がなかったことには感心しましたが。\nBest regards, / Julia West, / Billing Department\n= よろしくお願いいたします。請求部 ジュリア・ウェスト\nWORDS\ninvoice = 請求書\ncontained = 含んでいた\ncharged = 請求された\ncorrected = 訂正された\nimpressed = 感心した",
+  "qs": [
+   {
+    "q": "What was the problem with the invoice?",
+    "qj": "請求書の問題は何だったか。",
+    "a": 3,
+    "c": [
+     [
+      "It was sent late.",
+      "送るのが遅れた。",
+      "遅れの話はない。"
+     ],
+     [
+      "It had the wrong address.",
+      "住所が間違っていた。",
+      "住所の話はない。"
+     ],
+     [
+      "It was not signed.",
+      "署名がなかった。",
+      "署名の話はない。"
+     ],
+     [
+      "It showed the wrong quantity.",
+      "数量が間違っていた。",
+      "正解。50箱のところ500箱になっていた。"
+     ]
+    ],
+    "pt": "500 instead of 50 ＝ 数の間違い ＝ wrong quantity。"
+   },
+   {
+    "q": "What did Ms. West send with the e-mail?",
+    "qj": "ウェストさんはメールと一緒に何を送ったか。",
+    "a": 0,
+    "c": [
+     [
+      "A revised invoice",
+      "修正された請求書",
+      "正解。A corrected invoice is attached。"
+     ],
+     [
+      "A box of pens",
+      "ペン1箱",
+      "物は送っていない。"
+     ],
+     [
+      "A discount coupon",
+      "割引券",
+      "割引の話はない。"
+     ],
+     [
+      "A product catalog",
+      "商品カタログ",
+      "カタログの話はない。"
+     ]
+    ],
+    "pt": "corrected ＝ revised。immediately は副詞（call を説明）。"
+   }
+  ]
+ },
+ {
+  "id": "p21",
+  "type": "Notice",
+  "raw": "TITLE: Fire Drill on Friday\nA fire drill / will take place / this Friday / at 10:30 A.M.\n= 今週金曜日の午前10時半に避難訓練を行います。\nWhen the alarm sounds, / please leave the building / calmly / by the nearest stairs.\n= 警報が鳴ったら、最寄りの階段から落ち着いて建物を出てください。\nDo not use / the elevators.\n= エレベーターは使わないでください。\nEveryone should gather / in the parking lot / behind the building.\n= 全員、建物の裏の駐車場に集まってください。\nThe drill / should last / about fifteen minutes.\n= 訓練は約15分の予定です。\nPlease do not bring / your laptop, / your lunch, / or, / as one employee did last year, / your office chair.\n= ノートパソコンやお弁当、そして昨年ある社員がしたように事務椅子は持ち出さないでください。\nWORDS\nfire drill = 避難訓練\ncalmly = 落ち着いて\nnearest = 最も近い\ngather = 集まる",
+  "qs": [
+   {
+    "q": "What are people asked to do when the alarm sounds?",
+    "qj": "警報が鳴ったら何をするよう頼まれているか。",
+    "a": 1,
+    "c": [
+     [
+      "Take the elevators",
+      "エレベーターに乗る",
+      "使わないでと書いてある。"
+     ],
+     [
+      "Use the stairs",
+      "階段を使う",
+      "正解。by the nearest stairs。"
+     ],
+     [
+      "Call the front desk",
+      "受付に電話する",
+      "書かれていない。"
+     ],
+     [
+      "Bring their laptops",
+      "ノートパソコンを持ってくる",
+      "持ってこないでと書いてある。"
+     ]
+    ],
+    "pt": "calmly は副詞（leave を説明）。calm（形容詞）なら Stay calm のように be動詞類の後。"
+   },
+   {
+    "q": "Where should people gather?",
+    "qj": "どこに集まるべきか。",
+    "a": 3,
+    "c": [
+     [
+      "In the lobby",
+      "ロビー",
+      "書かれていない。"
+     ],
+     [
+      "At the nearest station",
+      "最寄り駅",
+      "nearest は階段の説明。"
+     ],
+     [
+      "In front of the building",
+      "建物の前",
+      "前ではなく裏。"
+     ],
+     [
+      "Behind the building",
+      "建物の裏",
+      "正解。parking lot behind the building。"
+     ]
+    ],
+    "pt": "場所の前置詞 behind（後ろ）と in front of（前）のひっかけ。"
+   }
+  ]
+ },
+ {
+  "id": "p22",
+  "type": "Memo",
+  "raw": "TITLE: Casual Friday\nTo: All Staff / From: Human Resources\n= 宛先：全社員／差出人：人事部\nBeginning next month, / employees / may wear casual clothes / on Fridays.\n= 来月から、社員は金曜日にカジュアルな服を着てもかまいません。\nJeans and sneakers / are acceptable, / but shorts and sandals / are not.\n= ジーンズとスニーカーは認められますが、短パンとサンダルは認められません。\nIf you have a meeting / with a client / on a Friday, / please dress / professionally.\n= 金曜日に顧客との打ち合わせがある場合は、きちんとした服装をしてください。\nWe also ask / that you do not wear / costumes.\n= また、仮装はしないようお願いします。\nWe know / the dinosaur suit / was popular, / but the client from Harmon Bank / did not find it / amusing.\n= 恐竜の着ぐるみが人気だったのは知っていますが、ハーモン銀行の顧客は面白いとは思いませんでした。\nWORDS\ncasual = カジュアルな・くだけた\nacceptable = 許容される\nprofessionally = きちんと・プロらしく\ncostumes = 仮装・衣装\namusing = 面白い",
+  "qs": [
+   {
+    "q": "What is the memo mainly about?",
+    "qj": "このメモは主に何についてか。",
+    "a": 0,
+    "c": [
+     [
+      "A new clothing policy",
+      "新しい服装の方針",
+      "正解。金曜日のカジュアル服のルール。"
+     ],
+     [
+      "A company party",
+      "会社のパーティー",
+      "パーティーの話はない。"
+     ],
+     [
+      "A new client",
+      "新しい顧客",
+      "顧客は例として出るだけ。"
+     ],
+     [
+      "A change in working hours",
+      "勤務時間の変更",
+      "勤務時間の話はない。"
+     ]
+    ],
+    "pt": "may wear ＝「着てもよい」（許可）。ルールの話＝policy。"
+   },
+   {
+    "q": "What should employees do if they meet a client on a Friday?",
+    "qj": "金曜日に顧客と会う場合、社員はどうすべきか。",
+    "a": 2,
+    "c": [
+     [
+      "Wear jeans",
+      "ジーンズを履く",
+      "通常の金曜日ならOKだが、顧客の日はきちんとした服。"
+     ],
+     [
+      "Wear a costume",
+      "仮装する",
+      "仮装は禁止。"
+     ],
+     [
+      "Dress formally",
+      "フォーマルな服を着る",
+      "正解。dress professionally の言い換え。"
+     ],
+     [
+      "Reschedule the meeting",
+      "打ち合わせの日程を変える",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "professionally は副詞（-ly・dress を説明）。professional（形容詞）なら a professional look のように名詞の前。"
+   }
+  ]
+ },
+ {
+  "id": "p23",
+  "type": "Letter",
+  "raw": "TITLE: Subscription Renewal\nDear Ms. Grant,\n= グラント様\nYour subscription / to Home Garden Monthly / will expire / on December 31.\n= 『ホームガーデン・マンスリー』の定期購読は12月31日で期限が切れます。\nIf you renew / before December 1, / you will receive / a free gardening calendar.\n= 12月1日より前に更新すると、無料のガーデニングカレンダーがもらえます。\nYou can renew / easily / on our Web site / or by calling / our customer center.\n= ウェブサイトかカスタマーセンターへのお電話で簡単に更新できます。\nWe hope / you have enjoyed our magazine.\n= 当誌をお楽しみいただけたなら幸いです。\nAccording to your last letter, / your tomatoes / are now taller / than your husband.\n= 前回のお手紙によると、トマトがご主人より背が高くなったそうですね。\nSincerely, / Carlos Mendes, / Subscriptions Manager\n= 敬具 購読担当マネージャー カルロス・メンデス\nWORDS\nsubscription = 定期購読\nexpire = 期限が切れる\nrenew = 更新する\neasily = 簡単に\naccording to = 〜によると",
+  "qs": [
+   {
+    "q": "Why did Mr. Mendes write to Ms. Grant?",
+    "qj": "メンデスさんはなぜグラントさんに手紙を書いたのか。",
+    "a": 3,
+    "c": [
+     [
+      "To thank her for an article",
+      "記事のお礼を言うため",
+      "記事の話はない。"
+     ],
+     [
+      "To offer her a job",
+      "仕事を提供するため",
+      "仕事の話はない。"
+     ],
+     [
+      "To ask about her garden",
+      "庭について尋ねるため",
+      "トマトの話は雑談。"
+     ],
+     [
+      "To remind her to renew",
+      "更新するよう知らせるため",
+      "正解。期限が切れる→更新の案内。"
+     ]
+    ],
+    "pt": "expire（期限が切れる）と renew（更新する）はセットで出る。"
+   },
+   {
+    "q": "What will Ms. Grant receive if she renews before December 1?",
+    "qj": "12月1日より前に更新すると、グラントさんは何を受け取るか。",
+    "a": 1,
+    "c": [
+     [
+      "A free magazine",
+      "無料の雑誌",
+      "雑誌そのものではない。"
+     ],
+     [
+      "A free calendar",
+      "無料のカレンダー",
+      "正解。a free gardening calendar。"
+     ],
+     [
+      "Tomato seeds",
+      "トマトの種",
+      "書かれていない。"
+     ],
+     [
+      "A discount",
+      "割引",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "easily は副詞（renew を説明）。easy は形容詞（It is easy to renew）。"
+   }
+  ]
+ },
+ {
+  "id": "p24",
+  "type": "Text messages",
+  "raw": "TITLE: The Projector Problem\nHana Ito (2:50 P.M.): / The projector in Room 5 / isn't working. / The client arrives / in ten minutes.\n= イトウ・ハナ（午後2:50）：5号室のプロジェクターが動きません。顧客は10分後に来ます。\nBen Clark (2:51 P.M.): / Did you check / the cable?\n= ベン・クラーク（午後2:51）：ケーブルは確認した？\nHana Ito (2:52 P.M.): / Yes. / It's connected / properly.\n= ハナ：はい。ちゃんとつながっています。\nBen Clark (2:53 P.M.): / Room 7 has / a new projector. / It's free / until four.\n= ベン：7号室には新しいプロジェクターがあるよ。4時まで空いてる。\nHana Ito (2:54 P.M.): / Perfect. / I'll move there. / Could you put a sign / on Room 5's door?\n= ハナ：完璧。そっちに移ります。5号室のドアに貼り紙をしてもらえますか？\nBen Clark (2:55 P.M.): / Sure. / Also, / the remote / has no batteries. / That might have been / the problem.\n= ベン：了解。あと、リモコンに電池が入っていないよ。それが原因だったのかも。\nWORDS\nconnected = つながっている\nproperly = ちゃんと・正しく\nfree = 空いている\nremote = リモコン",
+  "qs": [
+   {
+    "q": "At 2:53 P.M., why does Mr. Clark mention Room 7?",
+    "qj": "午後2:53に、クラークさんはなぜ7号室に触れているのか。",
+    "a": 0,
+    "c": [
+     [
+      "To suggest another place to use",
+      "別に使える場所を提案するため",
+      "正解。新しいプロジェクターがあり空いている。"
+     ],
+     [
+      "To say the client is there",
+      "顧客がそこにいると言うため",
+      "顧客の場所は書かれていない。"
+     ],
+     [
+      "To report a problem in Room 7",
+      "7号室の問題を報告するため",
+      "7号室に問題はない。"
+     ],
+     [
+      "To book it for four o'clock",
+      "4時に予約するため",
+      "4時までは空いているということ。"
+     ]
+    ],
+    "pt": "free は「無料」以外に「空いている」。It's free until four ＝ 4時まで使える。"
+   },
+   {
+    "q": "What is suggested about the projector in Room 5?",
+    "qj": "5号室のプロジェクターについて何が分かるか。",
+    "a": 3,
+    "c": [
+     [
+      "It is brand new.",
+      "新品である。",
+      "新品なのは7号室。"
+     ],
+     [
+      "Its cable was missing.",
+      "ケーブルがなかった。",
+      "ちゃんとつながっていた。"
+     ],
+     [
+      "It was moved to Room 7.",
+      "7号室に移された。",
+      "移ったのはハナさん。"
+     ],
+     [
+      "It may not be broken.",
+      "壊れていないかもしれない。",
+      "正解。リモコンの電池切れが原因かも。"
+     ]
+    ],
+    "pt": "properly は副詞（connected を説明）、proper は形容詞。might have been ＝「〜だったかもしれない」。"
+   }
+  ]
+ },
+ {
+  "id": "p25",
+  "type": "E-mail",
+  "raw": "TITLE: Volunteers Needed for the Company Picnic\nHi everyone,\n= 皆さん、こんにちは\nOur annual company picnic / will be held / at Riverside Park / on Saturday, June 21.\n= 毎年恒例の社内ピクニックを、6月21日（土）にリバーサイド公園で行います。\nWe are looking for / five volunteers / to help set up tables / in the morning.\n= 朝にテーブルの準備を手伝ってくれるボランティアを5人探しています。\nVolunteers / will receive / a free T-shirt / and the first choice / of desserts.\n= ボランティアには無料のTシャツと、デザートを最初に選べる権利があります。\nLast year, / the dessert table / was empty / within eight minutes, / so this is / a valuable reward.\n= 昨年はデザートのテーブルが8分以内に空になったので、これは貴重なご褒美です。\nIf you are interested, / please reply / to this e-mail / by June 10.\n= 興味のある方は、6月10日までにこのメールに返信してください。\nThanks, / Maria\n= よろしく マリア\nWORDS\nannual = 毎年恒例の\nset up = 準備する・設置する\nvaluable = 貴重な\nreward = ご褒美・報酬",
+  "qs": [
+   {
+    "q": "What will volunteers do?",
+    "qj": "ボランティアは何をするか。",
+    "a": 2,
+    "c": [
+     [
+      "Make desserts",
+      "デザートを作る",
+      "作るとは書いていない。"
+     ],
+     [
+      "Clean the park",
+      "公園を掃除する",
+      "掃除の話はない。"
+     ],
+     [
+      "Prepare tables",
+      "テーブルを準備する",
+      "正解。help set up tables。"
+     ],
+     [
+      "Sell T-shirts",
+      "Tシャツを売る",
+      "Tシャツはもらうもの。"
+     ]
+    ],
+    "pt": "set up ＝ prepare。to help は目的（〜するために）。"
+   },
+   {
+    "q": "What is implied about the dessert table?",
+    "qj": "デザートのテーブルについて何がほのめかされているか。",
+    "a": 1,
+    "c": [
+     [
+      "It will be larger this year.",
+      "今年は大きくなる。",
+      "書かれていない。"
+     ],
+     [
+      "Desserts go quickly.",
+      "デザートはすぐなくなる。",
+      "正解。昨年は8分で空になった。"
+     ],
+     [
+      "Volunteers must pay for desserts.",
+      "ボランティアはデザート代を払う。",
+      "書かれていない。"
+     ],
+     [
+      "It is far from the tables.",
+      "テーブルから遠い。",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "annual（形容詞・名詞 picnic の前）、valuable（形容詞・名詞 reward の前）。名詞の前は形容詞。"
+   }
+  ]
+ },
+ {
+  "id": "p26",
+  "type": "Article",
+  "raw": "TITLE: Kirby Foods Launches Shopping App\nKirby Foods, / a supermarket chain / with 40 stores, / launched / a new shopping app / last week.\n= 40店舗を持つスーパーチェーンのカービーフーズが、先週新しい買い物アプリを公開しました。\nWith the app, / customers can order groceries / online / and pick them up / at the store / without waiting in line.\n= このアプリを使えば、客はネットで食料品を注文し、列に並ばずに店で受け取れます。\nThe company says / more than 10,000 people / downloaded the app / in the first three days.\n= 同社によると、最初の3日間で1万人以上がアプリをダウンロードしました。\nHowever, / some users reported / that the app was slow / during busy hours.\n= しかし、混雑する時間帯にアプリが遅いと報告した利用者もいました。\nKirby Foods / plans to fix the problem / soon / and promises / that the app will never again / suggest buying / 40 bananas.\n= カービーフーズは近く問題を直す予定で、アプリがバナナを40本買うよう提案することは二度とないと約束しています。\nWORDS\nlaunched = 公開した・発売した\ngroceries = 食料品\npick them up = それらを受け取る\nreported = 報告した\npromises = 約束する",
+  "qs": [
+   {
+    "q": "What can customers do with the app?",
+    "qj": "客はアプリで何ができるか。",
+    "a": 3,
+    "c": [
+     [
+      "Pay their bills",
+      "請求書の支払いをする",
+      "書かれていない。"
+     ],
+     [
+      "Apply for jobs",
+      "仕事に応募する",
+      "書かれていない。"
+     ],
+     [
+      "Find new recipes",
+      "新しいレシピを見つける",
+      "書かれていない。"
+     ],
+     [
+      "Order food in advance",
+      "事前に食料品を注文する",
+      "正解。order groceries online and pick them up。"
+     ]
+    ],
+    "pt": "groceries ＝ food。without waiting in line ＝ 並ばずに。"
+   },
+   {
+    "q": "What problem did some users have?",
+    "qj": "一部の利用者はどんな問題を抱えたか。",
+    "a": 0,
+    "c": [
+     [
+      "The app did not run quickly.",
+      "アプリが速く動かなかった。",
+      "正解。the app was slow の言い換え。"
+     ],
+     [
+      "The app was too expensive.",
+      "アプリが高すぎた。",
+      "値段の話はない。"
+     ],
+     [
+      "Stores were closed.",
+      "店が閉まっていた。",
+      "書かれていない。"
+     ],
+     [
+      "They could not download it.",
+      "ダウンロードできなかった。",
+      "1万人がダウンロードしている。"
+     ]
+    ],
+    "pt": "slow は形容詞（was の後）、quickly は副詞（run を説明）。同じ意味を品詞を変えて言い換えている。"
+   }
+  ]
+ },
+ {
+  "id": "p27",
+  "type": "Advertisement",
+  "raw": "TITLE: Apartment for Rent\nBright two-bedroom apartment / for rent / on Oak Avenue.\n= オーク通りの明るい2LDKアパート、賃貸物件です。\nThe apartment / is on the fifth floor / and has a large balcony / with a view of the river.\n= 5階にあり、川の見える広いバルコニーがあります。\nIt is only / a three-minute walk / from Oak Avenue Station / and close to / several shops.\n= オーク通り駅から徒歩わずか3分で、いくつかの店にも近いです。\nRent is $1,400 / per month, / including water.\n= 家賃は水道代込みで月1,400ドルです。\nPets are allowed, / but the previous tenant's parrot / learned to imitate / the doorbell, / so please check / who is really at the door.\n= ペット可です。ただし前の入居者のオウムがドアベルのまねを覚えたので、本当に誰が来たのか確認してください。\nTo arrange a viewing, / call Jenny / at 555-0142.\n= 内見の予約はジェニー（555-0142）まで。\nWORDS\nfor rent = 賃貸\nprevious = 前の\ntenant = 入居者\nimitate = まねる\narrange = 手配する\nviewing = 内見",
+  "qs": [
+   {
+    "q": "What is included in the rent?",
+    "qj": "家賃に含まれているものは何か。",
+    "a": 1,
+    "c": [
+     [
+      "Electricity",
+      "電気代",
+      "書かれていない。"
+     ],
+     [
+      "Water",
+      "水道代",
+      "正解。including water。"
+     ],
+     [
+      "Parking",
+      "駐車場",
+      "書かれていない。"
+     ],
+     [
+      "Internet",
+      "インターネット",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "including は「〜を含めて」。前から「家賃1,400ドル・月に・水道込み」と読む。"
+   },
+   {
+    "q": "What is mentioned about the apartment?",
+    "qj": "アパートについて述べられていることは何か。",
+    "a": 2,
+    "c": [
+     [
+      "It is on the first floor.",
+      "1階にある。",
+      "5階にある。"
+     ],
+     [
+      "Pets are not allowed.",
+      "ペット禁止。",
+      "allowed なので逆。"
+     ],
+     [
+      "It is near a station.",
+      "駅の近くにある。",
+      "正解。a three-minute walk from Oak Avenue Station。"
+     ],
+     [
+      "It has three bedrooms.",
+      "寝室が3つある。",
+      "two-bedroom。"
+     ]
+    ],
+    "pt": "Bright（形容詞・名詞 apartment の前）。close to ＝ near（「閉める」の close とは発音も違う）。"
+   }
+  ]
+ },
+ {
+  "id": "p28",
+  "type": "E-mail",
+  "raw": "TITLE: Flight Schedule Change\nDear Mr. Lopez,\n= ロペス様\nWe regret to inform you / that your flight AX205 / from Chicago to Boston / on April 9 / has been rescheduled.\n= 誠に恐縮ですが、4月9日のシカゴ発ボストン行き AX205 便の時刻が変更されましたことをお知らせします。\nIt will now depart / at 4:15 P.M. / instead of 1:30 P.M.\n= 出発は午後1時30分ではなく、午後4時15分になります。\nIf the new time / does not work for you, / you may change / to another flight / at no extra cost.\n= 新しい時刻がご都合に合わない場合は、追加料金なしで別の便に変更できます。\nAs an apology, / we have added / a free meal voucher / to your booking.\n= お詫びとして、ご予約に無料のお食事券をお付けしました。\nIt can be used / at any restaurant / in the airport, / which should help you / survive / the extra waiting time.\n= 空港内のどのレストランでも使えますので、余分な待ち時間を乗り切る助けになるはずです。\nWORDS\nregret to inform = 残念ながらお知らせする\nrescheduled = 予定が変更された\ndepart = 出発する\nat no extra cost = 追加料金なしで\nvoucher = 引換券・クーポン",
+  "qs": [
+   {
+    "q": "What is the purpose of the e-mail?",
+    "qj": "このメールの目的は何か。",
+    "a": 0,
+    "c": [
+     [
+      "To report a time change",
+      "時刻の変更を知らせるため",
+      "正解。rescheduled、出発時刻が変わった。"
+     ],
+     [
+      "To cancel a flight",
+      "便を欠航にするため",
+      "欠航ではなく時刻変更。"
+     ],
+     [
+      "To offer a seat upgrade",
+      "座席のアップグレードを提案するため",
+      "書かれていない。"
+     ],
+     [
+      "To advertise a restaurant",
+      "レストランを宣伝するため",
+      "レストランは食事券の使える場所。"
+     ]
+    ],
+    "pt": "regret to inform you that ... は「悪いお知らせ」の決まり文句。that の後ろが本題。"
+   },
+   {
+    "q": "What has the airline given Mr. Lopez?",
+    "qj": "航空会社はロペスさんに何を与えたか。",
+    "a": 2,
+    "c": [
+     [
+      "A refund",
+      "返金",
+      "返金ではない。"
+     ],
+     [
+      "A free hotel room",
+      "無料のホテル",
+      "書かれていない。"
+     ],
+     [
+      "A coupon for food",
+      "食事のクーポン",
+      "正解。a free meal voucher の言い換え。"
+     ],
+     [
+      "An earlier flight",
+      "もっと早い便",
+      "便は遅くなった。"
+     ]
+    ],
+    "pt": "voucher ＝ coupon。at no extra cost ＝ for free。言い換えをセットで覚える。"
+   }
+  ]
+ },
+ {
+  "id": "p29",
+  "type": "Notice",
+  "raw": "TITLE: New Exhibit at the City Museum\nThe City Museum / is pleased to announce / a new exhibit, / \"Toys Through Time,\" / opening on September 5.\n= 市立博物館は、9月5日に開幕する新しい展示「時代をめぐるおもちゃ」をお知らせします。\nThe exhibit / features / more than 300 toys / from the last 150 years.\n= この展示では、過去150年間の300点以上のおもちゃを紹介します。\nVisitors can play / with copies / of some of the toys / in a special hands-on area.\n= 来館者は特別な体験コーナーで、一部のおもちゃの複製で遊べます。\nAdmission to the exhibit / is included / in the regular museum ticket.\n= この展示の入場料は、通常の博物館チケットに含まれます。\nChildren under 12 / enter for free, / and so do adults / who can beat the museum director / at a spinning-top contest.\n= 12歳未満の子どもは無料で、館長にコマ回しで勝てる大人も同じく無料です。\nWORDS\nexhibit = 展示\nfeatures = 目玉として紹介する\nhands-on = 体験型の\nadmission = 入場料\nbeat = 勝つ",
+  "qs": [
+   {
+    "q": "What can visitors do in the special area?",
+    "qj": "来館者は特別なコーナーで何ができるか。",
+    "a": 3,
+    "c": [
+     [
+      "Buy old toys",
+      "古いおもちゃを買う",
+      "買う話はない。"
+     ],
+     [
+      "Meet toy makers",
+      "おもちゃ職人に会う",
+      "書かれていない。"
+     ],
+     [
+      "Watch a film",
+      "映画を見る",
+      "書かれていない。"
+     ],
+     [
+      "Play with toy copies",
+      "おもちゃの複製で遊ぶ",
+      "正解。play with copies of some of the toys。"
+     ]
+    ],
+    "pt": "hands-on は「手で触れる・体験型の」（形容詞・名詞 area の前）。"
+   },
+   {
+    "q": "What is true about admission to the exhibit?",
+    "qj": "展示の入場料について正しいことは何か。",
+    "a": 1,
+    "c": [
+     [
+      "It requires a special ticket.",
+      "特別なチケットが必要。",
+      "通常チケットに含まれる。"
+     ],
+     [
+      "It is part of the regular ticket.",
+      "通常チケットに含まれている。",
+      "正解。is included in the regular museum ticket。"
+     ],
+     [
+      "It is free for all adults.",
+      "大人は全員無料。",
+      "無料はコマ回しで勝った大人だけ。"
+     ],
+     [
+      "It starts in October.",
+      "10月に始まる。",
+      "9月5日に開幕。"
+     ]
+    ],
+    "pt": "and so do adults ＝「大人も同じく（無料で入る）」。so do は前の動詞の繰り返し。"
+   }
+  ]
+ },
+ {
+  "id": "p30",
+  "type": "Online review",
+  "raw": "TITLE: Review: The Blue Spoon Restaurant\nRating: / three out of five stars\n= 評価：5つ星中3つ\nI visited / The Blue Spoon / with two coworkers / for lunch / last Tuesday.\n= 先週の火曜日、同僚2人とランチで The Blue Spoon に行きました。\nThe soup / was delicious, / and the portions / were generous.\n= スープはおいしく、量もたっぷりでした。\nHowever, / the service / was extremely slow; / we waited / forty minutes / for our main dishes.\n= しかし、サービスはとても遅く、メイン料理を40分待ちました。\nBy the time / the food arrived, / my coworker / had finished / his entire sales report.\n= 料理が来るまでに、同僚は営業報告書を丸ごと書き終えていました。\nI would return / for dinner, / when I have more time.\n= もっと時間があるときに、ディナーでまた来たいと思います。\n– Priya Shah\n= プリヤ・シャー\nWORDS\ncoworkers = 同僚\ndelicious = おいしい\nportions = 1人前の量\ngenerous = たっぷりの・気前のいい\nentire = 全体の",
+  "qs": [
+   {
+    "q": "What did Ms. Shah like about the restaurant?",
+    "qj": "シャーさんはレストランの何が気に入ったか。",
+    "a": 2,
+    "c": [
+     [
+      "The quick service",
+      "速いサービス",
+      "サービスは遅かった。"
+     ],
+     [
+      "The low prices",
+      "安い値段",
+      "値段の話はない。"
+     ],
+     [
+      "The size of the servings",
+      "料理の量",
+      "正解。the portions were generous の言い換え。"
+     ],
+     [
+      "The dinner menu",
+      "ディナーメニュー",
+      "ディナーにはまだ行っていない。"
+     ]
+    ],
+    "pt": "portions ＝ servings（1人前）。generous は形容詞で「たっぷりの」。"
+   },
+   {
+    "q": "What does Ms. Shah suggest about the restaurant?",
+    "qj": "シャーさんはレストランについて何をほのめかしているか。",
+    "a": 0,
+    "c": [
+     [
+      "It is not good for a short lunch break.",
+      "短い昼休みには向いていない。",
+      "正解。40分待ち→時間があるときに来たい。"
+     ],
+     [
+      "It is closed on Tuesdays.",
+      "火曜日は休み。",
+      "火曜日に行っている。"
+     ],
+     [
+      "The soup was cold.",
+      "スープが冷めていた。",
+      "おいしかったと書いてある。"
+     ],
+     [
+      "She will never return.",
+      "二度と来ない。",
+      "ディナーで来たいと言っている。"
+     ]
+    ],
+    "pt": "extremely は副詞（形容詞 slow を強める）。delicious, generous, slow はどれも形容詞（were / was の後）。"
+   }
+  ]
+ },
+ {
+  "id": "p31",
+  "type": "5文書セット（長文）",
+  "long": true,
+  "raw": "TITLE: The Harbor City Business Expo\nDocument 1: E-mail\n= 文書1：メール\nTo: All Registered Exhibitors / From: Olivia Grant, / Event Coordinator / Subject: Important Information / about the Expo\n= 宛先：登録済みの出展者各位／差出人：イベントコーディネーター オリビア・グラント／件名：エキスポに関する重要なお知らせ\nDear Exhibitors,\n= 出展者の皆様\nThank you for registering / for the Harbor City Business Expo, / which will take place / at the Seaside Convention Center / from April 15 to April 17.\n= 4月15日から17日までシーサイド・コンベンションセンターで開催されるハーバーシティ・ビジネスエキスポにご登録いただき、ありがとうございます。\nThis year, / we are expecting / more than 8,000 attendees / and approximately 250 exhibitors / from over twenty countries.\n= 今年は、20か国以上から8,000人を超える来場者と約250の出展者を見込んでいます。\nThat would make it / the largest event / in the expo's twelve-year history.\n= そうなれば、エキスポ12年の歴史で最大のイベントになります。\nTo help everything / run smoothly, / please read / the following information / carefully.\n= すべてが円滑に進むよう、以下の情報をよくお読みください。\nFirst, / all exhibitors / are required to set up / their booths / on April 14 / between 1:00 P.M. and 7:00 P.M.\n= まず、出展者は全員、4月14日の午後1時から7時の間にブースを設営する必要があります。\nSetup will not be permitted / on the morning of April 15, / because the doors open / to the public / at 9:00 A.M.\n= 4月15日の朝は午前9時に一般公開が始まるため、設営は許可されません。\nIf you are unable to arrive / on April 14, / please contact me / as soon as possible / so that we can make / alternative arrangements.\n= 4月14日に到着できない場合は、別の手配ができるよう、できるだけ早くご連絡ください。\nSecond, / each booth / comes with / one table, / two chairs, / and access to / a standard electrical outlet.\n= 次に、各ブースにはテーブル1台、椅子2脚、標準的な電源コンセントの使用が含まれています。\nAdditional furniture / and equipment, / such as display screens / and extra lighting, / can be rented / through our online order form.\n= ディスプレイ画面や追加照明など、追加の家具や機材はオンライン注文フォームからレンタルできます。\nOrders placed / before March 25 / will receive / a 15 percent discount.\n= 3月25日より前の注文は15%割引になります。\nAfter that date, / standard prices / will apply, / and we cannot guarantee / that all items / will be available.\n= その日以降は通常料金が適用され、すべての品目が利用可能であることは保証できません。\nThird, / please note / that the parking garage / next to the convention center / will be under construction / during the event.\n= 3つ目に、コンベンションセンター隣の立体駐車場がイベント期間中は工事中であることにご注意ください。\nExhibitors / may park / in the east lot / free of charge / by showing / their exhibitor badge / at the entrance.\n= 出展者は入口で出展者バッジを見せれば、東駐車場に無料で駐車できます。\nHowever, / space is limited, / so we strongly encourage you / to use public transportation / whenever possible.\n= ただし台数に限りがあるため、可能な限り公共交通機関を利用するよう強くおすすめします。\nThe convention center / is located / just a five-minute walk / from Harbor Station.\n= コンベンションセンターはハーバー駅から徒歩わずか5分の場所にあります。\nFourth, / exhibitor badges / can be picked up / at the registration desk / in the main lobby / from 12:00 P.M. / on April 14.\n= 4つ目に、出展者バッジは4月14日の正午から、メインロビーの受付で受け取れます。\nEach company / will receive / up to four badges.\n= 各社、最大4枚のバッジを受け取れます。\nIf you need more, / you can purchase them / for $20 each.\n= それ以上必要な場合は、1枚20ドルで購入できます。\nPlease make sure / that your staff members / wear their badges / at all times / while they are in the building.\n= スタッフが建物内にいる間は、常にバッジを着けるようにしてください。\nFree wireless Internet access / is available / throughout the convention center, / but the connection / may become slow / when the halls are crowded.\n= 無料の無線インターネットはコンベンションセンター全体で使えますが、ホールが混雑すると接続が遅くなることがあります。\nIf your booth / depends on / a reliable connection, / for example / for product demonstrations, / we recommend / ordering a wired connection / in advance.\n= 製品の実演などで安定した接続が必要なブースは、有線接続を事前に注文することをおすすめします。\nFinally, / I would like to remind everyone / about our new rule / regarding giveaways.\n= 最後に、配布物に関する新しいルールについて皆様にお知らせします。\nLast year, / one exhibitor / handed out / 3,000 balloons / shaped like their company logo.\n= 昨年、ある出展者が会社のロゴの形をした風船を3,000個配りました。\nThe balloons / were very popular, / but about half of them / ended up / stuck to the ceiling / of the main hall, / and it took our maintenance staff / two full days / to remove them.\n= 風船はとても人気でしたが、その約半分が結局メインホールの天井に張り付いてしまい、保守スタッフが取り除くのに丸2日かかりました。\nTherefore, / balloons / are no longer allowed / at the expo.\n= そのため、エキスポでは風船はもう許可されていません。\nSmall items / such as pens, / notebooks, / and tote bags / are still welcome.\n= ペン、ノート、トートバッグなどの小さな品物は引き続き歓迎します。\nA detailed schedule / of the expo, / including seminars / and networking events, / is attached / to this e-mail.\n= セミナーや交流イベントを含むエキスポの詳しいスケジュールを、このメールに添付しています。\nIf you have any questions, / please do not hesitate to contact me / by phone at 555-0193 / or by replying / to this e-mail.\n= ご質問があれば、555-0193へのお電話か、このメールへの返信でお気軽にご連絡ください。\nWe look forward to / seeing you / in April.\n= 4月にお会いできるのを楽しみにしています。\nBest regards, / Olivia Grant\n= よろしくお願いいたします。オリビア・グラント\nDocument 2: Expo Schedule\n= 文書2：エキスポのスケジュール\nHarbor City Business Expo / Schedule of Events\n= ハーバーシティ・ビジネスエキスポ　イベントスケジュール\nDay 1, / Wednesday, April 15\n= 1日目　4月15日（水）\n9:00 A.M.: / Doors open / to the public.\n= 午前9時：一般公開開始。\n10:00 A.M.: / Opening speech / by Mayor Rachel Dunn / in the Main Hall.\n= 午前10時：メインホールにてレイチェル・ダン市長による開会のあいさつ。\n11:00 A.M.: / Seminar: / \"Growing Your Small Business / Through Social Media,\" / presented by Kevin Osei, / marketing director / at Brightpath Media.\n= 午前11時：セミナー「ソーシャルメディアで小規模事業を成長させる」。講師はブライトパス・メディアのマーケティング部長ケビン・オセイ。\n2:00 P.M.: / Seminar: / \"Reducing Shipping Costs / for Online Stores,\" / presented by Hannah Weiss, / founder of ParcelWise.\n= 午後2時：セミナー「ネットショップの配送コストを削減する」。講師はパーセルワイズ創業者ハンナ・ワイス。\n6:00 P.M.: / Welcome reception / for exhibitors / at the Seaside Hotel ballroom. / Light refreshments / will be served.\n= 午後6時：シーサイドホテルの宴会場にて出展者向け歓迎レセプション。軽食が出ます。\nDay 2, / Thursday, April 16\n= 2日目　4月16日（木）\n9:00 A.M.: / Doors open.\n= 午前9時：開場。\n10:30 A.M.: / Keynote speech: / \"The Future of Remote Work,\" / presented by Dr. Samuel Price, / author of the best-selling book / Working from Anywhere.\n= 午前10時30分：基調講演「リモートワークの未来」。講師はベストセラー『どこでも働ける』の著者サミュエル・プライス博士。\n1:00 P.M.: / Panel discussion: / \"Finding and Keeping / Talented Employees,\" / featuring four human resources managers / from local companies.\n= 午後1時：パネルディスカッション「優秀な社員を見つけ、つなぎとめる」。地元企業の人事マネージャー4名が登壇。\n3:30 P.M.: / Workshop: / \"Writing a Business Plan / That Investors Will Read,\" / led by Maria Santos / of Coastline Bank. / Advance registration required; / limited to 40 participants.\n= 午後3時30分：ワークショップ「投資家が読んでくれる事業計画書の書き方」。進行はコーストライン銀行のマリア・サントス。事前登録制、定員40名。\n7:00 P.M.: / Networking dinner / at Harbor View Restaurant. / Tickets: / $45 per person.\n= 午後7時：ハーバービュー・レストランにて交流ディナー。チケットは1人45ドル。\nDay 3, / Friday, April 17\n= 3日目　4月17日（金）\n9:00 A.M.: / Doors open.\n= 午前9時：開場。\n11:00 A.M.: / Seminar: / \"Protecting Your Company / from Online Fraud,\" / presented by Victor Lang, / security consultant.\n= 午前11時：セミナー「オンライン詐欺から会社を守る」。講師はセキュリティコンサルタントのビクター・ラング。\n2:00 P.M.: / Award ceremony / for the Best Booth Design.\n= 午後2時：ベストブースデザイン賞の授賞式。\n4:00 P.M.: / The expo closes. / Exhibitors must remove / all materials / from their booths / by 8:00 P.M.\n= 午後4時：エキスポ終了。出展者は午後8時までにブースからすべての資材を撤去すること。\nPlease note / that all seminars / are held / in Room B / unless otherwise stated.\n= 特に記載がない限り、セミナーはすべてBルームで行われます。\nThe schedule / is subject to change / without notice.\n= スケジュールは予告なく変更される場合があります。\nDocument 3: E-mail\n= 文書3：メール\nTo: Olivia Grant / From: Daniel Cho / Subject: Setup and Workshop / Date: April 8\n= 宛先：オリビア・グラント／差出人：ダニエル・チョウ／件名：設営とワークショップについて／日付：4月8日\nDear Ms. Grant,\n= グラント様\nMy name is Daniel Cho, / and I am the sales manager / at Greenhill Tea Company, / one of the exhibitors / at this year's expo.\n= ダニエル・チョウと申します。今年のエキスポの出展者の一社、グリーンヒル・ティー・カンパニーの営業部長です。\nI am writing / regarding two matters.\n= 2つの件についてご連絡しています。\nFirst, / I am afraid / that our team / will not be able to set up / our booth / on April 14 / as scheduled.\n= まず、申し訳ないのですが、私たちのチームは予定どおり4月14日にブースを設営できそうにありません。\nOur flight from Vancouver / was canceled / due to a mechanical problem, / and the earliest flight / we could book / arrives / at 11:30 P.M. / that night.\n= バンクーバーからの便が機械の故障で欠航となり、予約できた最も早い便はその夜の午後11時30分着です。\nI understand / that setup / is not allowed / on the morning of the first day.\n= 初日の朝は設営が許可されていないことは承知しています。\nWould it be possible / for a member of your staff / to let us in / late at night / on April 14, / or very early / on April 15?\n= 4月14日の夜遅く、または4月15日のかなり早い時間に、スタッフの方に建物へ入れていただくことは可能でしょうか。\nOur booth / is quite simple, / so it should take / no more than an hour / to set up.\n= 私たちのブースはかなりシンプルなので、設営には1時間もかからないはずです。\nTo be honest, / the most difficult part / is inflating / our two-meter teapot, / which we use / to attract visitors.\n= 正直に言うと、一番大変なのは、来場者を引きつけるのに使っている2メートルのティーポットをふくらませることです。\nPlease don't worry; / it is not a balloon, / and it will not / end up / on your ceiling.\n= ご心配なく。風船ではないので、天井に張り付くことはありません。\nSecond, / I would like to register / two of my staff members / for the business plan workshop / on April 16.\n= 次に、4月16日の事業計画書のワークショップに、部下を2名登録したいと思います。\nI tried to sign up / online, / but the registration page / said / that the session was full.\n= オンラインで申し込もうとしたのですが、登録ページには満席と表示されていました。\nIf anyone cancels, / could you please / put us on / the waiting list?\n= もしキャンセルが出たら、キャンセル待ちリストに入れていただけますか。\nBoth of them / joined our company / this year / and are responsible for / developing / our new business plan / for the European market.\n= 2人とも今年入社し、ヨーロッパ市場向けの新しい事業計画を作る担当です。\nI believe / the workshop / would be extremely useful / for them.\n= このワークショップは、彼らにとって非常に役に立つと思います。\nThey would also be happy / to attend / any other session / on the same topic / if one is available.\n= もし同じテーマの別のセッションがあれば、そちらに参加するのも喜んでいます。\nAlso, / I placed an order / for a display screen / on March 28, / but I have not yet received / a confirmation.\n= また、3月28日にディスプレイ画面を注文したのですが、まだ確認の連絡を受け取っていません。\nCould you check / whether the order / was processed / correctly?\n= 注文が正しく処理されたかどうか確認していただけますか。\nThank you / for your help, / and I apologize / for any inconvenience / this may cause.\n= ご協力に感謝いたします。ご不便をおかけして申し訳ありません。\nSincerely, / Daniel Cho\n= 敬具　ダニエル・チョウ\nDocument 4: E-mail\n= 文書4：メール\nTo: Daniel Cho / From: Olivia Grant / Subject: RE: Setup and Workshop / Date: April 9\n= 宛先：ダニエル・チョウ／差出人：オリビア・グラント／件名：RE: 設営とワークショップについて／日付：4月9日\nDear Mr. Cho,\n= チョウ様\nThank you / for letting me know / about your situation, / and I am sorry to hear / about your flight.\n= 状況をお知らせいただきありがとうございます。飛行機の件、お気の毒でした。\nI have spoken / with our security team, / and a guard / will be available / to let you into the building / at 6:30 A.M. / on April 15.\n= 警備チームと話をしまして、4月15日の午前6時30分に警備員が建物に入れてくれることになりました。\nPlease note, / however, / that your booth / must be completely ready / by 8:45 A.M., / when we do / our final safety check.\n= ただし、午前8時45分に最終の安全点検を行うので、それまでにブースを完全に準備しておく必要があります。\nPlease enter / through the loading dock / on the north side / of the building, / not through the main entrance.\n= 正面入口ではなく、建物北側の搬入口からお入りください。\nOur staff / will also help you / carry your materials / from the dock / to your booth / using carts.\n= スタッフが台車を使って、搬入口からブースまで資材を運ぶお手伝いもします。\nSince you will be arriving / so late / the night before, / I have also asked / the Seaside Hotel / to hold your team's reservation / even if you check in / after midnight.\n= 前の晩はかなり遅い到着になるので、深夜0時を過ぎてチェックインしても予約を保持してもらうよう、シーサイドホテルにもお願いしておきました。\nRegarding the workshop, / I have some good news.\n= ワークショップについては、良いお知らせがあります。\nBecause so many people / were interested, / Ms. Santos / has kindly agreed / to hold a second session / on Friday, April 17, / at 1:00 P.M. / in Room C.\n= 非常に多くの方が関心を持ってくださったので、サントスさんが4月17日（金）午後1時にCルームで2回目のセッションを開くことを快く引き受けてくださいました。\nI have already registered / your two staff members / for that session.\n= すでにお二人をそのセッションに登録しました。\nIf they would prefer / to stay on the waiting list / for the Thursday session / instead, / just let me know.\n= もし木曜日のセッションのキャンセル待ちのほうがよろしければ、お知らせください。\nAs for your equipment order, / it was processed / on March 29, / and the screen / will be delivered / to your booth / before the doors open.\n= 機材のご注文については、3月29日に処理されており、画面は開場前にブースへ届けられます。\nI checked our records / and found / that the confirmation e-mail / had been sent / to an incorrect address / because of a typing error / on our part.\n= 記録を確認したところ、こちら側の入力ミスで、確認メールが間違ったアドレスに送られていたことが分かりました。\nI sincerely apologize / for this mistake.\n= このミスを心よりお詫びします。\nPlease also note / that because the order / was placed / after the deadline, / the discount / could not be applied.\n= また、ご注文が締め切り後だったため、割引は適用できなかったことをご了承ください。\nFinally, / a two-meter teapot / sounds wonderful.\n= 最後に、2メートルのティーポット、すてきですね。\nYou might want to consider / entering / the Best Booth Design award.\n= ベストブースデザイン賞への応募を検討してみてはいかがでしょうか。\nLast year's winner / was a booth / shaped like a giant sandwich, / so the judges / clearly appreciate / creative ideas.\n= 昨年の受賞者は巨大なサンドイッチの形をしたブースだったので、審査員は明らかに独創的なアイデアを高く評価します。\nBest regards, / Olivia Grant\n= よろしくお願いいたします。オリビア・グラント\nDocument 5: Article\n= 文書5：記事\nHarbor City Expo / Breaks Attendance Record\n= ハーバーシティ・エキスポ、来場者数の記録を更新\nBy Thomas Reed, / Harbor City Times, / April 18\n= ハーバーシティ・タイムズ　トーマス・リード　4月18日\nThe twelfth annual / Harbor City Business Expo / ended yesterday / with a record number of visitors.\n= 第12回ハーバーシティ・ビジネスエキスポが、過去最高の来場者数を記録して昨日閉幕した。\nAccording to the organizers, / about 9,300 people / attended the three-day event, / far more than / the 8,000 / they had originally expected.\n= 主催者によると、3日間のイベントに約9,300人が来場し、当初見込んでいた8,000人を大きく上回った。\n\"We were surprised / by the turnout,\" / said event coordinator Olivia Grant.\n= 「来場者の多さに驚きました」とイベントコーディネーターのオリビア・グラントさんは語った。\n\"On the second day, / the line / at the entrance / stretched all the way / to Harbor Station.\"\n= 「2日目には、入口の行列がハーバー駅までずっと続いていました」\nThe most popular session / was Dr. Samuel Price's keynote speech / on remote work.\n= 最も人気があったセッションは、サミュエル・プライス博士のリモートワークに関する基調講演だった。\nThe Main Hall / was so crowded / that the organizers / had to set up / extra screens / in the lobby / so that more people / could watch.\n= メインホールがあまりに混雑したため、主催者はより多くの人が見られるようにロビーに追加の画面を設置しなければならなかった。\nDr. Price / told the audience / that he had written / most of his latest book / in coffee shops / in eleven different countries.\n= プライス博士は聴衆に、最新の著書の大部分を11か国のコーヒーショップで書いたと話した。\n\"The only place / I could not work,\" / he joked, / \"was my own office.\"\n= 「仕事ができなかった唯一の場所は、自分のオフィスでした」と彼は冗談を言った。\nSmall business owners / also praised / the workshop / on writing business plans.\n= 小規模事業の経営者たちは、事業計画書の書き方のワークショップも高く評価した。\nBecause of high demand, / a second session / was added / on the final day, / and both sessions / were fully booked.\n= 需要が高かったため最終日に2回目のセッションが追加され、両方とも満席になった。\nMaria Santos of Coastline Bank, / who led the workshop, / said / she was pleased / to see / so many young entrepreneurs.\n= ワークショップを担当したコーストライン銀行のマリア・サントスさんは、多くの若い起業家に会えてうれしいと語った。\n\"Many of them / have excellent ideas,\" / she said. / \"They simply need / to explain them / more clearly.\"\n= 「多くの人がすばらしいアイデアを持っています。ただ、それをもっと分かりやすく説明する必要があるだけです」と彼女は言った。\nNot every part / of the event / went smoothly, / however.\n= しかし、イベントのすべてが順調だったわけではない。\nBecause the parking garage / next to the convention center / was closed / for construction, / many visitors / had trouble / finding a place / to park.\n= コンベンションセンター隣の立体駐車場が工事で閉鎖されていたため、多くの来場者が駐車場所を見つけるのに苦労した。\nSome exhibitors / also complained / that the wireless Internet / was too slow / to show videos / of their products.\n= 製品の動画を見せるには無線インターネットが遅すぎると不満を言う出展者もいた。\nMs. Grant said / that the organizers / would take these comments / into account / when planning / next year's event.\n= グラントさんは、来年のイベントを計画する際に、主催者としてこれらの意見を考慮すると述べた。\nOverall, / however, / most participants / described the expo / as a great success.\n= しかし全体としては、参加者の大半がエキスポを大成功だったと評した。\nKevin Osei, / who gave a seminar / on the first day, / said / he had collected / more than 200 business cards.\n= 初日にセミナーを行ったケビン・オセイさんは、200枚以上の名刺を集めたと語った。\n\"I will be busy / answering e-mails / for the next month,\" / he said / with a smile.\n= 「これから1か月は、メールの返信で忙しくなりそうです」と彼は笑顔で語った。\nThe Best Booth Design award / went to Greenhill Tea Company, / a Vancouver-based business / that sells organic tea / online / and in more than 60 stores.\n= ベストブースデザイン賞は、オーガニックティーをネットと60以上の店舗で販売するバンクーバーの企業、グリーンヒル・ティー・カンパニーに贈られた。\nIts booth / featured / a two-meter teapot / that visitors / could actually walk inside.\n= 同社のブースの目玉は、来場者が実際に中に入れる2メートルのティーポットだった。\n\"We almost didn't make it,\" / said sales manager Daniel Cho, / who explained / that his team / had finished setting up / only minutes / before the doors opened / on the first day.\n= 「もう少しで間に合わないところでした」と営業部長のダニエル・チョウさんは語り、初日の開場のわずか数分前に設営を終えたと説明した。\nThe organizers / have already announced / that next year's expo / will be held / at a larger venue, / the newly built Harbor City Arena, / which can hold / up to 15,000 visitors.\n= 主催者は、来年のエキスポを、最大15,000人を収容できる新しく建てられたハーバーシティ・アリーナという、より大きな会場で開催するとすでに発表している。\nThe arena / is located / right next to Harbor Station / and has its own parking garage / with 3,000 spaces.\n= アリーナはハーバー駅のすぐ隣にあり、3,000台分の専用立体駐車場がある。\nRegistration for exhibitors / will begin / in October.\n= 出展者の登録は10月に始まる。\nMs. Grant added / that balloons / will still not be allowed.\n= グラントさんは、風船は引き続き許可されないと付け加えた。\nWORDS\nexhibitors = 出展者\nattendees = 参加者・来場者\napproximately = 約\nalternative arrangements = 別の手配\nfree of charge = 無料で\nregarding = 〜に関して\ngiveaways = 配布物・景品\ndo not hesitate to = 遠慮なく〜する\nrefreshments = 軽食\nkeynote speech = 基調講演\nadvance registration = 事前登録\nunless otherwise stated = 特に記載がない限り\nis subject to change = 変更されることがある\ndue to = 〜が原因で\nwaiting list = キャンセル待ちリスト\nprocessed = 処理された\nloading dock = 搬入口\nas for = 〜については\non our part = 当方の\nturnout = 来場者数・人出\nentrepreneurs = 起業家\nvenue = 会場\nreliable = 信頼できる・安定した\nin advance = 事前に\nresponsible for = 〜を担当している\ntake these comments into account = これらの意見を考慮する",
+  "chunks": [
+   [
+    "take place",
+    "開催される・行われる",
+    "The expo will take place at the Seaside Convention Center.",
+    "エキスポはシーサイド・コンベンションセンターで開催される。"
+   ],
+   [
+    "be required to do",
+    "〜する必要がある",
+    "All exhibitors are required to set up their booths on April 14.",
+    "出展者は全員4月14日にブースを設営する必要がある。"
+   ],
+   [
+    "as soon as possible",
+    "できるだけ早く",
+    "Please contact me as soon as possible.",
+    "できるだけ早くご連絡ください。"
+   ],
+   [
+    "free of charge",
+    "無料で",
+    "Exhibitors may park in the east lot free of charge.",
+    "出展者は東駐車場に無料で駐車できる。"
+   ],
+   [
+    "end up -ing / end up + 場所",
+    "結局〜になる",
+    "Half of the balloons ended up stuck to the ceiling.",
+    "風船の半分は結局天井に張り付いた。"
+   ],
+   [
+    "do not hesitate to do",
+    "遠慮なく〜する",
+    "Please do not hesitate to contact me.",
+    "お気軽にご連絡ください。"
+   ],
+   [
+    "be subject to change",
+    "変更されることがある",
+    "The schedule is subject to change without notice.",
+    "スケジュールは予告なく変更されることがある。"
+   ],
+   [
+    "due to + 名詞",
+    "〜が原因で",
+    "Our flight was canceled due to a mechanical problem.",
+    "機械の故障で便が欠航になった。"
+   ],
+   [
+    "sign up (for)",
+    "（〜に）申し込む",
+    "I tried to sign up online.",
+    "オンラインで申し込もうとした。"
+   ],
+   [
+    "as for + 名詞",
+    "〜については",
+    "As for your equipment order, it was processed on March 29.",
+    "機材の注文については3月29日に処理された。"
+   ],
+   [
+    "according to + 名詞",
+    "〜によると",
+    "According to the organizers, about 9,300 people attended.",
+    "主催者によると約9,300人が来場した。"
+   ],
+   [
+    "far more than",
+    "〜をはるかに上回る",
+    "far more than the 8,000 they had originally expected",
+    "当初見込んでいた8,000人をはるかに上回る"
+   ]
+  ],
+  "qs": [
+   {
+    "q": "What is one purpose of the first e-mail?",
+    "qj": "1通目のメールの目的の一つは何か。",
+    "a": 2,
+    "c": [
+     [
+      "To invite people to give a seminar",
+      "セミナーの講師を依頼すること",
+      "講師の依頼はしていない。"
+     ],
+     [
+      "To announce a change of venue",
+      "会場の変更を知らせること",
+      "会場は変わっていない。会場が変わるのは来年（文書5）。"
+     ],
+     [
+      "To explain rules for exhibitors",
+      "出展者向けのルールを説明すること",
+      "正解。設営時間・レンタル・駐車・配布物のルールを説明している。"
+     ],
+     [
+      "To request payment for a booth",
+      "ブース代の支払いを求めること",
+      "支払いの話はない。"
+     ]
+    ],
+    "pt": "First / Second / Third / Finally と並ぶメールは「ルールや手順の説明」。全体の目的はこの並びを見れば分かる。"
+   },
+   {
+    "q": "In the first e-mail, the word 'apply' in the sentence beginning 'After that date' is closest in meaning to",
+    "qj": "1通目のメールで、After that date で始まる文の apply に最も意味が近いのは",
+    "a": 1,
+    "c": [
+     [
+      "request",
+      "申請する",
+      "apply for（申し込む）の意味と混同させるひっかけ。"
+     ],
+     [
+      "be in effect",
+      "適用される・有効である",
+      "正解。standard prices will apply ＝ 通常料金が適用される。"
+     ],
+     [
+      "attach",
+      "取り付ける",
+      "意味が違う。"
+     ],
+     [
+      "submit",
+      "提出する",
+      "意味が違う。"
+     ]
+    ],
+    "pt": "apply は「申し込む（apply for）」だけでなく「適用される」。料金・ルール・割引が主語なら「適用される」。"
+   },
+   {
+    "q": "What is NOT included with each booth?",
+    "qj": "各ブースに含まれていないものは何か。",
+    "a": 3,
+    "c": [
+     [
+      "A table",
+      "テーブル",
+      "one table とある。"
+     ],
+     [
+      "Seating",
+      "座る場所",
+      "two chairs とある。chairs → seating の言い換え。"
+     ],
+     [
+      "A power supply",
+      "電源",
+      "a standard electrical outlet とある。"
+     ],
+     [
+      "A display screen",
+      "ディスプレイ画面",
+      "正解。画面はオンライン注文でレンタルする追加の機材。"
+     ]
+    ],
+    "pt": "comes with ＝「〜が付いてくる」。such as のあとは「追加で借りるもの」の例。NOT問題は書いてある3つを消す。"
+   },
+   {
+    "q": "Why did Mr. Cho write to Ms. Grant?",
+    "qj": "チョウさんはなぜグラントさんにメールを書いたのか。",
+    "a": 0,
+    "c": [
+     [
+      "His travel plans had changed.",
+      "移動の予定が変わったから。",
+      "正解。便が欠航になり、到着が夜遅くになった。"
+     ],
+     [
+      "He wanted to cancel his booth.",
+      "ブースを取り消したかったから。",
+      "取り消しではなく、設営時間の相談。"
+     ],
+     [
+      "He wanted to give a presentation.",
+      "発表をしたかったから。",
+      "発表の話はない。"
+     ],
+     [
+      "His booth had been damaged.",
+      "ブースが壊れていたから。",
+      "壊れた話はない。"
+     ]
+    ],
+    "pt": "I am writing regarding ... の後ろと、First の内容が目的。flight was canceled → travel plans changed と抽象化して言い換え。"
+   },
+   {
+    "q": "When will Mr. Cho's staff members most likely attend the workshop?",
+    "qj": "チョウさんの部下2人は、いつワークショップに参加する可能性が高いか。",
+    "a": 2,
+    "c": [
+     [
+      "On the first day of the expo",
+      "エキスポの初日",
+      "初日にワークショップはない。"
+     ],
+     [
+      "On Thursday afternoon",
+      "木曜日の午後",
+      "木曜日は満席。キャンセル待ちにはなっていない。"
+     ],
+     [
+      "On the last day of the expo",
+      "エキスポの最終日",
+      "正解。文書4で金曜4月17日の回に登録済み。文書2で17日は最終日（Day 3）。"
+     ],
+     [
+      "After the expo closes",
+      "エキスポ終了後",
+      "2回目は午後1時。閉場は午後4時。"
+     ]
+    ],
+    "pt": "文書をまたぐ問題。文書4の「Friday, April 17」を、文書2の「Day 3」とつなげて「最終日」に言い換える。"
+   },
+   {
+    "q": "What is suggested about Mr. Cho's display screen order?",
+    "qj": "チョウさんのディスプレイ画面の注文について何が分かるか。",
+    "a": 1,
+    "c": [
+     [
+      "It was canceled by mistake.",
+      "手違いで取り消された。",
+      "3月29日に処理されている。"
+     ],
+     [
+      "He did not receive a discount.",
+      "割引を受けられなかった。",
+      "正解。3月28日の注文は締め切り（3月25日より前）を過ぎているので割引なし。"
+     ],
+     [
+      "It will arrive after the expo begins.",
+      "エキスポ開始後に届く。",
+      "開場前に届く。"
+     ],
+     [
+      "He placed it by phone.",
+      "電話で注文した。",
+      "オンラインの注文フォームから。"
+     ]
+    ],
+    "pt": "文書1の「before March 25」と文書3の「March 28」をつなげる。数字（日付）が2つの文書に出たらクロス問題のサイン。"
+   },
+   {
+    "q": "What is indicated about Greenhill Tea Company?",
+    "qj": "グリーンヒル・ティー・カンパニーについて何が示されているか。",
+    "a": 3,
+    "c": [
+     [
+      "It plans to open a store in Harbor City.",
+      "ハーバーシティに店を開く予定だ。",
+      "書かれていない。"
+     ],
+     [
+      "It gave away balloons at the expo.",
+      "エキスポで風船を配った。",
+      "風船は禁止。ティーポットは風船ではない。"
+     ],
+     [
+      "It sponsored the networking dinner.",
+      "交流ディナーのスポンサーをした。",
+      "書かれていない。"
+     ],
+     [
+      "It won an award it was encouraged to enter.",
+      "応募をすすめられた賞を受賞した。",
+      "正解。文書4ですすめられ、文書5で受賞している。"
+     ]
+    ],
+    "pt": "文書4の You might want to consider entering ... ＝ 提案。文書5の went to Greenhill ＝ 受賞。2つをつなげると答えになる。"
+   },
+   {
+    "q": "According to the article, why were extra screens set up in the lobby?",
+    "qj": "記事によると、なぜロビーに追加の画面が設置されたのか。",
+    "a": 0,
+    "c": [
+     [
+      "The Main Hall was too full.",
+      "メインホールが満員だったから。",
+      "正解。so crowded that ... の言い換え。"
+     ],
+     [
+      "A seminar room was being repaired.",
+      "セミナー室が修理中だったから。",
+      "修理の話はない。"
+     ],
+     [
+      "Dr. Price was unable to attend.",
+      "プライス博士が来られなかったから。",
+      "博士は講演している。"
+     ],
+     [
+      "Exhibitors requested them.",
+      "出展者が求めたから。",
+      "出展者の要望ではない。"
+     ]
+    ],
+    "pt": "so crowded that ...（とても混んでいたので…）。crowded ＝ full。crowded は形容詞（was の後）。"
+   }
+  ]
+ },
+ {
+  "id": "p32",
+  "type": "5文書セット（長文）",
+  "long": true,
+  "raw": "TITLE: Brightline Logistics Moves Its Headquarters\nDocument 1: Memo\n= 文書1：社内メモ\nTo: All Headquarters Employees / From: Gregory Hall, / Chief Operating Officer / Date: August 4 / Subject: Office Relocation\n= 宛先：本社の全社員／差出人：最高執行責任者 グレゴリー・ホール／日付：8月4日／件名：オフィスの移転について\nAs many of you / have already heard, / Brightline Logistics / will be relocating / its headquarters / from the Carver Building downtown / to the Riverside Business Park / next month.\n= すでに聞いている人も多いと思いますが、ブライトライン・ロジスティクスは来月、本社を都心のカーバービルからリバーサイド・ビジネスパークに移転します。\nI would like to explain / the reasons / for this decision / and what it will mean / for you.\n= この決定の理由と、それが皆さんにとってどういう意味を持つのかを説明したいと思います。\nOver the past five years, / our company / has grown rapidly.\n= 過去5年間で、当社は急速に成長しました。\nWe have doubled / the number of employees / at headquarters, / and our current office / no longer has / enough space / for everyone.\n= 本社の社員数は2倍になり、現在のオフィスにはもう全員分の十分なスペースがありません。\nSeveral teams / are already working / in meeting rooms, / and as a result, / it has become / increasingly difficult / to find a place / to hold meetings.\n= すでにいくつかのチームは会議室で仕事をしており、その結果、会議を開く場所を見つけるのがますます難しくなっています。\nIn addition, / our lease / at the Carver Building / expires / at the end of September, / and the owner / has informed us / that the rent / will increase / by 30 percent / if we renew it.\n= さらに、カーバービルの賃貸契約は9月末で切れ、更新すれば家賃が30%上がると、オーナーから知らされています。\nThe new office / at Riverside Business Park / is nearly twice as large / as our current one, / and the rent / is actually lower.\n= リバーサイド・ビジネスパークの新しいオフィスは今のオフィスのほぼ2倍の広さで、しかも家賃は実際に安くなります。\nIt also offers / a number of benefits / for employees, / including a staff cafeteria, / a fitness room, / and free parking / for up to 400 cars.\n= 社員食堂、フィットネスルーム、最大400台の無料駐車場など、社員にとっての利点も数多くあります。\nI understand / that some of you / may be concerned / about your commute.\n= 通勤について心配している人もいるかもしれないことは理解しています。\nThe business park / is located / about twelve kilometers / from downtown, / and it is not directly served / by the subway.\n= ビジネスパークは都心から約12キロのところにあり、地下鉄が直接通っていません。\nTo address this issue, / the company / will operate / a free shuttle bus / between Central Station / and the new office / every fifteen minutes / during rush hours.\n= この問題に対応するため、会社はラッシュアワーの間、セントラル駅と新オフィスの間で15分おきに無料のシャトルバスを運行します。\nEmployees / who choose to drive / will also be eligible for / a monthly transportation allowance / of $50 / to help cover / the cost of gas.\n= 車で通勤することを選んだ社員も、ガソリン代の足しとして月50ドルの交通手当を受け取る資格があります。\nThe move / will take place / in stages / over three weekends / in September, / so that our daily operations / are not interrupted.\n= 日々の業務が中断されないよう、引っ越しは9月の3回の週末にわたって段階的に行われます。\nA detailed schedule / is attached.\n= 詳しいスケジュールを添付しています。\nEach department / will be given / packing boxes / and labels / one week / before its moving date.\n= 各部署には、それぞれの引っ越し日の1週間前に、梱包用の箱とラベルが配られます。\nPlease pack / your personal belongings / yourself / and make sure / that every box / is clearly labeled / with your name / and department.\n= 私物は各自で梱包し、すべての箱に名前と部署がはっきり書かれているようにしてください。\nComputers, / printers, / and other equipment / will be moved / by our IT team / and a professional moving company, / Swift Move Services.\n= パソコン、プリンター、その他の機器は、IT チームと専門の引っ越し業者スウィフト・ムーブ・サービスが運びます。\nDo not try / to disconnect / or pack / any equipment / on your own.\n= 機器の取り外しや梱包を自分でしようとしないでください。\nOn the weekends / of the move, / the Carver Building / will be closed / to all employees / except members / of the moving team.\n= 引っ越しの週末は、引っ越しチームのメンバー以外の社員はカーバービルに入れません。\nIf you need / to pick up / something urgently, / you must arrange it / with the facilities team / at least one day / in advance.\n= 急ぎで何かを取りに行く必要があるときは、少なくとも1日前までに設備チームと調整しなければなりません。\nNew security badges / for Riverside Business Park / will be distributed / to all employees / on September 10.\n= リバーサイド・ビジネスパーク用の新しいセキュリティバッジは、9月10日に全社員に配布されます。\nYour current badge / will not work / at the new building, / so please do not forget / to bring the new one / on your first day.\n= 今のバッジは新しい建物では使えないので、初日に新しいバッジを忘れずに持ってきてください。\nI know / that moving / can be stressful, / but I am confident / that our new home / will provide / a much better working environment / for all of us.\n= 引っ越しはストレスになりうることは分かっていますが、新しい拠点は私たち全員にとってはるかに良い職場環境になると確信しています。\nTo celebrate / the completion / of the move, / we will hold / a welcome party / in the new cafeteria / on October 9.\n= 引っ越しの完了を祝って、10月9日に新しい食堂で歓迎パーティーを開きます。\nI would also like to thank / Ms. Bennett / and her team, / who have spent / the past six months / planning this move / and negotiating / the new lease.\n= また、この半年間、移転の計画と新しい賃貸契約の交渉に取り組んでくれたベネットさんとそのチームに感謝したいと思います。\nTheir hard work / has made it possible / for us / to move / without increasing / our costs.\n= 彼らの尽力のおかげで、コストを増やさずに移転することができます。\nIf you have any questions / or concerns, / please contact / Facilities Manager Nora Bennett / at extension 3120.\n= 質問や心配事があれば、内線3120の設備管理責任者ノラ・ベネットに連絡してください。\nDocument 2: Moving Schedule\n= 文書2：引っ越しスケジュール\nBrightline Logistics / Headquarters Relocation Schedule\n= ブライトライン・ロジスティクス　本社移転スケジュール\nWeekend 1, / September 12 and 13: / Human Resources, / Legal, / and Customer Service.\n= 第1週末（9月12日・13日）：人事部、法務部、カスタマーサービス部。\nWeekend 2, / September 19 and 20: / Sales, / Accounting, / and the Executive Office.\n= 第2週末（9月19日・20日）：営業部、経理部、役員室。\nWeekend 3, / September 26 and 27: / Marketing, / Information Technology, / and Research and Development.\n= 第3週末（9月26日・27日）：マーケティング部、情報技術部、研究開発部。\nNotes:\n= 注意事項：\nAll boxes / must be packed / and placed / next to your desk / by 5:00 P.M. / on the Friday / before your moving weekend.\n= すべての箱は、引っ越しの週末の前の金曜日の午後5時までに梱包し、机の横に置いておくこと。\nEmployees / will begin working / at the new office / on the Monday / after their department moves.\n= 社員は、部署の引っ越しの後の月曜日から新オフィスで勤務を始めます。\nEmployees / who are unable to work / at either location / during the transition / may work from home / with their manager's approval.\n= 移行期間中にどちらの場所でも働けない社員は、上司の承認があれば在宅勤務ができます。\nItems / that are not labeled / will be left behind / and may be thrown away.\n= ラベルのない物は置いていかれ、処分されることがあります。\nFrequently Asked Questions\n= よくある質問\nQ: / Will my desk / and chair / be moved / to the new office?\n= 質問：机と椅子は新オフィスに運ばれますか？\nA: / No. / The new office / will be fully furnished / with new desks / and chairs, / so old furniture / will remain / at the Carver Building.\n= 回答：いいえ。新オフィスには新しい机と椅子が完備されるので、古い家具はカーバービルに残ります。\nOld furniture / that is still / in good condition / will be donated / to local schools / and community centers.\n= まだ状態の良い古い家具は、地元の学校や公民館に寄付されます。\nQ: / How many boxes / will I receive?\n= 質問：箱はいくつもらえますか？\nA: / Each employee / will receive / four boxes.\n= 回答：社員1人につき4箱です。\nIf you need more, / please ask / your department's moving coordinator.\n= もっと必要なら、部署の引っ越し担当者に頼んでください。\nWe encourage everyone / to use this opportunity / to throw away / old documents / that are no longer needed.\n= この機会に、もう必要のない古い書類を処分するよう皆さんにおすすめします。\nConfidential documents / must be placed / in the locked shredding bins / on each floor, / not in regular trash cans.\n= 機密書類は、普通のゴミ箱ではなく、各階の鍵付きシュレッダー用ボックスに入れなければなりません。\nQ: / Will my phone number / change?\n= 質問：電話番号は変わりますか？\nA: / No. / All extension numbers / will remain the same.\n= 回答：いいえ。内線番号はすべてそのままです。\nHowever, / the company's main phone number / will change / on September 28.\n= ただし、会社の代表番号は9月28日に変わります。\nPlease update / your e-mail signature / and business cards / by that date.\n= その日までに、メールの署名と名刺を更新してください。\nNew business cards / can be ordered / through the online supply system / free of charge.\n= 新しい名刺はオンラインの備品システムから無料で注文できます。\nQ: / Can I visit / the new office / before my department moves?\n= 質問：部署が引っ越す前に新オフィスを見学できますか？\nA: / Yes. / Guided tours / of the new office / will be offered / every Wednesday afternoon / in August.\n= 回答：はい。8月は毎週水曜日の午後に、新オフィスの案内付き見学を行います。\nSpace on each tour / is limited / to fifteen people, / so please sign up / through the company intranet / in advance.\n= 各回の定員は15人なので、社内イントラネットで事前に申し込んでください。\nQ: / What should I do / with plants / and other personal items?\n= 質問：植物やその他の私物はどうすればいいですか？\nA: / Small plants / may be packed / in boxes, / but large plants / should be taken home / before your moving weekend.\n= 回答：小さな植物は箱に入れてもかまいませんが、大きな植物は引っ越しの週末の前に持ち帰ってください。\nThe moving company / is not responsible for / any damage / to personal items.\n= 引っ越し業者は、私物の損傷について責任を負いません。\nDocument 3: E-mail\n= 文書3：メール\nTo: Nora Bennett / From: Priya Desai / Date: August 6 / Subject: Request regarding the moving schedule\n= 宛先：ノラ・ベネット／差出人：プリヤ・デサイ／日付：8月6日／件名：引っ越しスケジュールに関するお願い\nDear Ms. Bennett,\n= ベネット様\nI am the manager / of the Accounting Department, / and I am writing / to ask / whether it would be possible / to change / our moving date.\n= 経理部の部長をしております。私たちの引っ越し日を変更していただけないかと思い、ご連絡しています。\nAccording to the schedule, / our department / will move / on the second weekend of September.\n= スケジュールによると、私たちの部署は9月の第2週末に引っ越すことになっています。\nUnfortunately, / the end of September / is the busiest time of the year / for us, / because we must complete / the quarterly financial report / by October 2.\n= 残念ながら、9月末は10月2日までに四半期の財務報告書を仕上げなければならないため、私たちにとって1年で最も忙しい時期です。\nDuring the last two weeks / of the quarter, / my team / works long hours / and relies heavily on / the files / stored in our office.\n= 四半期の最後の2週間は、チームは長時間働き、オフィスに保管されているファイルに大きく頼っています。\nIf we have to pack / everything / and set it up again / in the middle of this period, / I am worried / that we might miss / the deadline.\n= この期間の途中ですべてを梱包し、もう一度設置し直さなければならないとなると、締め切りに間に合わないのではないかと心配です。\nWould it be possible / for our department / to move / on the first weekend / instead?\n= 代わりに第1週末に私たちの部署が引っ越すことはできないでしょうか。\nAlternatively, / we would be happy / to move / after the report is submitted, / if that is easier / for you.\n= あるいは、そのほうがやりやすければ、報告書の提出後に引っ越すのでもかまいません。\nEither option / would allow us / to focus on the report / without interruption.\n= どちらの案でも、中断せずに報告書に集中できます。\nI have already discussed / this matter / with Mr. Hall, / and he suggested / that I contact you / directly.\n= この件はすでにホールさんと話しており、あなたに直接連絡するよう勧められました。\nMy team / would also appreciate / receiving extra boxes, / since we keep / a large number / of paper records.\n= 紙の記録を大量に保管しているので、箱を追加でいただけるとチームとしても助かります。\nI have one more question.\n= もう一つ質問があります。\nOur department / has a large aquarium / with six tropical fish, / which has been in our office / for almost ten years.\n= 私たちの部署には熱帯魚6匹の入った大きな水槽があり、10年近くオフィスに置かれています。\nThe fish / are very popular / with employees / from other departments, / who often stop by / to watch them / during their breaks.\n= 魚たちは他の部署の社員にもとても人気で、休憩中によく立ち寄って眺めています。\nThe largest one, / whom we call / Mr. Numbers, / is believed / to be older / than some of our interns.\n= 一番大きい魚は「ミスター・ナンバーズ」と呼んでいて、インターンの何人かより年上だと考えられています。\nI am not sure / how to move them / safely.\n= どうすれば安全に移動できるのか分かりません。\nShould we arrange / this ourselves, / or will the moving company / take care of it?\n= 私たちで手配すべきでしょうか、それとも引っ越し業者が対応してくれるのでしょうか。\nThank you / in advance / for your help.\n= ご協力のほど、よろしくお願いいたします。\nBest regards, / Priya Desai\n= よろしくお願いいたします。プリヤ・デサイ\nDocument 4: E-mail\n= 文書4：メール\nTo: Priya Desai / From: Nora Bennett / Date: August 7 / Subject: RE: Request regarding the moving schedule\n= 宛先：プリヤ・デサイ／差出人：ノラ・ベネット／日付：8月7日／件名：RE: 引っ越しスケジュールに関するお願い\nDear Ms. Desai,\n= デサイ様\nThank you / for contacting me / about this.\n= この件についてご連絡いただきありがとうございます。\nI completely understand / your concern, / and I am glad / you let me know / early.\n= ご心配はよく分かります。早めに知らせていただいて助かりました。\nI spoke with / the manager / of the Customer Service Department, / and she has agreed / to switch / moving dates / with your team.\n= カスタマーサービス部の部長と話をしたところ、あなたのチームと引っ越し日を交換することに同意してくれました。\nThis means / that your department / will now move / on the first weekend, / and Customer Service / will move / on the second weekend.\n= つまり、あなたの部署は第1週末に、カスタマーサービス部は第2週末に引っ越すことになります。\nPlease note / that your boxes / will therefore need to be ready / one week earlier / than originally planned.\n= そのため、箱の準備は当初の予定より1週間早く必要になりますのでご注意ください。\nI will make sure / that your packing materials / are delivered / to your office / by August 28.\n= 梱包資材は8月28日までに必ずあなたの部署に届くようにします。\nRegarding your files, / I would recommend / that you scan / any documents / you will need / during the move / and save them / on the shared drive.\n= ファイルについては、引っ越し期間中に必要な書類はスキャンして共有ドライブに保存しておくことをおすすめします。\nThat way, / your team / will be able to access them / from home / if necessary.\n= そうすれば、必要に応じてチームは自宅からもアクセスできます。\nIf your team members / need help / scanning a large number of documents, / the IT department / can lend you / two high-speed scanners / for the month of August.\n= チームで大量の書類をスキャンする必要があれば、IT 部が8月の1か月間、高速スキャナーを2台貸し出せます。\nPlease let me know / by August 15 / if you would like / to borrow them.\n= 借りたい場合は、8月15日までにお知らせください。\nAs for the aquarium, / Swift Move Services / does not handle / live animals.\n= 水槽については、スウィフト・ムーブ・サービスは生き物を扱っていません。\nHowever, / I have contacted / a local company, / AquaCare, / which specializes in / moving aquariums / for offices and restaurants.\n= ただ、オフィスやレストランの水槽の移動を専門とする地元の会社、アクアケアに連絡しておきました。\nThey will transport / the fish / in special containers / and set up the tank / at the new office / on the same day.\n= 魚を専用の容器で運び、同じ日に新オフィスで水槽を設置してくれます。\nThe cost / will be covered / by the company, / so you do not need to worry / about that.\n= 費用は会社が負担しますので、その点はご心配いりません。\nI have also reserved / a spot / for the aquarium / in the new cafeteria, / where more employees / will be able to enjoy it.\n= また、より多くの社員が楽しめるよう、新しい食堂に水槽の置き場所も確保しました。\nI hope / Mr. Numbers / will like / his new view.\n= ミスター・ナンバーズが新しい眺めを気に入ってくれるといいのですが。\nBest regards, / Nora Bennett\n= よろしくお願いいたします。ノラ・ベネット\nDocument 5: Online Chat\n= 文書5：オンラインチャット\nPriya Desai (8:52 A.M., / September 14): / Good morning, everyone. / Welcome to / our first day / at the new office!\n= プリヤ・デサイ（9月14日 午前8:52）：皆さん、おはようございます。新オフィスでの初日へようこそ！\nKenji Abe (8:54 A.M.): / Thanks! / The shuttle bus / was much faster / than I expected. / It only took / twenty minutes / from Central Station.\n= アベ・ケンジ（午前8:54）：ありがとうございます！シャトルバスは思っていたよりずっと速かったです。セントラル駅から20分しかかかりませんでした。\nLaura Kim (8:55 A.M.): / I drove / today. / The parking lot / is huge, / but I couldn't remember / where I parked / when I went back / to get my lunch.\n= ローラ・キム（午前8:55）：今日は車で来ました。駐車場はすごく広いけど、お昼を取りに戻ったとき、どこに停めたか思い出せませんでした。\nPriya Desai (8:57 A.M.): / Laura, / it's not even nine o'clock yet.\n= プリヤ：ローラ、まだ9時にもなっていないわよ。\nLaura Kim (8:58 A.M.): / I know. / I get hungry / when I'm nervous.\n= ローラ：分かってます。緊張するとお腹がすくんです。\nKenji Abe (9:01 A.M.): / Has anyone / been able to connect / to the printer? / My computer / can't find it.\n= ケンジ（午前9:01）：誰かプリンターにつながりましたか？僕のパソコンが見つけられないんです。\nPriya Desai (9:03 A.M.): / The IT team / won't move / until the last weekend, / so some equipment / may not be ready / yet. / I'll call / the help desk.\n= プリヤ：IT チームは最後の週末まで引っ越さないから、まだ準備できていない機器もあるかも。ヘルプデスクに電話するわ。\nPriya Desai (9:15 A.M.): / The printer / should work / by noon. / Until then, / please save / anything urgent / on the shared drive.\n= プリヤ（午前9:15）：プリンターはお昼までには使えるはず。それまで、急ぎのものは共有ドライブに保存しておいて。\nLaura Kim (9:16 A.M.): / Good news: / the fish / arrived safely. / They're in the cafeteria, / and Mr. Numbers / already has / a crowd of fans.\n= ローラ（午前9:16）：いいお知らせです。魚は無事に到着しました。食堂にいて、ミスター・ナンバーズにはもうファンが群がっています。\nKenji Abe (9:18 A.M.): / Of course he does. / He's the only one here / who didn't have to pack / any boxes.\n= ケンジ：そりゃそうだよ。ここで箱を一つも詰めなくてよかったのは彼だけだからね。\nPriya Desai (9:20 A.M.): / By the way, / the tour / I joined / in August / didn't show us / the rooftop garden. / Has anyone seen it?\n= プリヤ（午前9:20）：ところで、8月に参加した見学では屋上庭園を見せてもらえなかったの。誰か見た？\nLaura Kim (9:22 A.M.): / Yes! / It's on the sixth floor. / There are benches / and a great view / of the river.\n= ローラ（午前9:22）：はい！6階にあります。ベンチがあって、川の眺めが最高です。\nKenji Abe (9:23 A.M.): / Let's have / our team lunch / there / on Friday / to celebrate / the move.\n= ケンジ（午前9:23）：引っ越しのお祝いに、金曜日にそこでチームランチをしましょう。\nPriya Desai (9:24 A.M.): / Great idea. / I'll reserve it. / Laura, / please try / not to eat / your lunch / before then.\n= プリヤ（午前9:24）：いい考えね。予約しておくわ。ローラ、それまでにお昼を食べないようにね。\nKenji Abe (9:25 A.M.): / Don't worry. / I'll bring / some snacks / for her.\n= ケンジ（午前9:25）：大丈夫。彼女にはおやつを持ってくるよ。\nWORDS\nrelocating = 移転する\nheadquarters = 本社\nrapidly = 急速に\nincreasingly = ますます\nlease = 賃貸契約\nexpires = 期限が切れる\nrenew = 更新する\ncommute = 通勤\naddress this issue = この問題に対処する\neligible for = 〜の資格がある\nallowance = 手当\nin stages = 段階的に\ninterrupted = 中断される\nbelongings = 持ち物\non your own = 自分で\ntransition = 移行期間\napproval = 承認\nquarterly = 四半期の\nrelies heavily on = 〜に大きく頼っている\nalternatively = あるいは\nstop by = 立ち寄る\nswitch = 交換する\nspecializes in = 〜を専門とする\ncovered = （費用が）負担される\nurgent = 急ぎの\nfully furnished = 家具が完備された\ndonated = 寄付される\nconfidential = 機密の\nremain the same = そのままである\nsign up = 申し込む\nnot responsible for = 〜の責任を負わない",
+  "chunks": [
+   [
+    "as a result",
+    "その結果",
+    "As a result, it has become increasingly difficult to find a place to hold meetings.",
+    "その結果、会議の場所を見つけるのがますます難しくなった。"
+   ],
+   [
+    "in addition",
+    "さらに",
+    "In addition, our lease expires at the end of September.",
+    "さらに、賃貸契約は9月末で切れる。"
+   ],
+   [
+    "be eligible for + 名詞",
+    "〜の資格がある",
+    "Employees will be eligible for a monthly transportation allowance.",
+    "社員は月々の交通手当を受け取る資格がある。"
+   ],
+   [
+    "take place",
+    "行われる",
+    "The move will take place in stages.",
+    "引っ越しは段階的に行われる。"
+   ],
+   [
+    "make sure (that)",
+    "必ず〜するようにする",
+    "Make sure that every box is clearly labeled.",
+    "すべての箱にはっきりラベルを貼るようにする。"
+   ],
+   [
+    "on your own",
+    "自分で・独力で",
+    "Do not try to pack any equipment on your own.",
+    "機器を自分で梱包しようとしないで。"
+   ],
+   [
+    "rely (heavily) on",
+    "〜に（大きく）頼る",
+    "My team relies heavily on the files stored in our office.",
+    "チームはオフィスのファイルに大きく頼っている。"
+   ],
+   [
+    "stop by",
+    "立ち寄る",
+    "Employees often stop by to watch the fish.",
+    "社員はよく魚を見に立ち寄る。"
+   ],
+   [
+    "specialize in",
+    "〜を専門とする",
+    "AquaCare specializes in moving aquariums.",
+    "アクアケアは水槽の移動を専門としている。"
+   ],
+   [
+    "take care of",
+    "〜を引き受ける・処理する",
+    "Will the moving company take care of it?",
+    "引っ越し業者が対応してくれるのか。"
+   ],
+   [
+    "in advance",
+    "前もって",
+    "Thank you in advance for your help.",
+    "前もってご協力に感謝します。"
+   ],
+   [
+    "with one's approval",
+    "〜の承認があれば",
+    "You may work from home with your manager's approval.",
+    "上司の承認があれば在宅勤務ができる。"
+   ]
+  ],
+  "qs": [
+   {
+    "q": "What is the main purpose of the memo?",
+    "qj": "このメモの主な目的は何か。",
+    "a": 3,
+    "c": [
+     [
+      "To announce a new branch office",
+      "新しい支店の開設を知らせること",
+      "支店ではなく本社の移転。"
+     ],
+     [
+      "To introduce a new manager",
+      "新しい部長を紹介すること",
+      "紹介はしていない。ノラ・ベネットは連絡先として出るだけ。"
+     ],
+     [
+      "To ask employees to work from home",
+      "社員に在宅勤務を頼むこと",
+      "在宅勤務は移行期間中の選択肢の一つ。"
+     ],
+     [
+      "To explain a move to a new location",
+      "新しい場所への移転を説明すること",
+      "正解。will be relocating its headquarters の言い換え。"
+     ]
+    ],
+    "pt": "relocate ＝ move to a new location。headquarters（本社）は TOEIC 頻出。最初の文と I would like to explain が目的。"
+   },
+   {
+    "q": "What is NOT mentioned as a reason for the relocation?",
+    "qj": "移転の理由として述べられていないものは何か。",
+    "a": 1,
+    "c": [
+     [
+      "The current office is too small.",
+      "今のオフィスが狭すぎる。",
+      "no longer has enough space とある。"
+     ],
+     [
+      "The company wants to be closer to the subway.",
+      "会社は地下鉄に近づきたい。",
+      "正解。むしろ新オフィスは地下鉄が通っていない。"
+     ],
+     [
+      "The rent at the current office will rise.",
+      "今のオフィスの家賃が上がる。",
+      "rent will increase by 30 percent とある。"
+     ],
+     [
+      "The new office is less expensive.",
+      "新しいオフィスのほうが安い。",
+      "the rent is actually lower とある。"
+     ]
+    ],
+    "pt": "In addition（さらに）の前後に理由が並ぶ。rapidly（副詞・grown を説明）、increasingly（副詞・形容詞 difficult を強める）。"
+   },
+   {
+    "q": "In the memo, the word 'address' in the sentence beginning 'To address this issue' is closest in meaning to",
+    "qj": "メモの To address this issue で始まる文の address に最も意味が近いのは",
+    "a": 0,
+    "c": [
+     [
+      "deal with",
+      "対処する",
+      "正解。address an issue ＝ 問題に対処する。"
+     ],
+     [
+      "send",
+      "送る",
+      "住所に送る意味と混同させるひっかけ。"
+     ],
+     [
+      "speak to",
+      "話しかける",
+      "「演説する」の意味もあるが、ここでは問題への対処。"
+     ],
+     [
+      "write down",
+      "書き留める",
+      "意味が違う。"
+     ]
+    ],
+    "pt": "address は名詞「住所」のほか、動詞「（問題に）取り組む」。目的語が issue / problem / concern なら「対処する」。"
+   },
+   {
+    "q": "What will employees who drive to work receive?",
+    "qj": "車で通勤する社員は何を受け取るか。",
+    "a": 2,
+    "c": [
+     [
+      "A free shuttle bus pass",
+      "シャトルバスの無料パス",
+      "シャトルバスは誰でも無料。パスの話はない。"
+     ],
+     [
+      "A reserved parking space",
+      "専用の駐車スペース",
+      "free parking とあるが、専用の場所とは書いていない。"
+     ],
+     [
+      "Money to help pay for fuel",
+      "燃料費の補助",
+      "正解。a monthly transportation allowance to help cover the cost of gas。"
+     ],
+     [
+      "A company car",
+      "社用車",
+      "社用車の話はない。"
+     ]
+    ],
+    "pt": "allowance（手当）は TOEIC 頻出。gas ＝ fuel。cover the cost ＝ 費用を負担する。"
+   },
+   {
+    "q": "Why does Ms. Desai want to change her department's moving date?",
+    "qj": "デサイさんはなぜ部署の引っ越し日を変えたいのか。",
+    "a": 1,
+    "c": [
+     [
+      "Her team will be on vacation.",
+      "チームが休暇中だから。",
+      "休暇の話はない。"
+     ],
+     [
+      "It conflicts with a busy period.",
+      "忙しい時期と重なるから。",
+      "正解。9月末は四半期報告書の締め切りで1年で最も忙しい。"
+     ],
+     [
+      "She wants to move with the IT team.",
+      "IT チームと一緒に引っ越したいから。",
+      "書かれていない。"
+     ],
+     [
+      "Her office is not ready.",
+      "オフィスの準備ができていないから。",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "Unfortunately の後ろに理由が来る。the busiest time of the year → a busy period の言い換え。"
+   },
+   {
+    "q": "When did the Accounting Department most likely move?",
+    "qj": "経理部はいつ引っ越した可能性が高いか。",
+    "a": 0,
+    "c": [
+     [
+      "On September 12 and 13",
+      "9月12日・13日",
+      "正解。文書4で第1週末に変更、文書2で第1週末は12日・13日。文書5の9月14日（月）が新オフィス初日とも合う。"
+     ],
+     [
+      "On September 19 and 20",
+      "9月19日・20日",
+      "元の予定。変更された。"
+     ],
+     [
+      "On September 26 and 27",
+      "9月26日・27日",
+      "第3週末は IT など。"
+     ],
+     [
+      "After October 2",
+      "10月2日以降",
+      "報告書の提出後という案も出したが、第1週末に決まった。"
+     ]
+    ],
+    "pt": "3つの文書をつなげる問題。文書2（元の日程）→ 文書4（交換）→ 文書5（9月14日に新オフィス初日）。"
+   },
+   {
+    "q": "What is indicated about AquaCare?",
+    "qj": "アクアケアについて何が示されているか。",
+    "a": 3,
+    "c": [
+     [
+      "It is part of Swift Move Services.",
+      "スウィフト・ムーブ・サービスの一部である。",
+      "別の会社。"
+     ],
+     [
+      "Ms. Desai will pay for its service.",
+      "デサイさんがサービス代を払う。",
+      "会社が負担する。"
+     ],
+     [
+      "It will deliver the fish the following week.",
+      "魚を翌週に届ける。",
+      "同じ日に水槽を設置する。"
+     ],
+     [
+      "It has experience with businesses.",
+      "企業での経験がある。",
+      "正解。specializes in moving aquariums for offices and restaurants。"
+     ]
+    ],
+    "pt": "specialize in ＝ 〜を専門とする ＝ 経験がある。offices and restaurants → businesses と抽象化した言い換え。"
+   },
+   {
+    "q": "At 9:03 A.M., why does Ms. Desai mention the IT team?",
+    "qj": "午前9:03にデサイさんが IT チームに触れたのはなぜか。",
+    "a": 2,
+    "c": [
+     [
+      "To introduce a new team member",
+      "新しいメンバーを紹介するため",
+      "紹介ではない。"
+     ],
+     [
+      "To complain about the shuttle bus",
+      "シャトルバスについて苦情を言うため",
+      "バスは好評。"
+     ],
+     [
+      "To explain why a device may not work",
+      "機器が動かない理由を説明するため",
+      "正解。IT チームは最後の週末に引っ越すので、まだ準備できていない機器がある。"
+     ],
+     [
+      "To ask Mr. Abe to join the team",
+      "アベさんにチームに入るよう頼むため",
+      "頼んでいない。"
+     ]
+    ],
+    "pt": "意図問題は直前のメッセージ（プリンターにつながらない）とセットで読む。printer → device の言い換え。"
+   },
+   {
+    "q": "According to the schedule, what will happen to some of the old desks?",
+    "qj": "スケジュールによると、古い机の一部はどうなるか。",
+    "a": 2,
+    "c": [
+     [
+      "They will be moved to the new office.",
+      "新オフィスに運ばれる。",
+      "No とある。新オフィスには新しい机がある。"
+     ],
+     [
+      "They will be sold to employees.",
+      "社員に売られる。",
+      "売る話はない。"
+     ],
+     [
+      "They will be given to local organizations.",
+      "地元の団体に贈られる。",
+      "正解。donated to local schools and community centers の言い換え。"
+     ],
+     [
+      "They will be thrown away.",
+      "捨てられる。",
+      "状態の良いものは寄付される。捨てられることがあるのはラベルのない物。"
+     ]
+    ],
+    "pt": "donate ＝ give。schools and community centers → local organizations と抽象化。FAQ は Q と A をセットで読む。"
+   }
+  ]
+ },
+ {
+  "id": "p33",
+  "type": "5文書セット（長文）",
+  "long": true,
+  "raw": "TITLE: A New Supervisor at the Grand Willow Hotel\nDocument 1: Job Advertisement\n= 文書1：求人広告\nGrand Willow Hotel / Front Desk Supervisor / Full-Time Position\n= グランド・ウィロー・ホテル　フロントデスク主任　正社員\nThe Grand Willow Hotel, / a 320-room hotel / located in the heart of Lakeview City, / is seeking / an experienced front desk supervisor / to join our team.\n= レイクビュー市の中心部にある客室数320のグランド・ウィロー・ホテルでは、チームに加わる経験豊富なフロントデスク主任を募集しています。\nSince opening / in 1998, / we have welcomed / guests / from more than 80 countries, / and we are known / for our friendly service / and attention to detail.\n= 1998年の開業以来、80か国以上からお客様をお迎えしており、親しみやすいサービスと細やかな気配りで知られています。\nOur facilities / include / two restaurants, / a rooftop pool, / a fitness center, / and six meeting rooms / that can hold / up to 300 people.\n= 当ホテルの施設には、2つのレストラン、屋上プール、フィットネスセンター、最大300人を収容できる6つの会議室があります。\nLast year, / the hotel / was named / one of the top ten business hotels / in the region / by Travel Weekly magazine.\n= 昨年、当ホテルはトラベル・ウィークリー誌によって地域のビジネスホテル・トップ10の一つに選ばれました。\nThe hotel / is currently undergoing / a renovation / of its lobby / and guest rooms, / which is scheduled / to be completed / in September.\n= 現在ロビーと客室を改装中で、9月に完了する予定です。\nThe successful candidate / will be responsible for / supervising / a team / of twelve front desk agents, / creating / weekly work schedules, / and handling / guest complaints / and special requests.\n= 採用された方には、12名のフロント係のチームの監督、週ごとの勤務表の作成、お客様の苦情や特別なご要望への対応を担当していただきます。\nHe or she / will also work closely / with the housekeeping / and restaurant departments / to make sure / that every guest / has a pleasant stay.\n= また、すべてのお客様に快適に過ごしていただけるよう、客室清掃部門やレストラン部門と密に連携していただきます。\nWe are looking for / someone / who stays calm / under pressure / and enjoys / solving problems.\n= プレッシャーの中でも落ち着いていて、問題解決を楽しめる人を求めています。\nRequirements:\n= 応募条件：\nAt least three years / of experience / working at a hotel front desk, / including / one year / in a supervisory role.\n= ホテルのフロントでの勤務経験が3年以上あり、そのうち1年は監督職であること。\nExcellent communication skills / in English; / the ability / to speak a second language / is a plus.\n= 優れた英語のコミュニケーション能力。第2言語を話せれば尚可。\nFamiliarity / with hotel reservation software, / such as RoomMaster / or StayPro.\n= RoomMaster や StayPro などのホテル予約ソフトに精通していること。\nWillingness / to work / evenings, / weekends, / and holidays / when necessary.\n= 必要に応じて夜間・週末・祝日に勤務できること。\nCandidates / with experience / in training staff / will be given / preference.\n= スタッフ研修の経験がある方を優遇します。\nWe offer / a competitive salary, / health insurance, / paid vacation, / and free meals / during work shifts.\n= 他社に負けない給与、健康保険、有給休暇、勤務中の無料の食事を提供します。\nEmployees / also receive / a 50 percent discount / on rooms / at any of our sister hotels / in North America.\n= 社員は、北米にある系列ホテルのどこでも客室が50%割引になります。\nTo apply, / please send / your résumé / and a cover letter / to Martin Cole, / Human Resources Manager, / at careers@grandwillow.com / by May 20.\n= 応募するには、5月20日までに履歴書とカバーレターを人事部長マーティン・コールまでメールでお送りください。\nOnly candidates / selected for an interview / will be contacted.\n= 面接に選ばれた方にのみご連絡いたします。\nDocument 2: E-mail\n= 文書2：メール\nTo: Martin Cole / From: Emma Rossi / Date: May 12 / Subject: Application for Front Desk Supervisor\n= 宛先：マーティン・コール／差出人：エマ・ロッシ／日付：5月12日／件名：フロントデスク主任への応募\nDear Mr. Cole,\n= コール様\nI am writing / to apply for / the position / of front desk supervisor, / which was advertised / on your hotel's Web site.\n= 貴ホテルのウェブサイトに掲載されていたフロントデスク主任の職に応募したく、ご連絡しております。\nI have attached / my résumé / for your review.\n= ご確認いただけるよう、履歴書を添付しております。\nFor the past four years, / I have worked / at the front desk / of the Harborside Inn, / a 150-room hotel / in Portland.\n= この4年間、ポートランドにある客室数150のハーバーサイド・インのフロントで働いてきました。\nI started / as a front desk agent / and was promoted / to assistant supervisor / eighteen months ago.\n= フロント係として働き始め、18か月前に副主任に昇進しました。\nIn my current role, / I train / new employees, / prepare / staff schedules, / and deal with / guest concerns / when the supervisor / is not available.\n= 現在の役職では、新人の研修、スタッフの勤務表の作成、主任が不在のときのお客様の問題への対応を行っています。\nLast year, / I also led / a project / to reduce / check-in times / during busy periods.\n= 昨年は、繁忙期のチェックイン時間を短縮するプロジェクトも率いました。\nBy introducing / an online check-in option / and reorganizing / the work schedule, / my team / was able to cut / the average waiting time / from twelve minutes / to four.\n= オンラインチェックインを導入し、勤務表を組み直すことで、チームは平均待ち時間を12分から4分に短縮することができました。\nAs a result, / our guest satisfaction scores / rose / by fifteen percent.\n= その結果、お客様満足度の点数が15%上がりました。\nThe project / was later introduced / at our company's other two hotels / in Oregon.\n= このプロジェクトは後に、オレゴン州にある当社の他の2つのホテルにも導入されました。\nI am also / a certified first-aid instructor / and have trained / all of our staff / in basic emergency procedures.\n= 私は救急法の認定講師でもあり、スタッフ全員に基本的な緊急時の手順を指導してきました。\nI am familiar with / StayPro, / which we have used / at the Harborside Inn / since 2021.\n= ハーバーサイド・インでは2021年から StayPro を使っており、私も使い慣れています。\nIn addition to English, / I speak / Italian fluently / and have / a working knowledge / of Spanish.\n= 英語に加えて、イタリア語を流暢に話し、スペイン語も仕事で使える程度に話せます。\nI am particularly interested / in the Grand Willow Hotel / because of / its excellent reputation / for customer service.\n= 顧客サービスにおける評判の高さから、グランド・ウィロー・ホテルに特に関心を持っています。\nI stayed / at your hotel / two years ago / while attending / a conference, / and I was impressed / by how quickly / and politely / the staff / solved / every problem.\n= 2年前に会議に出席した際に貴ホテルに泊まり、スタッフがどんな問題も素早く丁寧に解決する様子に感銘を受けました。\nEven when / I accidentally locked myself / out of my room / at three o'clock in the morning / in my pajamas, / the night manager / greeted me / as if / I were wearing / a business suit.\n= 午前3時にパジャマ姿のまま誤って部屋から締め出されてしまったときでさえ、夜勤のマネージャーはまるで私がビジネススーツを着ているかのように迎えてくれました。\nHe then / calmly / opened the door / for me / and offered me / a cup of hot tea.\n= それから落ち着いてドアを開けてくれ、温かいお茶まで出してくれました。\nI would welcome / the opportunity / to bring / the same level of service / to your guests.\n= 同じ水準のサービスを貴ホテルのお客様にお届けする機会をいただければ幸いです。\nI believe / that my experience / in improving / guest satisfaction / and training / new staff members / would make me / a valuable addition / to your front desk team.\n= お客様満足度の向上と新人研修の経験を生かして、貴ホテルのフロントチームに貢献できると考えております。\nI am available / for an interview / at your convenience / and could start working / as early as July 1.\n= ご都合のよいときにいつでも面接に伺えます。また、早ければ7月1日から勤務を始められます。\nThank you / for your time / and consideration.\n= お時間を割いてご検討いただき、ありがとうございます。\nSincerely, / Emma Rossi\n= 敬具　エマ・ロッシ\nDocument 3: E-mail\n= 文書3：メール\nTo: Emma Rossi / From: Martin Cole / Date: May 23 / Subject: Interview Invitation\n= 宛先：エマ・ロッシ／差出人：マーティン・コール／日付：5月23日／件名：面接のご案内\nDear Ms. Rossi,\n= ロッシ様\nThank you / for your interest / in the front desk supervisor position / at the Grand Willow Hotel.\n= グランド・ウィロー・ホテルのフロントデスク主任の職にご関心をお寄せいただき、ありがとうございます。\nAfter reviewing / your application, / we would like to invite you / to an interview.\n= 応募書類を拝見し、面接にお越しいただきたいと考えております。\nThe interview process / consists of / two parts.\n= 面接は2部構成です。\nFirst, / you will meet / with me / and our general manager, / Ms. Helen Park, / for about 45 minutes.\n= まず、私と総支配人のヘレン・パークと約45分間お話ししていただきます。\nAfter that, / you will be asked / to take part in / a short role-play exercise / in which / you will respond / to a difficult guest.\n= その後、難しいお客様に対応する短いロールプレイの課題に参加していただきます。\nOne of our staff members / will play the guest, / and we will observe / how you handle / the situation.\n= スタッフの一人がお客様役を演じ、あなたがその状況にどう対応するかを拝見します。\nDuring the interview, / we will ask you / about your experience / supervising staff / and handling complaints.\n= 面接では、スタッフの監督や苦情対応の経験についてお尋ねします。\nWe will also explain / the details / of the position, / including / working hours, / salary, / and benefits, / and you will have / plenty of time / to ask questions.\n= また、勤務時間、給与、福利厚生など職務の詳細をご説明し、質問の時間も十分にお取りします。\nPlease don't worry; / our staff member / is a much better actor / than he is / a guest.\n= ご心配なく。そのスタッフは、お客様としてよりも役者としてのほうがずっと上手ですから。\nWe have two time slots / available: / Tuesday, May 28, / at 10:00 A.M., / or Thursday, May 30, / at 2:00 P.M.\n= 空いている時間は2つです。5月28日（火）午前10時、または5月30日（木）午後2時です。\nPlease reply / to this e-mail / by May 25 / to let us know / which time / you prefer.\n= どちらの時間がよいか、5月25日までにこのメールにご返信ください。\nIf neither time / is convenient, / we can arrange / a video interview / instead.\n= どちらのご都合も悪い場合は、代わりにビデオ面接を手配できます。\nWhen you come, / please bring / a form of photo identification / and copies / of any relevant certificates.\n= お越しの際は、写真付きの身分証明書と、関連する資格証明書のコピーをお持ちください。\nInterviews / are held / in the Lakeside Room / on the second floor.\n= 面接は2階のレイクサイド・ルームで行います。\nPlease check in / at the front desk / when you arrive, / and one of our agents / will show you / the way.\n= 到着されたらフロントで受付をしてください。係の者がご案内します。\nSince you are traveling / from Portland, / the hotel / will reimburse you / for your train fare.\n= ポートランドからお越しになるので、当ホテルが電車代を払い戻します。\nPlease keep / your receipt / and submit it / on the day / of the interview.\n= 領収書を保管し、面接当日にご提出ください。\nIf you are offered / the position, / we will also contact / two of your references, / so please include / their names / and phone numbers / in your reply.\n= 採用が決まった場合は推薦者2名にも連絡しますので、返信に推薦者のお名前と電話番号をご記載ください。\nWe look forward to / meeting you.\n= お会いできるのを楽しみにしております。\nBest regards, / Martin Cole\n= よろしくお願いいたします。マーティン・コール\nDocument 4: E-mail\n= 文書4：メール\nTo: Emma Rossi / From: Helen Park / Date: June 20 / Subject: Welcome to the Grand Willow Hotel!\n= 宛先：エマ・ロッシ／差出人：ヘレン・パーク／日付：6月20日／件名：グランド・ウィロー・ホテルへようこそ！\nDear Emma,\n= エマさん\nOn behalf of / everyone / at the Grand Willow Hotel, / I would like to welcome you / to our team.\n= グランド・ウィロー・ホテルの全員を代表して、あなたをチームに歓迎します。\nWe were all impressed / by your performance / during the interview, / especially / the way / you calmly handled / the role-play.\n= 私たちは皆、面接でのあなたの対応、特にロールプレイに落ち着いて対処した様子に感心しました。\nOur staff member / told me / afterward / that you were / the first candidate / to make him laugh.\n= スタッフの者が後で、自分を笑わせたのはあなたが最初の候補者だったと話していました。\nAs we discussed, / your first day / will be Monday, / July 1.\n= お話ししたとおり、初日は7月1日（月）です。\nDuring your first week, / you will take part in / our orientation program, / which is designed / to help new employees / become familiar with / the hotel / and its procedures.\n= 最初の1週間は、新入社員がホテルと業務手順に慣れるためのオリエンテーション・プログラムに参加していただきます。\nHere is / your schedule / for that week.\n= その週のスケジュールは以下のとおりです。\nMonday: / Welcome breakfast / with the management team, / followed by / a tour of the hotel / and a meeting / with Human Resources / to complete / your employment forms.\n= 月曜日：経営陣との歓迎朝食会、その後ホテル内の見学と、雇用書類を記入するための人事部との面談。\nTuesday: / Training / on the RoomMaster reservation system.\n= 火曜日：RoomMaster 予約システムの研修。\nAlthough / you are familiar with / StayPro, / our hotel / switched / to RoomMaster / last year, / so this session / will be important.\n= あなたは StayPro に慣れていますが、当ホテルは昨年 RoomMaster に切り替えたので、この研修は重要です。\nWednesday: / A full day / shadowing / our current supervisor, / Kevin Lam, / who will be transferring / to our sister hotel / in Vancouver / at the end of July.\n= 水曜日：7月末にバンクーバーの系列ホテルへ異動する現主任ケビン・ラムに丸一日付いて仕事を見学。\nThursday: / Meetings / with the heads / of the housekeeping, / restaurant, / and maintenance departments.\n= 木曜日：客室清掃、レストラン、保守の各部門長との面談。\nFriday: / Your first shift / at the front desk, / from 2:00 P.M. to 10:00 P.M., / with Kevin / available / for support.\n= 金曜日：午後2時から10時まで、フロントでの初勤務。ケビンがサポートに入ります。\nIn your second week, / you will begin / supervising / the morning team / on your own, / and Kevin / will gradually hand over / his remaining responsibilities / to you / before he leaves.\n= 2週目からは朝のチームを一人で監督し始め、ケビンは異動するまでに残りの業務を徐々にあなたに引き継ぎます。\nWe would also like you / to lead / a project / similar to / the one / you described / in your application, / as our guests / have recently complained / about long lines / at check-in / on Friday evenings.\n= また、最近お客様から金曜夕方のチェックインの行列が長いという苦情が出ているので、応募書類に書いていたのと同じようなプロジェクトを率いていただきたいと考えています。\nWe hope / to discuss / your ideas / at the end of / your first month.\n= 最初の1か月が終わるころに、あなたのアイデアについて話し合いたいと思います。\nPlease arrive / at 8:30 A.M. / on Monday / and use / the staff entrance / at the back of the building.\n= 月曜日は午前8時30分に到着し、建物の裏にある従業員用入口を使ってください。\nYour uniform / will be ready / in the staff locker room, / so there is no need / to bring / formal clothes.\n= 制服は従業員用ロッカールームに用意してありますので、正装を持ってくる必要はありません。\nFree parking / for employees / is available / in the underground garage; / please show / your employee ID card / to the attendant / at the entrance.\n= 従業員は地下駐車場を無料で使えます。入口で係員に社員証を見せてください。\nPajamas, / of course, / are also not required.\n= もちろん、パジャマも必要ありません。\nIf you have / any questions / before your start date, / please feel free / to contact me / directly.\n= 勤務開始日の前に何か質問があれば、遠慮なく私に直接連絡してください。\nWarm regards, / Helen Park, / General Manager\n= 心を込めて　総支配人　ヘレン・パーク\nDocument 5: Online Review\n= 文書5：オンラインレビュー\nGrand Willow Hotel / Reviewed by / Yusuf Demir / Rating: / five out of five stars / Posted: August 14\n= グランド・ウィロー・ホテル　レビュー投稿者：ユスフ・デミル　評価：5つ星中5つ　投稿日：8月14日\nI stayed / at the Grand Willow Hotel / for three nights / last week / while visiting Lakeview City / on business.\n= 先週、出張でレイクビュー市を訪れた際に、グランド・ウィロー・ホテルに3泊しました。\nThe room / was spacious / and spotless, / and the view / of the lake / from the tenth floor / was absolutely beautiful.\n= 部屋は広くてとても清潔で、10階からの湖の眺めは本当に美しかったです。\nHowever, / what impressed me / the most / was the service / at the front desk.\n= しかし、最も感銘を受けたのはフロントのサービスでした。\nOn my second night, / I realized / that I had left / my laptop / in a taxi / with all my presentation materials / for the next morning's meeting.\n= 2日目の夜、翌朝の会議用のプレゼン資料がすべて入ったノートパソコンをタクシーに置き忘れたことに気づきました。\nI was in a panic, / but the front desk supervisor, / Ms. Rossi, / immediately / took charge of / the situation.\n= パニックになりましたが、フロント主任のロッシさんがすぐにその場を取り仕切ってくれました。\nShe called / the taxi company, / found out / which driver / had picked me up, / and arranged / for the laptop / to be returned / to the hotel / within an hour.\n= 彼女はタクシー会社に電話して、どの運転手が私を乗せたかを突き止め、1時間以内にノートパソコンがホテルに戻るよう手配してくれました。\nWhile I was waiting, / she even offered / to print / my presentation / from my e-mail / in case / the laptop / did not come back / in time.\n= 待っている間、ノートパソコンが間に合わなかった場合に備えて、私のメールからプレゼン資料を印刷しようとまで申し出てくれました。\nShe also helped / a family / from Spain / at the same time, / switching / between English and Spanish / without any difficulty.\n= 同時にスペインから来た家族の対応もしていて、英語とスペイン語を難なく切り替えていました。\nThe next morning, / she had already arranged / a taxi / for me, / and she handed me / a small breakfast box / because she knew / I would not have time / to eat / at the restaurant.\n= 翌朝にはもうタクシーを手配してくれていて、レストランで食べる時間がないと分かっていたので、小さな朝食ボックスまで手渡してくれました。\nMy presentation / went very well, / and my client / signed the contract / that afternoon.\n= プレゼンはとてもうまくいき、顧客はその日の午後に契約書にサインしました。\nI also noticed / that check-in / was very fast, / even on a busy Friday evening; / I waited / less than five minutes / although the lobby / was full of guests / arriving for a wedding.\n= また、忙しい金曜の夕方でもチェックインがとても速いことに気づきました。ロビーは結婚式に来た客でいっぱいでしたが、5分も待ちませんでした。\nThe lobby itself / has been / beautifully renovated, / with comfortable sofas / and a large window / facing the lake.\n= ロビー自体も美しく改装されていて、座り心地の良いソファと湖に面した大きな窓があります。\nThe staff / also remembered / my name / from the first day, / which is rare / at a hotel / of this size.\n= スタッフは初日から私の名前を覚えてくれていて、これはこの規模のホテルでは珍しいことです。\nMy only complaint / is that / the hotel restaurant / closes / at 9:00 P.M., / which is a little early / for business travelers / who work late.\n= 唯一の不満は、ホテルのレストランが午後9時に閉まることで、遅くまで働く出張者には少し早いです。\nFortunately, / room service / is available / 24 hours a day, / and the club sandwich / is excellent.\n= 幸い、ルームサービスは24時間利用でき、クラブサンドイッチは絶品です。\nI would suggest / that the hotel / keep the restaurant open / at least / until 10:00 P.M. / on weekdays, / or offer / a simple late-night menu / in the lobby.\n= ホテルには、平日は少なくとも午後10時までレストランを開けておくか、ロビーで簡単な深夜メニューを出すことを提案したいです。\nI mentioned this / to Ms. Rossi / when I checked out, / and she wrote it down / carefully / and promised / to share it / with the restaurant manager.\n= チェックアウトのときにロッシさんにこのことを伝えると、彼女は丁寧に書き留めて、レストランの支配人に伝えると約束してくれました。\nI will definitely / stay here / again / the next time / I am in Lakeview City, / although / I will try / to keep my laptop / with me / this time.\n= 次にレイクビュー市に来たときもぜひここに泊まります。もっとも、今度はノートパソコンを手放さないようにします。\nWORDS\nseeking = 探している\nexperienced = 経験豊富な\nattention to detail = 細やかな気配り\nsuccessful candidate = 採用される人\nsupervising = 監督すること\nhandling = 対応すること\nrequirements = 応募条件\nsupervisory = 監督の\nfamiliarity = 精通していること\nwillingness = 進んで〜すること\ncompetitive salary = 他社に負けない給与\npromoted = 昇進した\ndeal with = 対処する\nsatisfaction = 満足\nfluently = 流暢に\nreputation = 評判\npolitely = 丁寧に\nat your convenience = ご都合のよいときに\nconsists of = 〜から成る\ntake part in = 〜に参加する\nobserve = 観察する\nrelevant = 関連する\nreimburse = 払い戻す\non behalf of = 〜を代表して\ncalmly = 落ち着いて\nprocedures = 手順\nshadowing = 付いて仕事を見学すること\ntransferring = 異動する\nspacious = 広々とした\nspotless = しみ一つない\ntook charge of = 〜を取り仕切った\nin case = 〜の場合に備えて\nundergoing = 受けている・実施中の\npreference = 優遇\ncertified = 認定された\nreferences = 推薦者\nhand over = 引き継ぐ\nrenovated = 改装された",
+  "chunks": [
+   [
+    "be responsible for -ing",
+    "〜を担当する",
+    "The successful candidate will be responsible for supervising a team.",
+    "採用された人はチームの監督を担当する。"
+   ],
+   [
+    "make sure (that)",
+    "必ず〜するようにする",
+    "to make sure that every guest has a pleasant stay",
+    "すべての客が快適に過ごせるようにするために"
+   ],
+   [
+    "apply for",
+    "〜に応募する",
+    "I am writing to apply for the position of front desk supervisor.",
+    "フロントデスク主任の職に応募するためにご連絡しています。"
+   ],
+   [
+    "be promoted to",
+    "〜に昇進する",
+    "I was promoted to assistant supervisor eighteen months ago.",
+    "18か月前に副主任に昇進した。"
+   ],
+   [
+    "deal with",
+    "〜に対処する",
+    "I deal with guest concerns when the supervisor is not available.",
+    "主任が不在のときに客の問題に対処する。"
+   ],
+   [
+    "be familiar with",
+    "〜に精通している",
+    "I am familiar with StayPro.",
+    "StayPro を使い慣れている。"
+   ],
+   [
+    "at your convenience",
+    "ご都合のよいときに",
+    "I am available for an interview at your convenience.",
+    "ご都合のよいときに面接に伺えます。"
+   ],
+   [
+    "consist of",
+    "〜から成る",
+    "The interview process consists of two parts.",
+    "面接は2部構成だ。"
+   ],
+   [
+    "take part in",
+    "〜に参加する",
+    "You will take part in our orientation program.",
+    "オリエンテーション・プログラムに参加する。"
+   ],
+   [
+    "on behalf of",
+    "〜を代表して",
+    "On behalf of everyone at the hotel, I would like to welcome you.",
+    "ホテル全員を代表して歓迎します。"
+   ],
+   [
+    "take charge of",
+    "〜を取り仕切る",
+    "Ms. Rossi immediately took charge of the situation.",
+    "ロッシさんはすぐにその場を取り仕切った。"
+   ],
+   [
+    "in case + 文",
+    "〜の場合に備えて",
+    "in case the laptop did not come back in time",
+    "ノートパソコンが間に合わなかった場合に備えて"
+   ]
+  ],
+  "qs": [
+   {
+    "q": "What is NOT a requirement for the position?",
+    "qj": "この職の応募条件でないものは何か。",
+    "a": 1,
+    "c": [
+     [
+      "Experience as a supervisor",
+      "監督職の経験",
+      "one year in a supervisory role とある。"
+     ],
+     [
+      "A university degree in tourism",
+      "観光学の大学の学位",
+      "正解。学位の条件はない。"
+     ],
+     [
+      "Knowledge of reservation software",
+      "予約ソフトの知識",
+      "Familiarity with hotel reservation software とある。"
+     ],
+     [
+      "Availability on weekends",
+      "週末に勤務できること",
+      "Willingness to work ... weekends とある。"
+     ]
+    ],
+    "pt": "Requirements: の下の箇条書きを1つずつ消す。familiarity ＝ knowledge、willingness to work ＝ availability。"
+   },
+   {
+    "q": "What is stated about employees of the Grand Willow Hotel?",
+    "qj": "グランド・ウィロー・ホテルの社員について何が述べられているか。",
+    "a": 3,
+    "c": [
+     [
+      "They work only during the day.",
+      "昼間だけ働く。",
+      "夜間・週末・祝日もある。"
+     ],
+     [
+      "They receive free uniforms every year.",
+      "毎年無料の制服を受け取る。",
+      "制服は文書4に出るが、毎年とは書いていない。"
+     ],
+     [
+      "They can stay at any hotel for free.",
+      "どのホテルにも無料で泊まれる。",
+      "無料ではなく50%割引。"
+     ],
+     [
+      "They can stay at related hotels for less.",
+      "系列ホテルに安く泊まれる。",
+      "正解。a 50 percent discount on rooms at any of our sister hotels。"
+     ]
+    ],
+    "pt": "sister hotels ＝ 系列ホテル ＝ related hotels。50 percent discount ＝ for less（より安く）。"
+   },
+   {
+    "q": "Why is Ms. Rossi particularly interested in the Grand Willow Hotel?",
+    "qj": "ロッシさんはなぜ特にグランド・ウィロー・ホテルに関心を持っているのか。",
+    "a": 0,
+    "c": [
+     [
+      "She was impressed by its service as a guest.",
+      "客としてそのサービスに感銘を受けたから。",
+      "正解。2年前に泊まり、スタッフの対応に感銘を受けた。"
+     ],
+     [
+      "It is located near her home.",
+      "自宅の近くにあるから。",
+      "彼女はポートランドから来る。"
+     ],
+     [
+      "It offers a higher salary.",
+      "給与がより高いから。",
+      "給与を理由にはしていない。"
+     ],
+     [
+      "Her friend works there.",
+      "友人がそこで働いているから。",
+      "書かれていない。"
+     ]
+    ],
+    "pt": "I am particularly interested in ... because of ... の because of の後が理由。quickly and politely は副詞で solved を説明。"
+   },
+   {
+    "q": "In the second e-mail, the phrase 'a working knowledge' is closest in meaning to",
+    "qj": "2通目のメールの a working knowledge に最も意味が近いのは",
+    "a": 2,
+    "c": [
+     [
+      "a job related to",
+      "〜に関する仕事",
+      "working を「仕事」と取るひっかけ。"
+     ],
+     [
+      "a complete mastery of",
+      "〜を完全に習得していること",
+      "fluently（流暢）の Italian と区別している。"
+     ],
+     [
+      "a practical ability in",
+      "〜を実用的に使える力",
+      "正解。仕事や日常で使える程度の知識。"
+     ],
+     [
+      "a desire to learn",
+      "〜を学びたい気持ち",
+      "意味が違う。"
+     ]
+    ],
+    "pt": "working knowledge ＝ 実用レベルの知識。fluently（流暢に）より一段下の表現。fluently は副詞（speak を説明）。"
+   },
+   {
+    "q": "What will Ms. Rossi receive after her interview?",
+    "qj": "ロッシさんは面接の後に何を受け取るか。",
+    "a": 1,
+    "c": [
+     [
+      "A free hotel room",
+      "無料のホテルの部屋",
+      "書かれていない。"
+     ],
+     [
+      "Payment for her travel costs",
+      "交通費の支払い",
+      "正解。the hotel will reimburse you for your train fare。"
+     ],
+     [
+      "A copy of her certificates",
+      "資格証明書のコピー",
+      "コピーは彼女が持ってくる物。"
+     ],
+     [
+      "A video recording",
+      "録画",
+      "ビデオ面接は代わりの案。"
+     ]
+    ],
+    "pt": "reimburse ＝ 払い戻す。TOEIC 頻出。train fare → travel costs と抽象化。"
+   },
+   {
+    "q": "What is suggested about Kevin Lam?",
+    "qj": "ケビン・ラムについて何が分かるか。",
+    "a": 3,
+    "c": [
+     [
+      "He interviewed Ms. Rossi.",
+      "ロッシさんを面接した。",
+      "面接したのはコールさんとパークさん。"
+     ],
+     [
+      "He played the guest in the role-play.",
+      "ロールプレイで客の役を演じた。",
+      "誰が演じたかは名前が出ていない。"
+     ],
+     [
+      "He will train Ms. Rossi on StayPro.",
+      "ロッシさんに StayPro の研修をする。",
+      "研修は RoomMaster。"
+     ],
+     [
+      "He will be replaced by Ms. Rossi.",
+      "ロッシさんが後任になる。",
+      "正解。現主任でバンクーバーに異動するので、ロッシさんが主任を引き継ぐ。文書5で主任になっている。"
+     ]
+    ],
+    "pt": "current supervisor（現主任）＋ transferring（異動）＝ 後任が必要。文書5の the front desk supervisor, Ms. Rossi で確定。"
+   },
+   {
+    "q": "What is suggested about the family from Spain?",
+    "qj": "スペインから来た家族について何が分かるか。",
+    "a": 0,
+    "c": [
+     [
+      "Ms. Rossi used her second language to help them.",
+      "ロッシさんは第2言語を使って彼らを助けた。",
+      "正解。文書2で彼女はスペイン語を話せると書いている。文書5でスペイン語で対応している。"
+     ],
+     [
+      "They lost a laptop in a taxi.",
+      "タクシーでノートパソコンをなくした。",
+      "なくしたのはデミルさん。"
+     ],
+     [
+      "They stayed on the tenth floor.",
+      "10階に泊まった。",
+      "10階はデミルさんの部屋。"
+     ],
+     [
+      "They complained about the restaurant.",
+      "レストランについて苦情を言った。",
+      "苦情はデミルさんの意見。"
+     ]
+    ],
+    "pt": "文書2の a working knowledge of Spanish と、文書5の switching between English and Spanish をつなげる。"
+   },
+   {
+    "q": "What does Mr. Demir say he will do on his next visit?",
+    "qj": "デミルさんは次に訪れたとき何をすると言っているか。",
+    "a": 2,
+    "c": [
+     [
+      "Stay at a different hotel",
+      "別のホテルに泊まる",
+      "again ここに泊まると言っている。"
+     ],
+     [
+      "Eat at the hotel restaurant",
+      "ホテルのレストランで食事する",
+      "書かれていない。"
+     ],
+     [
+      "Be more careful with his computer",
+      "パソコンにもっと気をつける",
+      "正解。keep my laptop with me this time の言い換え。"
+     ],
+     [
+      "Arrive before 9:00 P.M.",
+      "午後9時より前に着く",
+      "9時はレストランの閉店時間。"
+     ]
+    ],
+    "pt": "although の後ろにオチ（本音）がよく来る。definitely は副詞（will stay を強める）。spacious, spotless は形容詞（was の後）。"
+   },
+   {
+    "q": "What will Ms. Rossi most likely be asked to do after her first month?",
+    "qj": "ロッシさんは最初の1か月の後に、何をするよう求められる可能性が高いか。",
+    "a": 1,
+    "c": [
+     [
+      "Move to the hotel in Vancouver",
+      "バンクーバーのホテルに移る",
+      "異動するのはケビン。"
+     ],
+     [
+      "Find a way to shorten waiting times",
+      "待ち時間を短くする方法を見つける",
+      "正解。文書4で金曜夕方の行列の解消を頼まれ、文書2で待ち時間を12分から4分にした経験がある。"
+     ],
+     [
+      "Train staff on StayPro",
+      "StayPro の研修をする",
+      "ホテルは RoomMaster に切り替えた。"
+     ],
+     [
+      "Plan a wedding for guests",
+      "お客様の結婚式を企画する",
+      "結婚式は文書5の客の話。"
+     ]
+    ],
+    "pt": "a project similar to the one you described ＝ 文書2のチェックイン短縮プロジェクト。the one は前の project の言い換え。文書5の「金曜でも5分以内」が成果。"
+   }
+  ]
+ }
+]

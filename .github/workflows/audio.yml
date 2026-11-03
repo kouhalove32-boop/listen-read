@@ -1,0 +1,71 @@
+name: Generate audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/problems.json
+      - tools/gen_audio.py
+      - .github/workflows/audio.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audio
+  cancel-in-progress: false
+
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        voice: [bf_emma, bf_isabella, bf_alice, bf_lily, bm_george, bm_fable, bm_lewis, bm_daniel, af_heart, am_michael]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.cache/huggingface
+          key: kokoro-${{ runner.os }}-v1
+      - name: Install Kokoro
+        run: |
+          sudo apt-get install -y -qq ffmpeg >/dev/null || true
+          pip install -q kokoro soundfile --extra-index-url https://download.pytorch.org/whl/cpu
+          python -m spacy download en_core_web_sm -q
+      - name: Generate
+        run: python tools/gen_audio.py --voice ${{ matrix.voice }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audio-${{ matrix.voice }}
+          path: audio/${{ matrix.voice }}
+          retention-days: 3
+
+  commit:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: audio-*
+          path: dl
+      - name: Collect and commit
+        run: |
+          for d in dl/audio-*; do v=${d#dl/audio-}; mkdir -p audio/$v; cp -f $d/* audio/$v/; done
+          python tools/manifest.py
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "Update generated audio"
+          git pull --rebase origin main
+          git push
