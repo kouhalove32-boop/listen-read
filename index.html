@@ -1,3 +1,910 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Listen & Read</title><style>body{font:16px/1.7 -apple-system,'Hiragino Sans',sans-serif;max-width:560px;margin:40px auto;padding:0 16px}a{display:block;padding:14px;border:1px solid #ccd;border-radius:12px;text-decoration:none;margin-top:12px}</style></head>
-<body><h1>Listen &amp; Read</h1><p>聞き読みアプリ（準備中）</p><a href="bench.html">Kokoro 速度テストを開く</a></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>聞き読みプレーヤー</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="聞き読み">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F3F5F9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10141B" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; a fixed transport bar at the bottom like an audio player; settings slide up as a sheet */
+:root{
+  --bg:#F3F5F9; --surface:#FFFFFF; --fg:#18202E; --muted:#5B6578; --line:#DAE0EA;
+  --accent:#2A52C4; --accent-fg:#FFFFFF; --chip:#E7ECF6;
+  --mark:#FFF0B0; --mark-strong:#FFD84D; --danger:#C2362F; --ok:#1E7F47; --okbg:rgba(30,127,71,.10); --ngbg:rgba(194,54,47,.08);
+  --read:'Literata',Georgia,'Times New Roman',serif;
+  --ui:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',system-ui,sans-serif;
+  --num:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10141B; --surface:#181E28; --fg:#E6EAF1; --muted:#9AA3B4; --line:#2B3342;
+  --accent:#8AA8FF; --accent-fg:#0D1320; --chip:#232B39;
+  --mark:rgba(255,212,72,.16); --mark-strong:rgba(255,212,72,.40); --danger:#FF7A70; --ok:#5FD08F; --okbg:rgba(95,208,143,.12); --ngbg:rgba(255,122,112,.10); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10141B; --surface:#181E28; --fg:#E6EAF1; --muted:#9AA3B4; --line:#2B3342;
+  --accent:#8AA8FF; --accent-fg:#0D1320; --chip:#232B39;
+  --mark:rgba(255,212,72,.16); --mark-strong:rgba(255,212,72,.40); --danger:#FF7A70; --ok:#5FD08F; --okbg:rgba(95,208,143,.12); --ngbg:rgba(255,122,112,.10); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:env(safe-area-inset-top,0px) 0;margin:0;font-size:15px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:680px;margin:0 auto}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;gap:12px;padding-block:12px 10px;border-bottom:1px solid var(--line)}
+.brand{font-weight:700;font-size:15px;letter-spacing:.02em;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{display:flex;gap:4px;background:var(--chip);padding:3px;border-radius:999px}
+.tabs button{border:0;background:transparent;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:500;color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+main{padding-block:16px 190px}
+.view[hidden]{display:none}
+h1.t{font-family:var(--read);font-weight:600;font-size:1.55rem;line-height:1.3;margin:4px 0 6px;text-wrap:balance}
+.meta{color:var(--muted);font-size:12.5px;font-family:var(--num);font-variant-numeric:tabular-nums}
+.togglerow{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.pill[aria-pressed="true"],.pill[aria-checked="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.reader{margin-top:8px}
+.s{position:relative;font-family:var(--read);font-size:1.2rem;line-height:1.85;margin:0;padding:10px 10px 10px 34px;border-radius:10px;cursor:pointer;transition:background .2s}
+.s .no{position:absolute;left:6px;top:15px;font-family:var(--num);font-size:11px;color:var(--muted);width:22px;text-align:right}
+.s.on{background:var(--mark)}
+.c{border-radius:4px;transition:background .15s}
+.s .c.on{background:var(--mark-strong)}
+.sl{color:var(--accent);font-family:var(--ui);font-weight:700;padding:0 .15em;opacity:.75}
+.reader.nochunk .sl{display:none}
+.gl{text-decoration:underline dotted var(--accent);text-underline-offset:4px;text-decoration-thickness:2px}
+.jab{border:0;background:transparent;color:var(--muted);font-family:var(--ui);font-size:11px;padding:0 4px;margin-left:4px;vertical-align:middle;border:1px solid var(--line);border-radius:6px}
+.ja{font-family:var(--ui);font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:4px;display:none}
+.reader.showja .ja,.s.ja-open .ja{display:block}
+.empty{color:var(--muted);padding:24px 0}
+/* bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--surface);border-top:1px solid var(--line);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-shadow:0 -6px 20px rgba(10,20,40,.06)}
+.bar .in{max-width:680px;margin:0 auto;display:grid;gap:8px}
+.prog{display:flex;justify-content:space-between;gap:8px;font-family:var(--num);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.track{height:4px;background:var(--chip);border-radius:4px;overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.ctrl{display:flex;align-items:center;gap:8px}
+.ib{border:1px solid var(--line);background:var(--surface);width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none}
+.ib svg{width:20px;height:20px;fill:currentColor}
+.ib.play{width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.ib.play svg{width:24px;height:24px}
+.ib[aria-pressed="true"]{background:var(--chip);border-color:var(--accent);color:var(--accent)}
+.speedchip{margin-left:auto;border:1px solid var(--line);background:var(--chip);border-radius:12px;padding:6px 10px;text-align:right;line-height:1.25;min-width:0}
+.speedchip b{display:block;font-family:var(--num);font-size:15px;font-variant-numeric:tabular-nums}
+.speedchip span{font-size:11px;color:var(--muted)}
+/* sheet */
+.backdrop{position:fixed;inset:0;background:rgba(5,10,20,.4);z-index:20}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--surface);border-radius:18px 18px 0 0;max-height:86%;overflow:auto;
+  padding:8px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.sheet .in{max-width:680px;margin:0 auto}
+.grab{width:40px;height:4px;background:var(--line);border-radius:4px;margin:4px auto 10px}
+.sheet h2{font-size:16px;margin:0 0 4px;display:flex;justify-content:space-between;align-items:center}
+.grp{border-top:1px solid var(--line);padding-block:14px;display:grid;gap:10px}
+.grp:first-of-type{border-top:0}
+.lab{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.row > span{font-size:14px}
+.seg{display:flex;flex-wrap:wrap;gap:4px;background:var(--chip);padding:3px;border-radius:10px}
+.seg button{border:0;background:transparent;padding:7px 11px;border-radius:8px;font-size:13.5px;font-family:var(--ui)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--accent);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.14)}
+.seg.num button{font-family:var(--num);font-variant-numeric:tabular-nums}
+select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.note{font-size:12.5px;color:var(--muted);background:var(--chip);border-radius:10px;padding:10px 12px}
+.wpmbox{display:flex;align-items:center;gap:10px}
+.wpmbox input[type=range]{flex:1;min-width:0;accent-color:var(--accent)}
+.big{font-family:var(--num);font-size:26px;font-variant-numeric:tabular-nums;min-width:4ch;text-align:right}
+.small{font-size:12px;color:var(--muted)}
+.sw{width:48px;height:28px;border-radius:999px;border:0;background:var(--line);position:relative;flex:none}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.sw[aria-checked="true"]{background:var(--accent)}
+.sw[aria-checked="true"]::after{left:23px}
+/* library */
+.lib{display:grid;gap:10px;margin-top:6px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px}
+.item.cur{border-color:var(--accent)}
+.item h3{margin:0;font-family:var(--read);font-weight:600;font-size:1.05rem;line-height:1.35}
+.item .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;font-size:13.5px;font-weight:500}
+.btn.pri{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.del{color:var(--danger)}
+.btn.del.arm{background:var(--danger);color:#fff;border-color:var(--danger)}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border-radius:6px;background:var(--chip);color:var(--muted);margin-left:6px;vertical-align:middle;font-family:var(--ui)}
+/* add */
+.form{display:grid;gap:12px}
+.form label{font-size:12.5px;font-weight:700;color:var(--muted)}
+.form input,.form textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px}
+.form textarea{min-height:260px;font-family:var(--read);font-size:15px;line-height:1.6}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+summary{font-weight:700;font-size:14px;cursor:pointer}
+pre.fmt{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:var(--num);font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-x:auto;margin:10px 0}
+/* gloss + toast */
+.gloss{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(150px + env(safe-area-inset-bottom,0px));z-index:9;background:var(--fg);color:var(--bg);border-radius:14px;padding:12px 14px;width:min(92%,420px);display:flex;gap:10px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.gloss .gt{flex:1;min-width:0}
+.gloss b{font-family:var(--read);font-size:17px;display:block}
+.gloss button{border:0;background:transparent;color:var(--bg);font-size:13px;padding:6px 8px;border-radius:8px;border:1px solid currentColor;opacity:.9}
+.toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(64px + env(safe-area-inset-top,0px));z-index:30;background:var(--fg);color:var(--bg);padding:9px 14px;border-radius:10px;font-size:13px;max-width:90%}
+.warn{background:var(--chip);border-radius:12px;padding:12px;font-size:13px;margin:10px 0}
+@media (max-width:440px){.brand{display:none}.tabs{margin-left:auto}.tabs button{padding:6px 10px}}
+.problist{display:grid;gap:10px;margin-top:10px}
+.pno{font-family:var(--num);font-size:12px;color:var(--muted)}
+.score-ok{color:var(--ok);font-weight:700}
+.testhead{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--num);font-size:12.5px;color:var(--muted)}
+.testhead .tm{margin-left:auto}
+.passage{margin-top:8px}
+.passage p{font-family:var(--read);font-size:1.05rem;line-height:1.75;margin:0 0 6px}
+.passage.ch p{line-height:2}
+.qbox{margin-top:18px;display:grid;gap:10px}
+.qtext{font-family:var(--read);font-weight:600;font-size:1.12rem;line-height:1.45;margin:0;text-wrap:pretty}
+.choices{display:grid;gap:8px}
+.choice{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:12px 14px;font-family:var(--read);font-size:1.05rem;line-height:1.45}
+.choice b{font-family:var(--num);color:var(--accent);margin-right:6px;font-weight:500}
+.choice:active{background:var(--chip)}
+.rsec{border-top:1px solid var(--line);padding-block:18px;display:grid;gap:10px}
+.rsec:first-child{border-top:0}
+.rsec h2{font-size:15px;margin:0;display:flex;gap:8px;align-items:baseline}
+.rsec h2 .n{font-family:var(--num);color:var(--accent);font-size:13px}
+.rsec h3{font-family:var(--read);font-size:1.02rem;margin:4px 0 0;line-height:1.4}
+.bigscore{font-family:var(--num);font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.marks{display:flex;gap:8px;flex-wrap:wrap}
+.mk{font-family:var(--num);font-size:13px;padding:4px 10px;border-radius:8px;background:var(--okbg);color:var(--ok)}
+.mk.ng{background:var(--ngbg);color:var(--danger)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.tbl table{border-collapse:collapse;width:100%;min-width:540px;font-size:13.5px}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:8px 8px;text-align:left;vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl th{font-size:11.5px;color:var(--muted);font-weight:700;background:var(--chip)}
+.tbl td.en{font-family:var(--read)}
+.tbl tr.ans td{background:var(--okbg)}
+.tbl tr.miss td{background:var(--ngbg)}
+.ex{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.ex li{padding:8px 10px;border-radius:10px;background:var(--surface);border:1px solid var(--line);font-size:13.5px}
+.ex li.ans{border-color:var(--ok)}
+.ex li b{font-family:var(--read)}
+.jalist p{margin:0 0 4px;font-size:14px}
+.pt{background:var(--chip);border-radius:10px;padding:10px 12px;font-size:13.5px}
+.ondoku{background:var(--surface);border:1px solid var(--accent);border-radius:14px;padding:14px;display:grid;gap:10px}
+.acts2{display:flex;gap:8px;flex-wrap:wrap}
+#v-test .qbox{position:sticky;bottom:0;z-index:4;background:var(--surface);border:1px solid var(--line);border-bottom:0;border-radius:16px 16px 0 0;padding:12px 14px calc(14px + env(safe-area-inset-bottom,0px));max-height:46vh;overflow:auto;box-shadow:0 -8px 24px rgba(10,20,40,.10)}
+#v-test .qbox.min .choices{display:none}
+#v-test .qbox.min{max-height:none}
+.qhead{display:flex;align-items:center;gap:8px;font-family:var(--num);font-size:12px;color:var(--muted)}
+.qhead button{margin-left:auto;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:4px 10px;font-family:var(--ui);font-size:12px}
+.dochead{font-family:var(--ui)!important;font-size:12px!important;font-weight:700;letter-spacing:.08em;color:var(--accent);text-transform:uppercase;margin:22px 0 6px!important;padding-top:12px;border-top:1px dashed var(--line)}
+.passage .dochead:first-child{margin-top:4px!important;border-top:0;padding-top:0}
+.s.doch{font-family:var(--ui);font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--accent);margin-top:14px;border-top:1px dashed var(--line);border-radius:0}
+.s.doch .sl{display:none}
+details.chunks{margin-top:12px}
+details.chunks .tbl{margin-top:10px}
+.tag.long{background:var(--accent);color:var(--accent-fg)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand" id="brand">聞き読みプレーヤー</div>
+    <nav class="tabs" role="tablist">
+      <button id="tab-reader" role="tab" aria-selected="true" data-view="reader">再生</button>
+      <button id="tab-probs" role="tab" aria-selected="false" data-view="probs">問題</button>
+      <button id="tab-lib" role="tab" aria-selected="false" data-view="lib">一覧</button>
+      <button id="tab-add" role="tab" aria-selected="false" data-view="add">追加</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="nosupport" class="warn" hidden>このブラウザは読み上げ機能に対応していません。iPhoneのSafariかAndroidのChromeで開いてください。</div>
+
+    <section class="view" id="v-reader">
+      <h1 class="t" id="r-title"></h1>
+      <div class="meta" id="r-meta"></div>
+      <div class="togglerow">
+        <button class="pill" id="tg-chunk" aria-pressed="true">／ 区切り</button>
+        <button class="pill" id="tg-ja" aria-pressed="false">訳を表示</button>
+        <button class="pill" id="r-test" hidden style="background:var(--accent);color:var(--accent-fg);border-color:var(--accent)">この問題を解く</button>
+      </div>
+      <div id="r-chunks"></div>
+      <div class="reader" id="reader"></div>
+      <p class="small" style="margin-top:14px">文をタップするとその文から再生。点線の単語をタップすると意味が出ます。</p>
+    </section>
+
+    <section class="view" id="v-probs" hidden>
+      <h1 class="t">Part 7 問題集</h1>
+      <div class="meta" id="probs-meta"></div>
+      <div class="seg" id="seg-pf" style="margin-top:12px;justify-self:start;display:inline-flex"></div>
+      <div class="problist" id="problist"></div>
+    </section>
+
+    <section class="view" id="v-test" hidden>
+      <div class="testhead"><span class="tag" id="t-type" style="margin:0"></span><span id="t-q"></span><span class="tm" id="t-time">0:00</span></div>
+      <h1 class="t" id="t-title"></h1>
+      <div id="t-chunks"></div>
+      <div class="passage" id="t-passage"></div>
+      <div class="qbox" id="t-qbox">
+        <div class="qhead"><span id="t-q2"></span><button id="t-fold" aria-expanded="true">本文を広く見る</button></div>
+        <p class="qtext" id="t-qtext"></p>
+        <div class="choices" id="t-choices"></div>
+      </div>
+      <div style="margin-top:18px"><button class="btn" id="t-quit">やめる</button></div>
+    </section>
+
+    <section class="view" id="v-result" hidden>
+      <div id="result"></div>
+    </section>
+
+    <section class="view" id="v-lib" hidden>
+      <h1 class="t">長文ライブラリ</h1>
+      <div class="meta">この端末のブラウザに保存されます</div>
+      <div class="lib" id="lib"></div>
+    </section>
+
+    <section class="view" id="v-add" hidden>
+      <h1 class="t" id="add-h">長文を追加</h1>
+      <div class="form">
+        <details>
+          <summary>Claude に頼むときの形式</summary>
+          <p class="small">この形式で貼り付けると、区切り・訳・単語の意味が使えます。ふつうの英文をそのまま貼っても読み上げられます。</p>
+          <pre class="fmt" id="fmt"></pre>
+          <button class="btn" id="copyfmt">依頼文をコピー</button>
+        </details>
+        <div>
+          <label for="in-title">タイトル（任意。本文の TITLE: が優先）</label>
+          <input id="in-title" placeholder="例: The Coffee Machine Incident">
+        </div>
+        <div>
+          <label for="in-raw">本文</label>
+          <textarea id="in-raw" placeholder="ここに Claude が作った長文を貼り付け"></textarea>
+        </div>
+        <div class="row" style="justify-content:flex-start">
+          <button class="btn pri" id="save">保存して開く</button>
+          <button class="btn" id="cancel-edit" hidden>編集をやめる</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="bar" id="bar">
+  <div class="in">
+    <div class="prog"><span id="p-pos">—</span><span id="p-wpm">実測 — WPM</span></div>
+    <div class="track"><i id="p-track"></i></div>
+    <div class="ctrl">
+      <button class="ib" id="b-prev" aria-label="前の文"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+      <button class="ib play" id="b-play" aria-label="再生"><svg viewBox="0 0 24 24" id="ic-play"><path d="M7 4v16l13-8z"/></svg></button>
+      <button class="ib" id="b-next" aria-label="次の文"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+      <button class="ib" id="b-loop1" aria-label="今の文をループ" aria-pressed="false" title="今の文をループ"><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zM17 17H7v-3l-4 4 4 4v-3h12v-6h-2z"/><text x="12" y="15.5" font-size="7" text-anchor="middle" font-family="sans-serif" font-weight="700">1</text></svg></button>
+      <button class="speedchip" id="b-set" aria-label="声とスピードの設定"><b id="sc-main">150 WPM</b><span id="sc-sub">米・女性</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="backdrop" id="backdrop" hidden></div>
+<div class="sheet" id="sheet" hidden role="dialog" aria-label="設定">
+  <div class="in">
+    <div class="grab"></div>
+    <h2>設定 <button class="btn" id="sheet-close">閉じる</button></h2>
+
+    <div class="grp">
+      <div class="lab">AI音声（問題集・Kokoro）</div>
+      <select id="kvoice" aria-label="AI音声の選択"></select>
+      <p class="small" style="margin:0">問題集は前もって作ったAI音声で再生します。画面をロックしても止まりません。</p>
+    </div>
+
+    <div class="grp">
+      <div class="lab">端末の声（自分で追加した長文）</div>
+      <div class="row"><span>英語</span><div class="seg" id="seg-accent"></div></div>
+      <div class="row"><span>性別</span><div class="seg" id="seg-gender"></div></div>
+      <select id="voice" aria-label="声の選択"></select>
+      <div class="note" id="voice-note" hidden></div>
+      <button class="btn" id="test-voice" style="justify-self:start">この声で試す</button>
+    </div>
+
+    <div class="grp">
+      <div class="lab">スピード</div>
+      <div class="row"><span>指定方法</span><div class="seg" id="seg-mode"></div></div>
+      <div id="wpm-ui">
+        <div class="wpmbox">
+          <button class="ib" id="wpm-m" aria-label="10下げる">−</button>
+          <input type="range" id="wpm" min="80" max="260" step="5" aria-label="WPM">
+          <button class="ib" id="wpm-p" aria-label="10上げる">＋</button>
+          <div><div class="big" id="wpm-v">150</div><div class="small" style="text-align:right">WPM</div></div>
+        </div>
+        <div class="seg num" id="seg-wpmpre" style="margin-top:8px"></div>
+      </div>
+      <div id="rate-ui" hidden>
+        <div class="seg num" id="seg-rate"></div>
+      </div>
+      <div class="note" id="speed-note"></div>
+    </div>
+
+    <div class="grp">
+      <div class="lab">読み方</div>
+      <div class="row"><span>読む単位</span><div class="seg" id="seg-unit"></div></div>
+      <div class="row"><span>くり返し回数</span><div class="seg num" id="seg-repeat"></div></div>
+      <div class="row"><span>区切りごとの間</span><div class="seg" id="seg-pause"></div></div>
+      <p class="small" style="margin:0">「同じ長さ」は読んだ時間と同じだけ無音にします。シャドーイングや音読に使えます。</p>
+      <div class="row"><span>全文ループ再生</span><button class="sw" id="sw-loopall" role="switch" aria-checked="false" aria-label="全文ループ再生"></button></div>
+    </div>
+
+    <div class="grp">
+      <div class="lab">表示</div>
+      <div class="row"><span>意味のかたまり区切り（／）</span><button class="sw" id="sw-chunk" role="switch" aria-checked="true" aria-label="区切り表示"></button></div>
+      <div class="row"><span>日本語訳をすべて表示</span><button class="sw" id="sw-ja" role="switch" aria-checked="false" aria-label="訳を表示"></button></div>
+    </div>
+  </div>
+</div>
+
+<div class="gloss" id="gloss" hidden>
+  <div class="gt"><b id="gl-term"></b><span id="gl-mean"></span></div>
+  <button id="gl-say">発音</button>
+  <button id="gl-close">閉じる</button>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(async function(){
+'use strict';
+try{window.PROBS=await (await fetch('data/problems.json',{cache:'no-cache'})).json()}catch(e){window.PROBS=[]}
+const $=id=>document.getElementById(id);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+             set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const synth=window.speechSynthesis;
+if(!synth||!window.SpeechSynthesisUtterance){$('nosupport').hidden=false}
+
+const SAMPLE=`TITLE: The Printer That Refused to Print
+On Monday morning, / Ms. Carter needed / fifty copies / of the sales report.
+= 月曜の朝、カーターさんは売上報告書が50部必要だった。
+She pressed the button, / but the printer displayed / a strange message: / "Not today."
+= ボタンを押したが、プリンターには「今日はムリ」という変なメッセージが表示された。
+She contacted / the maintenance department / immediately.
+= 彼女はすぐに保守部門に連絡した。
+A technician arrived / within ten minutes / and inspected the machine / carefully.
+= 技術者が10分以内に来て、機械を丁寧に点検した。
+After a thorough examination, / he announced / that the printer was simply tired.
+= 徹底的に調べたあと、彼は「プリンターはただ疲れているだけです」と発表した。
+"It has printed / three thousand pages / since Friday," / he explained.
+= 「金曜日から3000ページも印刷していますからね」と彼は説明した。
+Ms. Carter / was not satisfied / with this explanation.
+= カーターさんはその説明に納得しなかった。
+In the end, / she sent the report / by e-mail, / and nobody printed anything / for the rest of the week.
+= 結局、彼女は報告書をメールで送り、その週は誰も何も印刷しなかった。
+WORDS
+maintenance department = 保守部門
+technician = 技術者
+inspected = 点検した（inspect の過去形）
+thorough = 徹底的な
+examination = 調査・検査
+announced = 発表した（announce の過去形）
+satisfied = 満足した・納得した
+in the end = 結局
+immediately = すぐに`;
+
+const FMT=`TITLE: タイトル
+英文 / 意味のかたまりを / スラッシュで区切る.
+= 日本語訳
+次の英文 / を同じように.
+= 日本語訳
+WORDS
+単語 = 意味
+熟語 = 意味`;
+const ASK=`聞き読みアプリ用に、TOEICレベルの英語長文を作ってください。次の形式で出力してください。
+・1行目は「TITLE: タイトル」
+・英文は1文1行。意味のかたまりを「 / 」で区切る
+・各英文の次の行に「= 日本語訳」
+・最後に「WORDS」の行を置き、その下に「単語 = 意味」を1行ずつ（本文に出てくる形で書く）
+・コードブロックで囲む
+
+${FMT}`;
+$('fmt').textContent=FMT;
+
+/* ---------- state ---------- */
+const DEF={kvoice:'bf_emma',accent:'en-US',gender:'female',voiceURI:'',mode:'wpm',wpm:150,rate:1,unit:'sentence',repeat:1,pause:'0',loopAll:false,showChunks:true,showJa:false};
+let settings=Object.assign({},DEF,store.get('lr.settings',{}));
+let calib=store.get('lr.calib',{});
+let texts=store.get('lr.texts',null);
+if(!Array.isArray(texts)||!texts.length){texts=[{id:'sample',raw:SAMPLE,sample:true,created:Date.now(),plays:0,lastWpm:0,lastAt:0}]}
+const PROBS=window.PROBS||[];
+let pstats=store.get('lr.pstats',{});
+const probTexts=PROBS.map(p=>{const s=pstats[p.id]||{};return {id:'q:'+p.id,raw:p.raw,prob:p,plays:s.plays||0,lastWpm:s.lastWpm||0,lastAt:s.lastAt||0,best:s.best==null?null:s.best,attempts:s.attempts||0,readWpm:s.readWpm||0,lastScore:s.lastScore==null?null:s.lastScore}});
+function savePS(){probTexts.forEach(t=>{pstats[t.prob.id]={plays:t.plays,lastWpm:t.lastWpm,lastAt:t.lastAt,best:t.best,attempts:t.attempts,readWpm:t.readWpm,lastScore:t.lastScore}});store.set('lr.pstats',pstats)}
+const allTexts=()=>texts.concat(probTexts);
+let currentId=store.get('lr.current',probTexts.length?probTexts[0].id:texts[0].id);
+if(!allTexts().find(t=>t.id===currentId))currentId=texts[0].id;
+const KVOICES=[['bf_emma','Emma','英','女性'],['bf_isabella','Isabella','英','女性'],['bf_alice','Alice','英','女性'],['bf_lily','Lily','英','女性'],['bm_george','George','英','男性'],['bm_fable','Fable','英','男性'],['bm_lewis','Lewis','英','男性'],['bm_daniel','Daniel','英','男性'],['af_heart','Heart','米','女性'],['am_michael','Michael','米','男性']];
+const kInfo=v=>KVOICES.find(x=>x[0]===v)||KVOICES[0];
+let engine='d',kt=null,kReady=false,kLoadTok=0,kRaf=0,kGapT=null,kHandled='',kManifest=null;
+let doc=null, pos={si:0,ci:0,rep:0}, playing=false, token=0, pauseTimer=null, lastDur=0, loopOne=false, curUtter=null;
+let sess={w:0,ms:0}, liveWpm=0, editId=null;
+const saveS=()=>store.set('lr.settings',settings), saveT=()=>store.set('lr.texts',texts);
+const cur=()=>allTexts().find(t=>t.id===currentId);
+
+/* ---------- parser ---------- */
+function splitSentences(line){
+  return line.split(/(?<=[.!?]["”’)]?)\s+(?=["“‘(]?[A-Z0-9])/).map(x=>x.trim()).filter(Boolean);
+}
+function parse(raw){
+  const lines=String(raw||'').replace(/\r/g,'').split('\n');
+  let title='', mode='body'; const units=[], words={};
+  for(let L of lines){
+    const line=L.trim(); if(!line||/^-{3,}$/.test(line)||/^```/.test(line))continue;
+    let m;
+    if(mode==='body'&&(m=line.match(/^(?:TITLE\s*[:：]|#\s+)(.+)$/i))){title=m[1].trim();continue}
+    if(/^(?:#+\s*)?(WORDS|VOCAB(ULARY)?|語注|単語)\s*[:：]?$/i.test(line)){mode='words';continue}
+    if(mode==='words'){
+      m=line.match(/^[-・*]?\s*(.+?)\s*(?:=|＝|:|：|\t)\s*(.+)$/);
+      if(m)words[m[1].toLowerCase().trim()]=m[2].trim();
+      continue;
+    }
+    if(/^[=＝]/.test(line)){ if(units.length)units[units.length-1].ja=(units[units.length-1].ja?units[units.length-1].ja+' ':'')+line.replace(/^[=＝]\s*/,''); continue}
+    units.push({en:line,ja:''});
+  }
+  const sentences=[];
+  for(const u of units){
+    const pieces=u.ja?[u.en]:splitSentences(u.en);
+    for(const p of pieces){
+      const chunks=p.split(/\s+\/\s+|\s*\/\s*(?=\S)/).map(x=>x.trim()).filter(Boolean);
+      if(!chunks.length)continue;
+      const offsets=[];let o=0;chunks.forEach(c=>{offsets.push(o);o+=c.length+1});
+      sentences.push({chunks,offsets,text:chunks.join(' '),ja:u.ja});
+    }
+  }
+  if(!title&&sentences.length){title=sentences[0].text.split(/\s+/).slice(0,6).join(' ')+'…'}
+  return {title,sentences,words};
+}
+const countWords=s=>s.split(/\s+/).filter(w=>/[A-Za-z0-9]/.test(w)).length;
+
+/* ---------- voices ---------- */
+const FEM=/\b(samantha|karen|moira|tessa|serena|kate|stephanie|martha|allison|ava|susan|victoria|zoe|nicky|fiona|flo|grandma|sandy|shelley|aria|jenny|zira|libby|sonia|mia|hazel|emma|michelle|joanna|kendra|kimberly|salli|ivy|amy|female|catherine|lisa|natasha|clara|nora|ana|jane|sara|sarah|elizabeth|maisie|olivia|ashley|cora|emily|nancy|amber|isla|bella|abbi|hollie)\b/i;
+const MAL=/\b(daniel|alex|fred|tom|aaron|arthur|oliver|gordon|rishi|guy|davis|ryan|thomas|george|david|mark|reed|eddy|rocko|grandpa|ralph|albert|junior|male|james|brian|matthew|joey|justin|evan|nathan|noah|eric|christopher|roger|andrew|brandon|jacob|tony|jason|alfie|elliot|ethan|harry|lewis|steffan|william|liam)\b/i;
+function genderOf(v){const n=v.name.replace(/Google US English$/i,'Google US English Female');if(FEM.test(n))return 'female';if(MAL.test(n))return 'male';return '?'}
+const langOf=v=>(v.lang||'').replace('_','-').toLowerCase();
+let voices=[];
+function loadVoices(){ if(!synth)return; voices=synth.getVoices().filter(v=>/^en-(us|gb)/.test(langOf(v))); renderVoiceSel(); updateChip(); }
+if(synth){ loadVoices(); synth.addEventListener?synth.addEventListener('voiceschanged',loadVoices):(synth.onvoiceschanged=loadVoices); let k=0; const iv=setInterval(()=>{loadVoices(); if(voices.length||++k>10)clearInterval(iv)},400); }
+const quality=v=>/(premium|enhanced|natural|neural|online)/i.test(v.name)?1:0;
+function pool(){return voices.filter(v=>langOf(v).startsWith(settings.accent.toLowerCase()))}
+function pickBest(){
+  const p=pool(); const g=p.filter(v=>genderOf(v)===settings.gender);
+  const list=(g.length?g:p).slice().sort((a,b)=>quality(b)-quality(a)||(b.localService?1:0)-(a.localService?1:0));
+  settings.voiceURI=list[0]?list[0].voiceURI:''; saveS();
+}
+function currentVoice(){ return voices.find(v=>v.voiceURI===settings.voiceURI&&langOf(v).startsWith(settings.accent.toLowerCase()))||null }
+function renderVoiceSel(){
+  const sel=$('voice'); const p=pool();
+  if(!currentVoice()&&p.length)pickBest();
+  const gl={female:'女性',male:'男性','?':'性別不明'};
+  const sorted=p.slice().sort((a,b)=>(genderOf(a)===settings.gender?0:1)-(genderOf(b)===settings.gender?0:1)||a.name.localeCompare(b.name));
+  sel.innerHTML=sorted.map(v=>`<option value="${esc(v.voiceURI)}"${v.voiceURI===settings.voiceURI?' selected':''}>${esc(v.name)}（${gl[genderOf(v)]}）</option>`).join('')||'<option>この端末に該当する声がありません</option>';
+  const note=$('voice-note'); const acc=settings.accent==='en-GB'?'イギリス英語':'アメリカ英語'; const gen=settings.gender==='male'?'男性':'女性';
+  if(!voices.length){note.hidden=false;note.textContent='声を読み込み中です。表示されない場合は一度「この声で試す」を押してください。'}
+  else if(!p.length){note.hidden=false;note.textContent=`この端末には${acc}の声がありません。iPhoneは「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」から追加できます。`}
+  else if(!p.some(v=>genderOf(v)===settings.gender)){note.hidden=false;note.textContent=`${acc}の${gen}の声が見つかりませんでした（名前から判定しています）。一覧から選ぶか、端末の設定で声を追加してください。`}
+  else note.hidden=true;
+}
+(function(){const sel=$('kvoice');sel.innerHTML=KVOICES.map(v=>`<option value="${v[0]}"${v[0]===settings.kvoice?' selected':''}>${v[1]}（${v[2]}・${v[3]}）</option>`).join('');
+  sel.addEventListener('change',e=>{settings.kvoice=e.target.value;saveS();stop();kPrepare(cur())})})();
+$('voice').addEventListener('change',e=>{settings.voiceURI=e.target.value;saveS();updateChip();updateSpeedNote()});
+
+/* ---------- speed ---------- */
+const BASE_DEFAULT=170;
+const vkey=()=>settings.voiceURI||settings.accent;
+const baseWpm=()=>calib[vkey()]||BASE_DEFAULT;
+function effectiveRate(){
+  if(settings.mode==='rate')return settings.rate;
+  return Math.min(3,Math.max(0.3,settings.wpm/baseWpm()));
+}
+function measure(text,dur,rate){
+  const w=countWords(text); if(dur<600||w<2)return;
+  const wpm=w/(dur/60000); liveWpm=wpm; sess.w+=w; sess.ms+=dur;
+  if(w>=5&&settings.unit==='sentence'){const b=wpm/rate;const k=vkey();calib[k]=calib[k]?calib[k]*0.65+b*0.35:b;store.set('lr.calib',calib)}
+  $('p-wpm').textContent=`実測 ${Math.round(wpm)} WPM`;
+  updateSpeedNote();
+}
+
+/* ---------- engine ---------- */
+function unitText(){const s=doc.sentences[pos.si];return settings.unit==='chunk'?s.chunks[pos.ci]:s.text}
+function pauseMs(){const p=settings.pause;if(p==='echo')return Math.max(600,lastDur);return 150+Number(p||0)}
+function speakNow(){
+  if(!synth||!doc||!doc.sentences.length)return;
+  const my=++token; clearTimeout(pauseTimer);
+  const text=unitText(); const u=new SpeechSynthesisUtterance(text);
+  const v=currentVoice(); if(v){u.voice=v;u.lang=v.lang}else u.lang=settings.accent;
+  u.rate=effectiveRate(); let t0=0;
+  highlight(pos.si,settings.unit==='chunk'?pos.ci:0);
+  u.onstart=()=>{t0=performance.now()};
+  u.onboundary=e=>{if(my!==token||settings.unit==='chunk')return;if(e.name&&e.name!=='word')return;chunkByChar(pos.si,e.charIndex)};
+  u.onend=()=>{if(my!==token)return;const d=t0?performance.now()-t0:0;lastDur=d;measure(text,d,u.rate);advance()};
+  u.onerror=e=>{if(my!==token)return;if(e.error==='interrupted'||e.error==='canceled')return;stop();toast('読み上げできませんでした（'+e.error+'）')};
+  curUtter=u;
+  if(synth.speaking||synth.pending){synth.cancel();setTimeout(()=>{if(my===token)synth.speak(u)},80)}else synth.speak(u);
+  updateUI();
+}
+function schedule(ms){const my=token;clearTimeout(pauseTimer);pauseTimer=setTimeout(()=>{if(playing&&my===token)speakNow()},ms)}
+function advance(){
+  const n=doc.sentences.length, d=pauseMs();
+  if(loopOne)return schedule(d);
+  pos.rep++; if(pos.rep<settings.repeat)return schedule(d);
+  pos.rep=0;
+  if(settings.unit==='chunk'&&pos.ci<doc.sentences[pos.si].chunks.length-1){pos.ci++;return schedule(d)}
+  pos.ci=0; pos.si++;
+  if(pos.si>=n){
+    finishPass(); pos.si=0;
+    if(settings.loopAll)return schedule(Math.max(d,900));
+    stop(); clearHi(); toast('最後まで読みました'); return;
+  }
+  schedule(d);
+}
+function finishPass(){const t=cur();if(!t)return;t.plays=(t.plays||0)+1;if(sess.ms>0)t.lastWpm=Math.round(sess.w/(sess.ms/60000));t.lastAt=Date.now();if(t.prob)savePS();else saveT();sess={w:0,ms:0};renderMeta()}
+function dPlay(){if(!synth||!doc||!doc.sentences.length)return;playing=true;requestWake();speakNow()}
+function dStop(){playing=false;token++;clearTimeout(pauseTimer);if(synth)synth.cancel();releaseWake();updateUI()}
+function dJump(si,ci){pos={si:Math.max(0,Math.min(doc.sentences.length-1,si)),ci:ci||0,rep:0};if(playing)speakNow();else{highlight(pos.si,pos.ci);updateUI()}}
+function play(){if(engine==='k'&&kReady)kPlay();else dPlay()}
+function stop(){if(engine==='k')kStop();dStop()}
+function jump(si,ci){if(engine==='k'&&kReady)kJump(si,ci);else dJump(si,ci)}
+
+/* ---------- Kokoro: pre-generated audio ---------- */
+const au=new Audio();au.preload='auto';try{au.preservesPitch=true;au.webkitPreservesPitch=true}catch(e){}
+async function kManifestGet(){if(kManifest)return kManifest;try{kManifest=await (await fetch('audio/voices.json',{cache:'no-cache'})).json()}catch(e){kManifest={}}return kManifest}
+async function cachedBlob(url){
+  let c=null;try{c=await caches.open('lr-audio-v1')}catch(e){}
+  if(c){try{const m=await c.match(url);if(m)return await m.blob()}catch(e){}}
+  const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);
+  if(c){try{await c.put(url,r.clone())}catch(e){}}
+  return await r.blob();
+}
+const kBase=()=>kt&&kt.speech?kt.words/(kt.speech/60):150;
+function kRate(){const r=settings.mode==='wpm'?settings.wpm/kBase():settings.rate;return Math.max(0.5,Math.min(2.5,r))}
+const kWpmNow=()=>Math.round(kBase()*kRate());
+function kLabel(){const i=kInfo(settings.kvoice);return `${i[1]}（${i[2]}・${i[3]}）`}
+async function kPrepare(t){
+  const my=++kLoadTok;engine='d';kt=null;kReady=false;
+  if(au.src&&au.src.startsWith('blob:'))URL.revokeObjectURL(au.src);au.removeAttribute('src');
+  if(!t||!t.prob){$('p-wpm').textContent='端末の声';updateChip();updateSpeedNote();return}
+  const man=await kManifestGet();if(my!==kLoadTok)return;
+  if(!(man[settings.kvoice]||[]).includes(t.prob.id)){$('p-wpm').textContent='AI音声は作成中 · 端末の声で再生';updateChip();updateSpeedNote();return}
+  engine='k';updateChip();$('p-wpm').textContent='AI音声を読み込み中…';
+  try{
+    const base=`audio/${settings.kvoice}/${t.prob.id}`;
+    const j=JSON.parse(await (await cachedBlob(base+'.json')).text());
+    if(!doc||j.sents.length!==doc.sentences.length)throw new Error('文の数が合いません');
+    const b=await cachedBlob(base+'.mp3');if(my!==kLoadTok)return;
+    au.src=URL.createObjectURL(b);kt=j;kReady=true;au.playbackRate=kRate();
+    kHandled='';$('p-wpm').textContent=`AI ${kInfo(settings.kvoice)[1]} · ${kWpmNow()} WPM`;
+    updateSpeedNote();kMedia();
+  }catch(e){if(my!==kLoadTok)return;engine='d';kt=null;$('p-wpm').textContent='AI音声を読み込めませんでした · 端末の声で再生';updateChip();updateSpeedNote()}
+}
+function kUnit(si,ci){const s=kt.sents[si];if(settings.unit==='chunk'){const c=s.c[ci]||s.c[0];return [c[0],c[1]]}return [s.s,s.e]}
+function kLocate(t){const S=kt.sents;let si=0;for(let i=0;i<S.length;i++){if(S[i].s<=t+0.001)si=i;else break}
+  let ci=0;const c=S[si].c;for(let j=0;j<c.length;j++){if(c[j][0]<=t+0.001)ci=j;else break}return {si,ci}}
+const kNeedStop=()=>loopOne||settings.repeat>1||settings.pause!=='0'||settings.unit==='chunk';
+function kStep(){
+  if(engine!=='k'||!kt)return;
+  const t=au.currentTime;
+  if(playing&&!kGapT){
+    if(kNeedStop()){
+      const [us,ue]=kUnit(pos.si,pos.ci);const key=pos.si+':'+pos.ci+':'+pos.rep;
+      if(t>=ue-0.03&&kHandled!==key){kHandled=key;kBoundary(us,ue);return}
+      if(t<us-0.3||t>ue+0.6){const L=kLocate(t);pos.si=L.si;pos.ci=settings.unit==='chunk'?L.ci:0;pos.rep=0;updateUI()}
+    }else{const L=kLocate(t);if(L.si!==pos.si){pos.si=L.si;pos.ci=0;pos.rep=0;updateUI()}}
+  }
+  const L=kLocate(t);highlight(L.si,L.ci);
+}
+function kLoop(){cancelAnimationFrame(kRaf);if(!playing||engine!=='k')return;kStep();if(document.visibilityState==='visible')kRaf=requestAnimationFrame(kLoop)}
+au.addEventListener('timeupdate',()=>{if(document.visibilityState!=='visible')kStep()});
+function kAdvance(){
+  const n=kt.sents.length;
+  if(settings.unit==='chunk'&&pos.ci<kt.sents[pos.si].c.length-1){pos.ci++;return true}
+  pos.ci=0;pos.si++;
+  if(pos.si>=n){finishPass();pos={si:0,ci:0,rep:0};if(settings.loopAll)return true;
+    kStop();clearHi();au.currentTime=0;updateUI();toast('最後まで読みました');return false}
+  return true;
+}
+function kBoundary(us,ue){
+  const p=settings.pause;const d=p==='echo'?Math.max(600,(ue-us)/au.playbackRate*1000):Number(p||0);
+  const next=()=>{kGapT=null;if(!playing)return;
+    if(loopOne){au.currentTime=us}
+    else{pos.rep++;if(pos.rep<settings.repeat){au.currentTime=us}else{pos.rep=0;if(!kAdvance())return;au.currentTime=kUnit(pos.si,pos.ci)[0]}}
+    kHandled='';updateUI();au.play().catch(()=>{});kLoop()};
+  if(d>0){kGapT=setTimeout(next,d);au.pause()}else next();
+}
+au.addEventListener('ended',()=>{if(engine!=='k'||kGapT||!playing)return;finishPass();pos={si:0,ci:0,rep:0};kHandled='';
+  if(settings.loopAll){au.currentTime=0;au.play().catch(()=>{});kLoop()}else{kStop();clearHi();updateUI();toast('最後まで読みました')}});
+au.addEventListener('pause',()=>{if(engine==='k'&&playing&&!kGapT&&!au.ended){playing=false;releaseWake();updateUI()}});
+au.addEventListener('play',()=>{if(engine==='k'&&!playing){playing=true;updateUI();kLoop()}});
+function kPlay(){
+  if(!kt)return;playing=true;requestWake();
+  const [us,ue]=kUnit(pos.si,pos.ci);const t=au.currentTime;
+  if(t<us-0.05||t>ue+0.05)au.currentTime=us;
+  au.playbackRate=kRate();kMedia();
+  au.play().then(()=>kLoop()).catch(e=>{playing=false;updateUI();toast('再生できませんでした。もう一度押してください')});
+  updateUI();
+}
+function kStop(){playing=false;clearTimeout(kGapT);kGapT=null;try{au.pause()}catch(e){}cancelAnimationFrame(kRaf);releaseWake();updateUI()}
+function kJump(si,ci){
+  si=Math.max(0,Math.min(kt.sents.length-1,si));ci=ci||0;pos={si,ci,rep:0};kHandled='';clearTimeout(kGapT);kGapT=null;
+  au.currentTime=kUnit(si,ci)[0];highlight(si,ci);updateUI();if(playing){au.play().catch(()=>{});kLoop()}
+}
+function kMedia(){if(!('mediaSession' in navigator)||!doc)return;try{
+  navigator.mediaSession.metadata=new MediaMetadata({title:doc.title,artist:'聞き読み · '+kInfo(settings.kvoice)[1],album:'TOEIC Part 7'});
+  navigator.mediaSession.setActionHandler('play',()=>play());
+  navigator.mediaSession.setActionHandler('pause',()=>stop());
+  navigator.mediaSession.setActionHandler('previoustrack',()=>$('b-prev').click());
+  navigator.mediaSession.setActionHandler('nexttrack',()=>$('b-next').click());
+}catch(e){}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&playing&&engine==='k')kLoop()});
+
+/* ---------- highlight ---------- */
+let hiS=null,hiC=null;
+function clearHi(){if(hiS)hiS.classList.remove('on');if(hiC)hiC.classList.remove('on');hiS=hiC=null}
+function highlight(si,ci){
+  const p=document.querySelector(`.s[data-i="${si}"]`); if(!p)return;
+  if(hiS!==p){if(hiS)hiS.classList.remove('on');p.classList.add('on');hiS=p;
+    const r=p.getBoundingClientRect(),vh=window.innerHeight;
+    if(r.top<70||r.bottom>vh-170)p.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}
+  setChunk(p,ci);
+}
+function setChunk(p,ci){const c=p.querySelector(`.c[data-c="${ci}"]`);if(hiC&&hiC!==c)hiC.classList.remove('on');if(c){c.classList.add('on');hiC=c}}
+function chunkByChar(si,ch){const s=doc.sentences[si];let k=0;for(let i=0;i<s.offsets.length;i++)if(s.offsets[i]<=ch)k=i;const p=document.querySelector(`.s[data-i="${si}"]`);if(p)setChunk(p,k)}
+
+/* ---------- render ---------- */
+function glossRe(){const t=Object.keys(doc.words).sort((a,b)=>b.length-a.length);if(!t.length)return null;
+  return new RegExp('\\b('+t.map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')\\b','gi')}
+function markGloss(text,re){if(!re)return esc(text);let out='',last=0;text.replace(re,(m,_g,idx)=>{out+=esc(text.slice(last,idx))+`<span class="gl" data-term="${esc(m.toLowerCase())}">${esc(m)}</span>`;last=idx+m.length;return m});return out+esc(text.slice(last))}
+function renderMeta(){
+  const t=cur(); if(!doc)return;
+  const w=doc.sentences.reduce((a,s)=>a+countWords(s.text),0);
+  $('r-meta').textContent=`${doc.sentences.length}文 · ${w}語 · 再生${t.plays||0}回`+(t.lastWpm?` · 前回 ${t.lastWpm} WPM`:'');
+}
+function renderReader(){
+  const t=cur(); doc=parse(t.raw);
+  $('r-title').innerHTML=esc(doc.title)+(t.sample?'<span class="tag">サンプル</span>':'')+(t.prob?`<span class="tag">No.${t.prob.id.slice(1)} · ${esc(t.prob.type)}</span>`:'');
+  $('r-test').hidden=!t.prob;
+  renderMeta();
+  const re=glossRe(); const r=$('reader');
+  if(!doc.sentences.length){r.innerHTML='<p class="empty">英文が見つかりませんでした。「追加」から本文を貼り付けてください。</p>';updateUI();return}
+  $('r-chunks').innerHTML=t.prob?chunkDetails(t.prob,false):'';
+  r.innerHTML=doc.sentences.map((s,i)=>`<p class="s${/^Document \d+:/.test(s.text)?' doch':''}" data-i="${i}"><span class="no">${i+1}</span>`+
+    s.chunks.map((c,j)=>`<span class="c" data-c="${j}">${markGloss(c,re)}</span>`).join('<span class="sl">/</span> ')+
+    (s.ja?`<button class="jab" data-ja="${i}" aria-label="${i+1}文目の訳">訳</button><span class="ja">${esc(s.ja)}</span>`:'')+`</p>`).join('');
+  hiS=hiC=null; applyDisplay(); updateUI(); kPrepare(t);
+}
+function applyDisplay(){
+  $('reader').classList.toggle('nochunk',!settings.showChunks);
+  $('reader').classList.toggle('showja',settings.showJa);
+  $('tg-chunk').setAttribute('aria-pressed',settings.showChunks);
+  $('tg-ja').setAttribute('aria-pressed',settings.showJa);
+  $('sw-chunk').setAttribute('aria-checked',settings.showChunks);
+  $('sw-ja').setAttribute('aria-checked',settings.showJa);
+}
+function updateUI(){
+  const n=doc?doc.sentences.length:0;
+  $('p-pos').textContent=n?`${pos.si+1} / ${n}文`+(settings.unit==='chunk'?`（かたまり ${pos.ci+1}/${doc.sentences[pos.si].chunks.length}）`:'')+(settings.repeat>1?` · ${pos.rep+1}/${settings.repeat}回目`:''):'—';
+  $('p-track').style.width=n?((pos.si+(playing?1:0))/n*100)+'%':'0';
+  $('ic-play').innerHTML=playing?'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>':'<path d="M7 4v16l13-8z"/>';
+  $('b-play').setAttribute('aria-label',playing?'一時停止':'再生');
+  $('b-loop1').setAttribute('aria-pressed',loopOne);
+}
+function updateChip(){
+  $('sc-main').textContent=settings.mode==='wpm'?`${settings.wpm} WPM`:`×${settings.rate.toFixed(2)}`;
+  if(engine==='k'){$('sc-sub').textContent='AI · '+kLabel();return}
+  const v=currentVoice();
+  $('sc-sub').textContent=(settings.accent==='en-GB'?'英':'米')+'・'+(settings.gender==='male'?'男性':'女性')+(v?` · ${v.name.split(/[\s(]/)[0]}`:'');
+}
+function updateSpeedNote(){
+  if(engine==='k'&&kt){au.playbackRate=kRate();const kb=Math.round(kBase());
+    $('speed-note').textContent=settings.mode==='wpm'?`AI音声（${kLabel()}）のこの長文は倍率1.0で約${kb} WPMです。いまの倍率は ×${kRate().toFixed(2)}（約${kWpmNow()} WPM）です。音声の長さから計算しているので正確です。`:`この倍率だと約 ${kWpmNow()} WPM です。`;
+    $('p-wpm').textContent=`AI ${kInfo(settings.kvoice)[1]} · ${kWpmNow()} WPM`;
+    $('wpm-ui').hidden=settings.mode!=='wpm';$('rate-ui').hidden=settings.mode!=='rate';$('wpm').value=settings.wpm;$('wpm-v').textContent=settings.wpm;return}
+  const b=Math.round(baseWpm()); const hasCal=!!calib[vkey()];
+  $('speed-note').textContent=settings.mode==='wpm'
+    ? `この声の倍率1.0は約${b} WPM${hasCal?'（実測から補正済み）':'（仮の値。再生すると自動で補正します）'}。いまの倍率は ×${effectiveRate().toFixed(2)} です。`
+    : `この倍率だと約 ${Math.round(b*settings.rate)} WPM です${hasCal?'':'（再生すると実測から補正します）'}。`;
+  $('wpm-ui').hidden=settings.mode!=='wpm'; $('rate-ui').hidden=settings.mode!=='rate';
+  $('wpm').value=settings.wpm; $('wpm-v').textContent=settings.wpm;
+}
+
+/* ---------- segmented controls ---------- */
+function seg(id,opts,key,cast,after){
+  const el=$(id);
+  const draw=()=>{el.innerHTML=opts.map(([v,l])=>`<button aria-pressed="${String(settings[key])===String(v)}" data-v="${v}">${l}</button>`).join('')};
+  draw();
+  el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;settings[key]=cast?cast(b.dataset.v):b.dataset.v;saveS();draw();after&&after()});
+  return draw;
+}
+const redraw=[];
+redraw.push(seg('seg-accent',[['en-US','アメリカ'],['en-GB','イギリス']],'accent',null,()=>{pickBest();renderVoiceSel();updateChip();updateSpeedNote()}));
+redraw.push(seg('seg-gender',[['female','女性'],['male','男性']],'gender',null,()=>{pickBest();renderVoiceSel();updateChip();updateSpeedNote()}));
+redraw.push(seg('seg-mode',[['wpm','WPM'],['rate','倍率']],'mode',null,()=>{updateChip();updateSpeedNote()}));
+const rates=[0.5,0.75,1,1.25,1.5,1.75,2];
+redraw.push(seg('seg-rate',rates.map(r=>[r,'×'+r.toFixed(2)]),'rate',Number,()=>{updateChip();updateSpeedNote()}));
+const drawPre=seg('seg-wpmpre',[[120,'120 ゆっくり'],[150,'150 ふつう'],[180,'180 速め'],[210,'210']],'wpm',Number,()=>{updateChip();updateSpeedNote()});
+redraw.push(drawPre);
+redraw.push(seg('seg-unit',[['sentence','1文ずつ'],['chunk','かたまりずつ']],'unit',null,()=>{pos.ci=0;updateUI()}));
+redraw.push(seg('seg-repeat',[[1,'1'],[2,'2'],[3,'3'],[5,'5']],'repeat',Number,()=>{pos.rep=0;updateUI()}));
+redraw.push(seg('seg-pause',[['0','なし'],['1000','1秒'],['2000','2秒'],['3000','3秒'],['echo','同じ長さ']],'pause'));
+const setWpm=v=>{settings.wpm=Math.max(80,Math.min(260,Math.round(v/5)*5));saveS();drawPre();updateChip();updateSpeedNote()};
+$('wpm').addEventListener('input',e=>setWpm(+e.target.value));
+$('wpm-m').addEventListener('click',()=>setWpm(settings.wpm-10));
+$('wpm-p').addEventListener('click',()=>setWpm(settings.wpm+10));
+function sw(id,key,after){$(id).addEventListener('click',()=>{settings[key]=!settings[key];saveS();$(id).setAttribute('aria-checked',settings[key]);after&&after()});$(id).setAttribute('aria-checked',settings[key])}
+sw('sw-loopall','loopAll'); sw('sw-chunk','showChunks',applyDisplay); sw('sw-ja','showJa',applyDisplay);
+$('tg-chunk').addEventListener('click',()=>{settings.showChunks=!settings.showChunks;saveS();applyDisplay()});
+$('tg-ja').addEventListener('click',()=>{settings.showJa=!settings.showJa;saveS();applyDisplay()});
+
+/* ---------- sheet ---------- */
+function openSheet(){$('sheet').hidden=false;$('backdrop').hidden=false;loadVoices();updateSpeedNote()}
+function closeSheet(){$('sheet').hidden=true;$('backdrop').hidden=true}
+$('b-set').addEventListener('click',openSheet);$('sheet-close').addEventListener('click',closeSheet);$('backdrop').addEventListener('click',closeSheet);
+$('test-voice').addEventListener('click',()=>{if(!synth)return;stop();const u=new SpeechSynthesisUtterance('Hello. This is how I sound at this speed.');const v=currentVoice();if(v){u.voice=v;u.lang=v.lang}else u.lang=settings.accent;u.rate=effectiveRate();curUtter=u;synth.speak(u);setTimeout(loadVoices,500)});
+
+/* ---------- reader interactions ---------- */
+let glTerm='';
+$('reader').addEventListener('click',e=>{
+  const ja=e.target.closest('.jab'); if(ja){ja.parentElement.classList.toggle('ja-open');return}
+  const g=e.target.closest('.gl'); if(g){glTerm=g.dataset.term;$('gl-term').textContent=g.textContent;$('gl-mean').textContent=doc.words[glTerm]||'';$('gloss').hidden=false;return}
+  const s=e.target.closest('.s'); if(!s)return;
+  const c=e.target.closest('.c'); const ci=settings.unit==='chunk'&&c?+c.dataset.c:0;
+  if(engine==='k'&&kReady){kJump(+s.dataset.i,ci);if(!playing)play();return}
+  pos={si:+s.dataset.i,ci,rep:0}; if(playing)speakNow();else play();
+});
+$('gl-close').addEventListener('click',()=>{$('gloss').hidden=true});
+$('gl-say').addEventListener('click',()=>{if(!synth)return;stop();const u=new SpeechSynthesisUtterance($('gl-term').textContent);const v=currentVoice();if(v){u.voice=v;u.lang=v.lang}u.rate=Math.min(1,effectiveRate());curUtter=u;synth.speak(u)});
+$('b-play').addEventListener('click',()=>{playing?stop():play()});
+$('b-prev').addEventListener('click',()=>{if(!doc)return;if(settings.unit==='chunk'&&pos.ci>0)jump(pos.si,pos.ci-1);else jump(pos.si-1,0)});
+$('b-next').addEventListener('click',()=>{if(!doc)return;const s=doc.sentences[pos.si];if(settings.unit==='chunk'&&s&&pos.ci<s.chunks.length-1)jump(pos.si,pos.ci+1);else jump(pos.si+1,0)});
+$('b-loop1').addEventListener('click',()=>{loopOne=!loopOne;updateUI();toast(loopOne?'今の文をくり返します':'1文ループを解除しました')});
+
+/* ---------- views ---------- */
+const VIEWS=['reader','probs','lib','add','test','result'];
+function showView(v){
+  VIEWS.forEach(k=>{$('v-'+k).hidden=k!==v;const tb=$('tab-'+k);if(tb)tb.setAttribute('aria-selected',k===v||(k==='probs'&&(v==='test'||v==='result')))});
+  $('bar').hidden=v==='test'; $('gloss').hidden=true;
+  if(v!=='test')stopTick();
+  if(v==='lib')renderLib(); if(v==='probs')renderProbs(); window.scrollTo(0,0);
+}
+document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.view==='reader'&&!doc)renderReader();if(b.dataset.view==='add'&&editId===null)resetForm();showView(b.dataset.view)});
+function openText(id){stop();currentId=id;store.set('lr.current',id);pos={si:0,ci:0,rep:0};sess={w:0,ms:0};renderReader();showView('reader')}
+function fmtDate(t){if(!t)return '';const d=new Date(t);return `${d.getMonth()+1}/${d.getDate()}`}
+function renderLib(){
+  $('lib').innerHTML=texts.map(t=>{const d=parse(t.raw);const w=d.sentences.reduce((a,s)=>a+countWords(s.text),0);
+    return `<div class="item${t.id===currentId?' cur':''}" data-id="${esc(t.id)}"><h3>${esc(d.title)}${t.sample?'<span class="tag">サンプル</span>':''}</h3>
+    <div class="meta">${d.sentences.length}文 · ${w}語 · 再生${t.plays||0}回${t.lastWpm?` · 前回 ${t.lastWpm} WPM`:''}${t.lastAt?` · ${fmtDate(t.lastAt)}`:''}</div>
+    <div class="acts"><button class="btn pri" data-act="open">開く</button><button class="btn" data-act="edit">編集</button><button class="btn del" data-act="del">削除</button></div></div>`}).join('');
+}
+$('lib').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;const id=b.closest('.item').dataset.id;const t=texts.find(x=>x.id===id);
+  if(b.dataset.act==='open')openText(id);
+  else if(b.dataset.act==='edit'){editId=id;$('in-title').value=t.title||'';$('in-raw').value=t.raw;$('add-h').textContent='長文を編集';$('cancel-edit').hidden=false;showView('add')}
+  else if(b.dataset.act==='del'){
+    if(!b.classList.contains('arm')){b.classList.add('arm');b.textContent='もう一度押して削除';setTimeout(()=>{if(b.isConnected){b.classList.remove('arm');b.textContent='削除'}},3000);return}
+    texts=texts.filter(x=>x.id!==id);
+    if(!texts.length)texts=[{id:'sample',raw:SAMPLE,sample:true,created:Date.now(),plays:0,lastWpm:0,lastAt:0}];
+    saveT(); if(currentId===id){currentId=texts[0].id;store.set('lr.current',currentId);stop();renderReader()} renderLib(); toast('削除しました');
+  }
+});
+function resetForm(){editId=null;$('in-title').value='';$('in-raw').value='';$('add-h').textContent='長文を追加';$('cancel-edit').hidden=true}
+$('cancel-edit').addEventListener('click',()=>{resetForm();showView('lib')});
+$('save').addEventListener('click',()=>{
+  let raw=$('in-raw').value.trim(); const title=$('in-title').value.trim();
+  if(!raw){toast('本文を貼り付けてください');return}
+  if(title&&!/^(TITLE\s*[:：]|#\s)/im.test(raw))raw=`TITLE: ${title}\n`+raw;
+  if(!parse(raw).sentences.length){toast('英文が見つかりませんでした');return}
+  if(editId){const t=texts.find(x=>x.id===editId);t.raw=raw;t.title=title;t.sample=false;currentId=editId}
+  else{const id='t'+Date.now().toString(36);texts.unshift({id,raw,title,created:Date.now(),plays:0,lastWpm:0,lastAt:0});currentId=id}
+  saveT();const id=currentId;resetForm();openText(id);toast('保存しました');
+});
+$('copyfmt').addEventListener('click',()=>{
+  const done=()=>toast('依頼文をコピーしました');
+  try{navigator.clipboard.writeText(ASK).then(done,()=>fallbackCopy())}catch(e){fallbackCopy()}
+  function fallbackCopy(){$('in-raw').value=ASK;$('in-raw').select();toast('本文欄に入れたので、選択してコピーしてください')}
+});
+
+/* ---------- problems ---------- */
+const isDocHead=t=>/^Document \d+:/.test(t);
+function chunkTable(p){if(!p||!p.chunks)return '';return `<div class="tbl"><table><thead><tr><th>チャンク</th><th>意味</th><th>使用例</th><th>使用例の日本語訳</th></tr></thead><tbody>${p.chunks.map(c=>`<tr><td class="en"><b>${esc(c[0])}</b></td><td>${esc(c[1])}</td><td class="en">${esc(c[2])}</td><td>${esc(c[3])}</td></tr>`).join('')}</tbody></table></div>`}
+function chunkDetails(p,open){return p&&p.chunks?`<details class="chunks"${open?' open':''}><summary>TOEIC頻出チャンク表（${p.chunks.length}個）</summary>${chunkTable(p)}</details>`:''}
+let pf='all';
+const drawPf=(()=>{const el=$('seg-pf');const opts=[['all','すべて'],['long','長文'],['new','未挑戦'],['retry','満点以外']];
+  const draw=()=>{el.innerHTML=opts.map(([v,l])=>`<button aria-pressed="${pf===v}" data-v="${v}">${l}</button>`).join('')};draw();
+  el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;pf=b.dataset.v;draw();renderProbs()});return draw})();
+function renderProbs(){
+  const done=probTexts.filter(t=>t.attempts>0).length, full=probTexts.filter(t=>t.best===t.prob.qs.length).length;
+  $('probs-meta').textContent=`全${probTexts.length}題 · 挑戦済み ${done} · 満点 ${full}`;
+  const list=probTexts.filter(t=>pf==='all'||(pf==='new'&&!t.attempts)||(pf==='retry'&&t.best!==t.prob.qs.length)||(pf==='long'&&t.prob.long));
+  $('problist').innerHTML=list.map(t=>{const p=t.prob,d=parse(t.raw),n=p.qs.length,w=d.sentences.reduce((a,s)=>a+countWords(s.text),0);
+    const st=t.attempts?`最高 <span class="${t.best===n?'score-ok':''}">${t.best}/${n}</span> · 挑戦${t.attempts}回`+(t.readWpm?` · 前回 ${t.readWpm} WPM`:''):'未挑戦';
+    return `<div class="item${t.id===currentId?' cur':''}" data-id="${t.id}"><div class="pno">${p.long?'<span class="tag long" style="margin:0 6px 0 0">長文</span>':''}No.${p.id.slice(1)} · ${esc(p.type)} · ${w}語 · ${n}問</div>
+    <h3>${esc(d.title)}</h3><div class="meta">${st}</div>
+    <div class="acts"><button class="btn pri" data-act="test">テストを解く</button><button class="btn" data-act="read">読む・聞く</button></div></div>`}).join('')||'<p class="empty">該当する問題はありません。</p>';
+}
+$('problist').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const t=probTexts.find(x=>x.id===b.closest('.item').dataset.id);
+  if(b.dataset.act==='test')startTest(t);else openText(t.id)});
+$('r-test').addEventListener('click',()=>{const t=cur();if(t&&t.prob)startTest(t)});
+
+let test=null,tickIv=null;
+function stopTick(){clearInterval(tickIv);tickIv=null}
+const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+function passageHTML(chunks){return doc.sentences.map(s=>isDocHead(s.text)?`<p class="dochead">${esc(s.text)}</p>`:`<p>${chunks?s.chunks.map(esc).join(' <span class="sl">/</span> '):esc(s.text)}</p>`).join('')}
+function startTest(t){
+  stop();currentId=t.id;store.set('lr.current',t.id);doc=parse(t.raw);renderReader();
+  test={t,i:0,ans:[],t0:Date.now()};
+  $('t-type').textContent=t.prob.type;$('t-title').textContent=doc.title;$('t-passage').innerHTML=passageHTML(false);
+  $('t-chunks').innerHTML=chunkDetails(t.prob,false);$('t-qbox').classList.remove('min');$('t-fold').textContent='本文を広く見る';
+  renderTestQ();showView('test');
+  stopTick();$('t-time').textContent='0:00';tickIv=setInterval(()=>{$('t-time').textContent=mmss((Date.now()-test.t0)/1000)},1000);
+}
+function renderTestQ(){
+  const q=test.t.prob.qs[test.i];
+  $('t-q').textContent=`Q${test.i+1} / ${test.t.prob.qs.length}`;$('t-q2').textContent=`Q${test.i+1} / ${test.t.prob.qs.length}`;
+  $('t-qtext').textContent=`${test.i+1}. ${q.q}`;
+  $('t-choices').innerHTML=q.c.map((c,k)=>`<button class="choice" data-k="${k}"><b>(${'ABCD'[k]})</b>${esc(c[0])}</button>`).join('');
+}
+$('t-choices').addEventListener('click',e=>{const b=e.target.closest('.choice');if(!b||!test)return;
+  test.ans.push(+b.dataset.k);test.i++;
+  if(test.i>=test.t.prob.qs.length)finishTest();
+  else{renderTestQ();$('t-qbox').scrollTop=0}});
+$('t-fold').addEventListener('click',()=>{const m=$('t-qbox').classList.toggle('min');$('t-fold').textContent=m?'選択肢を表示':'本文を広く見る';$('t-fold').setAttribute('aria-expanded',!m)});
+$('t-quit').addEventListener('click',()=>{test=null;stopTick();showView('probs')});
+
+function finishTest(){
+  stopTick();const t=test.t,p=t.prob,n=p.qs.length;
+  const score=p.qs.reduce((a,q,i)=>a+(q.a===test.ans[i]?1:0),0);
+  const sec=(Date.now()-test.t0)/1000, words=doc.sentences.reduce((a,s)=>a+countWords(s.text),0);
+  let rw=Math.round(words/(Math.max(sec,1)/60)); if(rw>600)rw=0;
+  t.attempts++;t.best=t.best==null?score:Math.max(t.best,score);t.lastScore=score;t.readWpm=rw;savePS();
+  renderResult(score,sec,words,rw);showView('result');
+}
+function renderResult(score,sec,words,rw){
+  const t=test.t,p=t.prob,n=p.qs.length,L='abcd';
+  const sec1=`<div class="rsec"><h2><span class="n">1</span>結果</h2>
+    <div class="row" style="justify-content:flex-start;align-items:flex-end;gap:14px"><div class="bigscore">${score}<span style="font-size:20px;color:var(--muted)"> / ${n}</span></div>
+    <div class="meta">解答時間 ${mmss(sec)} · 本文 ${words}語<br>${rw?`読む速さ 約 ${rw} WPM（本文の語数 ÷ 解答時間）`:'解答が速すぎるため WPM は記録しませんでした'}</div></div>
+    <div class="marks">${p.qs.map((q,i)=>`<span class="mk${q.a===test.ans[i]?'':' ng'}">Q${i+1} ${q.a===test.ans[i]?'○':'×'}</span>`).join('')}</div></div>`;
+  const sec2=`<div class="rsec"><h2><span class="n">2</span>英語本文</h2><div class="passage">${passageHTML(false)}</div></div>`;
+  const sec3=`<div class="rsec"><h2><span class="n">3</span>選択肢</h2>${p.qs.map((q,i)=>`<h3>Q${i+1}. ${esc(q.q)}</h3><p class="small" style="margin:0">${esc(q.qj)}</p>
+    <div class="tbl"><table><thead><tr><th></th><th>英語</th><th>日本語</th><th>正解</th><th>あなたの選択</th></tr></thead><tbody>
+    ${q.c.map((c,k)=>`<tr class="${k===q.a?'ans':(k===test.ans[i]?'miss':'')}"><td>${L[k]}</td><td class="en">${esc(c[0])}</td><td>${esc(c[1])}</td><td>${k===q.a?'○':''}</td><td>${k===test.ans[i]?(k===q.a?'○':'×'):''}</td></tr>`).join('')}
+    </tbody></table></div>`).join('')}</div>`;
+  const sec4=`<div class="rsec"><h2><span class="n">4</span>日本語訳</h2><div class="jalist">${doc.sentences.map(s=>isDocHead(s.text)?`<p class="dochead">${esc(s.ja||s.text)}</p>`:`<p>${esc(s.ja||'')}</p>`).join('')}</div></div>`;
+  const sec5=`<div class="rsec"><h2><span class="n">5</span>各選択肢の解説</h2>${p.qs.map((q,i)=>`<h3>Q${i+1}</h3><ul class="ex">${q.c.map((c,k)=>`<li class="${k===q.a?'ans':''}"><b>(${L[k]}) ${esc(c[0])}</b>${k===q.a?' <span class="score-ok">正解</span>':''}<br>${esc(c[2])}</li>`).join('')}</ul>`).join('')}</div>`;
+  const sec6=`<div class="rsec"><h2><span class="n">6</span>今回分かったこと</h2>${p.qs.map((q,i)=>`<div class="pt"><b>Q${i+1}</b> ${esc(q.pt)}</div>`).join('')}</div>`;
+  const sec7=p.chunks?`<div class="rsec"><h2><span class="n">7</span>TOEIC頻出チャンク表</h2><p class="small" style="margin:0">リズムで音読して、見た瞬間にイメージが浮かぶようにしましょう。</p>${chunkTable(p)}</div>`:'';
+  const idx=probTexts.indexOf(t), next=probTexts[idx+1];
+  const ondoku=score<n?`<div class="rsec"><div class="ondoku"><h2 style="margin:0;font-size:16px">音読フェーズ</h2>
+    <p style="margin:0;font-size:14px">満点ではなかったので、区切り（／）ごとに前から意味をとりながら、英文を1回音読してください。</p>
+    <div class="passage ch">${passageHTML(true)}</div>
+    <div class="acts2"><button class="btn pri" id="rs-listen">音声を聞きながら音読する</button><button class="btn" id="rs-done">音読した → もう一度解く</button></div></div></div>`
+   :`<div class="rsec"><div class="ondoku"><h2 style="margin:0;font-size:16px">満点です</h2><div class="acts2">${next?'<button class="btn pri" id="rs-next">次の問題を解く</button>':''}<button class="btn" id="rs-again">もう一度解く</button></div></div></div>`;
+  $('result').innerHTML=`<h1 class="t">${esc(doc.title)}</h1><div class="meta" style="margin-bottom:6px">No.${p.id.slice(1)} · ${esc(p.type)}</div>`+sec1+sec2+sec3+sec4+sec5+sec6+sec7+ondoku+
+    `<div class="acts2" style="margin-top:6px"><button class="btn" id="rs-list">問題一覧へ</button></div>`;
+  const on=(id,f)=>{const el=$(id);if(el)el.addEventListener('click',f)};
+  on('rs-listen',()=>{settings.showChunks=true;saveS();applyDisplay();openText(t.id)});
+  on('rs-done',()=>startTest(t));on('rs-again',()=>startTest(t));on('rs-next',()=>startTest(next));on('rs-list',()=>showView('probs'));
+}
+
+/* ---------- misc ---------- */
+let tt=null;function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>{t.hidden=true},2200)}
+let wake=null;
+async function requestWake(){try{if('wakeLock' in navigator&&!wake){wake=await navigator.wakeLock.request('screen');wake.addEventListener('release',()=>{wake=null})}}catch(e){}}
+function releaseWake(){try{wake&&wake.release()}catch(e){}wake=null}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&playing)requestWake()});
+
+renderReader(); applyDisplay(); updateChip(); updateSpeedNote();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+})();
+</script>
+</body>
+</html>
