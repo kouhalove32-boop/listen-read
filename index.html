@@ -699,7 +699,7 @@ function updateUI(){
 }
 function updateChip(){
   $('sc-main').textContent=settings.mode==='wpm'?`${settings.wpm} WPM`:`×${settings.rate.toFixed(2)}`;
-  if(engine==='k'){$('sc-sub').textContent='AI · '+kLabel();return}
+  if(engine==='k'){const i=kInfo(settings.kvoice);$('sc-sub').textContent=`AI · ${i[1]}（${i[2]}${i[3][0]}）`;return}
   const v=currentVoice();
   $('sc-sub').textContent=(settings.accent==='en-GB'?'英':'米')+'・'+(settings.gender==='male'?'男性':'女性')+(v?` · ${v.name.split(/[\s(]/)[0]}`:'');
 }
