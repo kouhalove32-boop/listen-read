@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kokoro 速度テスト</title>
+<style>
+:root{--bg:#F3F5F9;--surface:#fff;--fg:#18202E;--muted:#5B6578;--line:#DAE0EA;--accent:#2A52C4;--accent-fg:#fff;--chip:#E7ECF6;--ok:#1E7F47;--ng:#C2362F;
+  --ui:-apple-system,'Hiragino Sans',system-ui,sans-serif;--num:ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#10141B;--surface:#181E28;--fg:#E6EAF1;--muted:#9AA3B4;--line:#2B3342;--accent:#8AA8FF;--accent-fg:#0D1320;--chip:#232B39;--ok:#5FD08F;--ng:#FF7A70;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--ui);padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 40px max(16px,env(safe-area-inset-left))}
+main{max-width:640px;margin:0 auto;display:grid;gap:14px}
+h1{font-size:20px;margin:4px 0 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px}
+.lab{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
+button{font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:10px;padding:10px 14px;font-weight:600}
+button.pri{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+button:disabled{opacity:.45}
+select{font:inherit;width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.small{font-size:12.5px;color:var(--muted)}
+.bar{height:6px;background:var(--chip);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:var(--accent)}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;font:12px/1.55 var(--num);white-space:pre-wrap;margin:0;max-height:320px;overflow:auto}
+.big{font:600 22px var(--num)}
+.ok{color:var(--ok)}.ng{color:var(--ng)}
+audio{width:100%}
+</style>
+</head>
+<body>
+<main>
+  <h1>Kokoro 速度テスト</h1>
+  <p class="small" style="margin:0">iPhoneの中でイギリス英語のAI音声がどれくらいの速さで作れるかを測ります。最初の読み込みで約90〜320MBをダウンロードするので、Wi-Fiで試してください。</p>
+
+  <div class="card">
+    <div class="lab">1. エンジンを選んで読み込む</div>
+    <div class="small" id="gpuinfo"></div>
+    <select id="mode">
+      <option value="webgpu|fp32">WebGPU・fp32（速い見込み・約320MB）</option>
+      <option value="wasm|q8">WASM・q8（GPUなし・約90MB）</option>
+      <option value="wasm|q4">WASM・q4（さらに軽い・音質やや低下）</option>
+    </select>
+    <button class="pri" id="load">モデルを読み込む</button>
+    <div class="bar"><i id="pbar"></i></div>
+    <div class="small" id="pmsg">未読み込み</div>
+  </div>
+
+  <div class="card">
+    <div class="lab">2. 声を選んで1文を作る</div>
+    <select id="voice">
+      <option value="bf_emma">bf_emma（英・女性）</option>
+      <option value="bf_isabella">bf_isabella（英・女性）</option>
+      <option value="bf_alice">bf_alice（英・女性）</option>
+      <option value="bf_lily">bf_lily（英・女性）</option>
+      <option value="bm_george">bm_george（英・男性）</option>
+      <option value="bm_fable">bm_fable（英・男性）</option>
+      <option value="bm_lewis">bm_lewis（英・男性）</option>
+      <option value="bm_daniel">bm_daniel（英・男性）</option>
+      <option value="af_heart">af_heart（米・女性・比較用）</option>
+      <option value="am_michael">am_michael（米・男性・比較用）</option>
+    </select>
+    <div class="row"><button id="one" disabled>1文を作って再生</button><button id="allv" disabled>英国の8声を聞き比べ</button></div>
+    <div class="big" id="onestat">—</div>
+    <div class="small">「倍速」は、音声の長さ ÷ 作るのにかかった時間です。1.0倍以上なら、聞いている間に次の文が作れます。</div>
+  </div>
+
+  <div class="card">
+    <div class="lab">3. 長文テスト（ロック画面でも聞けるか）</div>
+    <div class="small">TOEIC風の6文を作ってつなげ、1つの音声にします。再生を始めたら画面をロックして、止まらずに最後まで聞こえるか確かめてください。</div>
+    <button id="para" disabled>6文を作って再生</button>
+    <div class="bar"><i id="pbar2"></i></div>
+    <audio id="player" controls playsinline></audio>
+  </div>
+
+  <div class="card">
+    <div class="lab">結果（コピーしてClaudeに貼ってください）</div>
+    <pre id="log"></pre>
+    <button id="copy">結果をコピー</button>
+  </div>
+</main>
+
+<script type="module">
+const $=id=>document.getElementById(id);
+const log=(m)=>{$('log').textContent+=m+'\n';$('log').scrollTop=1e9};
+const ua=navigator.userAgent;
+log('UA: '+ua);
+const hasGPU=!!navigator.gpu;
+$('gpuinfo').textContent=hasGPU?'このブラウザは WebGPU に対応しています。':'このブラウザは WebGPU に対応していません。WASM を選んでください。';
+log('WebGPU: '+(hasGPU?'あり':'なし')+' / CPUコア: '+(navigator.hardwareConcurrency||'?'));
+if(!hasGPU)$('mode').value='wasm|q8';
+
+let KokoroTTS=null, tts=null;
+const SENT="Thank you for registering for the Harbor City Business Expo, which will take place at the Seaside Convention Center from April 15 to April 17.";
+const PARA=[
+ "Dear Exhibitors, thank you for registering for this year's expo.",
+ "All exhibitors are required to set up their booths on April 14 between one and seven P.M.",
+ "Orders placed before March 25 will receive a fifteen percent discount.",
+ "Exhibitors may park in the east lot free of charge by showing their badge at the entrance.",
+ "Last year, one exhibitor handed out three thousand balloons shaped like their company logo.",
+ "Therefore, balloons are no longer allowed at the expo, but pens and tote bags are still welcome."];
+const words=s=>s.split(/\s+/).filter(Boolean).length;
+
+$('load').onclick=async()=>{
+  const [device,dtype]=$('mode').value.split('|');
+  $('load').disabled=true;$('pmsg').textContent='ライブラリを読み込み中…';
+  const t0=performance.now();
+  try{
+    if(!KokoroTTS)({KokoroTTS}=await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/dist/kokoro.web.js'));
+    const files={};
+    tts=await KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype,device,progress_callback:p=>{
+      if(p.status==='progress'&&p.total){files[p.file]=[p.loaded,p.total];
+        let l=0,t=0;for(const k in files){l+=files[k][0];t+=files[k][1]}
+        $('pbar').style.width=(l/t*100)+'%';$('pmsg').textContent=`ダウンロード中 ${(l/1e6).toFixed(0)} / ${(t/1e6).toFixed(0)} MB`}
+    }});
+    const sec=(performance.now()-t0)/1000;
+    $('pbar').style.width='100%';$('pmsg').innerHTML=`<span class="ok">読み込み完了</span>（${sec.toFixed(1)}秒・${device}/${dtype}）`;
+    log(`読み込み: ${device}/${dtype} ${sec.toFixed(1)}秒`);
+    ['one','allv','para'].forEach(i=>$(i).disabled=false);
+  }catch(e){$('pmsg').innerHTML=`<span class="ng">失敗: ${e.message||e}</span>`;log('読み込み失敗: '+(e.message||e));$('load').disabled=false}
+};
+
+async function gen(text,voice){
+  const t0=performance.now();const a=await tts.generate(text,{voice,speed:1});
+  const g=(performance.now()-t0)/1000, d=a.audio.length/a.sampling_rate;
+  return {a,g,d,rtf:d/g};
+}
+function play(a){const url=URL.createObjectURL(a.toBlob());const p=$('player');p.src=url;return p.play().catch(()=>{})}
+
+$('one').onclick=async()=>{
+  const v=$('voice').value;$('one').disabled=true;$('onestat').textContent='生成中…';
+  try{
+    const r=await gen(SENT,v);
+    const wpm=Math.round(words(SENT)/(r.d/60));
+    $('onestat').innerHTML=`<span class="${r.rtf>=1?'ok':'ng'}">${r.rtf.toFixed(2)}倍速</span>`;
+    log(`1文 ${v}: 生成 ${r.g.toFixed(2)}秒 / 音声 ${r.d.toFixed(2)}秒 / ${r.rtf.toFixed(2)}倍速 / 約${wpm}WPM（speed=1）`);
+    play(r.a);
+  }catch(e){log('生成失敗: '+(e.message||e));$('onestat').textContent='失敗'}
+  $('one').disabled=false;
+};
+
+$('allv').onclick=async()=>{
+  $('allv').disabled=true;
+  const vs=['bf_emma','bf_isabella','bf_alice','bf_lily','bm_george','bm_fable','bm_lewis','bm_daniel'];
+  const text="Please contact the front desk if you have any questions.";
+  for(const v of vs){
+    $('onestat').textContent=v+' を生成中…';
+    try{const r=await gen(text,v);log(`聞き比べ ${v}: ${r.rtf.toFixed(2)}倍速`);
+      await new Promise(res=>{const url=URL.createObjectURL(r.a.toBlob());const p=$('player');p.src=url;p.onended=res;p.play().catch(res)});
+    }catch(e){log(v+' 失敗: '+(e.message||e))}
+  }
+  $('onestat').textContent='聞き比べ完了';$('allv').disabled=false;
+};
+
+function wav(samples,sr){
+  const b=new ArrayBuffer(44+samples.length*2),v=new DataView(b);
+  const w=(o,s)=>{for(let i=0;i<s.length;i++)v.setUint8(o+i,s.charCodeAt(i))};
+  w(0,'RIFF');v.setUint32(4,36+samples.length*2,true);w(8,'WAVE');w(12,'fmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);
+  v.setUint32(24,sr,true);v.setUint32(28,sr*2,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,samples.length*2,true);
+  for(let i=0;i<samples.length;i++){const s=Math.max(-1,Math.min(1,samples[i]));v.setInt16(44+i*2,s<0?s*0x8000:s*0x7FFF,true)}
+  return new Blob([b],{type:'audio/wav'});
+}
+$('para').onclick=async()=>{
+  const v=$('voice').value;$('para').disabled=true;
+  const parts=[];let sr=24000,G=0,D=0;
+  for(let i=0;i<PARA.length;i++){
+    try{const r=await gen(PARA[i],v);parts.push(r.a.audio);sr=r.a.sampling_rate;G+=r.g;D+=r.d;
+      parts.push(new Float32Array(Math.round(sr*0.35)));
+      $('pbar2').style.width=((i+1)/PARA.length*100)+'%';
+    }catch(e){log('長文の生成失敗: '+(e.message||e));break}
+  }
+  const n=parts.reduce((a,p)=>a+p.length,0),all=new Float32Array(n);let o=0;for(const p of parts){all.set(p,o);o+=p.length}
+  const W=PARA.reduce((a,s)=>a+words(s),0);
+  log(`長文 ${v}: 生成 ${G.toFixed(1)}秒 / 音声 ${D.toFixed(1)}秒 / ${(D/G).toFixed(2)}倍速 / 約${Math.round(W/(D/60))}WPM`);
+  if('mediaSession' in navigator){navigator.mediaSession.metadata=new MediaMetadata({title:'Kokoro 長文テスト',artist:v})}
+  const p=$('player');p.src=URL.createObjectURL(wav(all,sr));p.play().catch(()=>{});
+  $('para').disabled=false;
+};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('log').textContent);$('copy').textContent='コピーしました'}catch(e){const r=document.createRange();r.selectNodeContents($('log'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('copy').textContent='選択したのでコピーしてください'}};
+</script>
+</body>
+</html>
