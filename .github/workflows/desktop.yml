@@ -1,0 +1,58 @@
+name: Build Windows app
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - desktop/**
+      - index.html
+      - .github/workflows/desktop.yml
+  workflow_run:
+    workflows: ["Generate audio"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: desktop
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Copy app and audio into the package
+        run: |
+          New-Item -ItemType Directory -Force desktop/web | Out-Null
+          Copy-Item index.html, manifest.webmanifest, icon-180.png, icon-192.png, icon-512.png desktop/web/
+          Copy-Item -Recurse data desktop/web/data
+          Copy-Item -Recurse audio desktop/web/audio
+      - name: Build installer
+        working-directory: desktop
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "false"
+        run: |
+          npm install --no-audit --no-fund
+          npm version "1.0.${{ github.run_number }}" --no-git-tag-version
+          npm run dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: desktop-v1.0.${{ github.run_number }}
+          name: 聞き読みプレーヤー for Windows 1.0.${{ github.run_number }}
+          make_latest: true
+          body: |
+            Windows 用の聞き読みプレーヤーです。下の `ListenRead-Setup-1.0.${{ github.run_number }}.exe` をダウンロードして実行してください。
+            問題集33題と、AI音声（10声）がすべて入っているので、ネットなしで使えます。
+          files: desktop/dist/ListenRead-Setup-*.exe
