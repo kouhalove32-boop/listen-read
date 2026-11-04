@@ -253,6 +253,35 @@ kbd{font-family:var(--num);font-size:12px;border:1px solid var(--line);border-bo
   body.v-reader .sheet .grab,body.v-reader #sheet-close{display:none}
   body.v-reader .gloss,body.v-reader .toast{left:calc(50% + (var(--side) - var(--panel))/2)}
 }
+/* ultra-wide: keep the reading line comfortable, use the spare width for a vocabulary column */
+.rside{display:none}
+@media (min-width:1860px){
+  body.v-reader main{max-width:1500px}
+  body.v-reader .bar .in{max-width:1380px}
+  body.v-reader #v-reader{display:grid;grid-template-columns:minmax(0,880px) minmax(320px,460px);column-gap:44px;justify-content:center;align-items:start}
+  body.v-reader #v-reader>*{grid-column:1}
+  body.v-reader #r-side:not([hidden]){display:grid;gap:16px;grid-column:2;grid-row:1 / span 8;position:sticky;top:24px;max-height:calc(100vh - 170px);overflow:auto;padding:2px 4px 2px 2px}
+  body.v-reader.has-side #r-chunks{display:none}
+}
+@media (min-width:2560px){
+  body.v-reader main{max-width:2100px}
+  body.v-reader .bar .in{max-width:1900px}
+  body.v-reader #v-reader{grid-template-columns:minmax(0,980px) minmax(560px,860px)}
+  body.v-reader #r-side:not([hidden]){grid-template-columns:1fr 1fr;align-items:start}
+  body.v-reader .s:not(.doch){font-size:1.4rem}
+}
+.rside h2{font-size:12px;letter-spacing:.08em;color:var(--muted);margin:0 0 6px;font-weight:700}
+.rside .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.wl{list-style:none;margin:0;padding:0;display:grid}
+.wl li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding:7px 6px;border-bottom:1px solid var(--line);border-radius:6px;cursor:pointer;font-size:13.5px}
+.wl li:last-child{border-bottom:0}
+.wl li:hover{background:var(--chip)}
+.wl li b{font-family:var(--read);font-weight:600;font-size:14.5px}
+.cl{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.cl li{font-size:13px;line-height:1.5}
+.cl li b{font-family:var(--read);font-size:14.5px;display:block}
+.cl li i{font-style:normal;color:var(--muted);font-family:var(--read);display:block}
+.gl.flash{background:var(--mark-strong);border-radius:4px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
@@ -285,6 +314,7 @@ kbd{font-family:var(--num);font-size:12px;border:1px solid var(--line);border-bo
         <button class="pill" id="r-test" hidden style="background:var(--accent);color:var(--accent-fg);border-color:var(--accent)">この問題を解く</button>
       </div>
       <div id="r-chunks"></div>
+      <aside class="rside" id="r-side" hidden aria-label="語句とチャンク"></aside>
       <div class="reader" id="reader"></div>
       <p class="small" style="margin-top:14px">文をタップするとその文から再生。点線の単語をタップすると意味が出ます。</p>
     </section>
@@ -772,6 +802,13 @@ function renderMeta(){
   const w=doc.sentences.reduce((a,s)=>a+countWords(s.text),0);
   $('r-meta').textContent=`${doc.sentences.length}文 · ${w}語 · 再生${t.plays||0}回`+(t.lastWpm?` · 前回 ${t.lastWpm} WPM`:'');
 }
+function renderSide(t){
+  const side=$('r-side'),w=Object.entries(doc.words||{}),ch=t.prob&&t.prob.chunks||[];
+  if(!w.length&&!ch.length){side.hidden=true;document.body.classList.remove('has-side');side.innerHTML='';return}
+  side.hidden=false;document.body.classList.add('has-side');
+  side.innerHTML=(w.length?`<div class="card"><h2>語句（${w.length}）· クリックで本文の場所へ</h2><ul class="wl">${w.map(([k,v])=>`<li data-term="${esc(k)}"><b>${esc(k)}</b><span>${esc(v)}</span></li>`).join('')}</ul></div>`:'')+
+    (ch.length?`<div class="card"><h2>TOEIC頻出チャンク（${ch.length}）</h2><ul class="cl">${ch.map(c=>`<li><b>${esc(c[0])}</b>${esc(c[1])}<i>${esc(c[2])}</i></li>`).join('')}</ul></div>`:'');
+}
 function renderReader(){
   const t=cur(); doc=parse(t.raw);
   $('r-title').innerHTML=esc(doc.title)+(t.sample?'<span class="tag">サンプル</span>':'')+(t.prob?`<span class="tag">No.${t.prob.id.slice(1)} · ${esc(t.prob.type)}</span>`:'');
@@ -780,6 +817,7 @@ function renderReader(){
   const re=glossRe(); const r=$('reader');
   if(!doc.sentences.length){r.innerHTML='<p class="empty">英文が見つかりませんでした。「追加」から本文を貼り付けてください。</p>';updateUI();return}
   $('r-chunks').innerHTML=t.prob?chunkDetails(t.prob,false):'';
+  renderSide(t);
   r.innerHTML=doc.sentences.map((s,i)=>`<p class="s${/^Document \d+:/.test(s.text)?' doch':''}" data-i="${i}"><span class="no">${i+1}</span>`+
     s.chunks.map((c,j)=>`<span class="c" data-c="${j}">${markGloss(c,re)}</span>`).join('<span class="sl">/</span> ')+
     (s.ja?`<button class="jab" data-ja="${i}" aria-label="${i+1}文目の訳">訳</button><span class="ja">${esc(s.ja)}</span>`:'')+`</p>`).join('');
@@ -864,6 +902,13 @@ $('reader').addEventListener('click',e=>{
   const c=e.target.closest('.c'); const ci=settings.unit==='chunk'&&c?+c.dataset.c:0;
   if(engine==='k'&&kReady){kJump(+s.dataset.i,ci);if(!playing)play();return}
   pos={si:+s.dataset.i,ci,rep:0}; if(playing)speakNow();else play();
+});
+$('r-side').addEventListener('click',e=>{
+  const li=e.target.closest('.wl li');if(!li)return;const term=li.dataset.term;
+  document.querySelectorAll('.gl.flash').forEach(x=>x.classList.remove('flash'));
+  const hits=[...document.querySelectorAll('.gl')].filter(x=>x.dataset.term===term);
+  hits.forEach(x=>x.classList.add('flash'));setTimeout(()=>hits.forEach(x=>x.classList.remove('flash')),2500);
+  if(hits[0]){const p=hits[0].closest('.s');p.scrollIntoView({block:'center',behavior:'smooth'});if(!playing)jump(+p.dataset.i,0)}
 });
 $('gl-close').addEventListener('click',()=>{$('gloss').hidden=true});
 $('gl-say').addEventListener('click',()=>{if(!synth)return;stop();const u=new SpeechSynthesisUtterance($('gl-term').textContent);const v=currentVoice();if(v){u.voice=v;u.lang=v.lang}u.rate=Math.min(1,effectiveRate());curUtter=u;synth.speak(u)});
