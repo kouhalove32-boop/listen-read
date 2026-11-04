@@ -13,17 +13,18 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: one reading column; a fixed transport bar at the bottom like an audio player; settings slide up as a sheet */
+@font-face{font-family:'Literata';font-weight:400;font-style:normal;font-display:swap;src:url(fonts/literata-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Literata';font-weight:600;font-style:normal;font-display:swap;src:url(fonts/literata-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-weight:500;font-style:normal;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2')}
+/* Layout: phone = one reading column + bottom transport bar + settings sheet.
+   Desktop (>=1000px) = left navigation sidebar; >=1280px the reading view also keeps settings open as a right panel; tests show passage and questions side by side. */
 :root{
   --bg:#F3F5F9; --surface:#FFFFFF; --fg:#18202E; --muted:#5B6578; --line:#DAE0EA;
   --accent:#2A52C4; --accent-fg:#FFFFFF; --chip:#E7ECF6;
   --mark:#FFF0B0; --mark-strong:#FFD84D; --danger:#C2362F; --ok:#1E7F47; --okbg:rgba(30,127,71,.10); --ngbg:rgba(194,54,47,.08);
-  --read:'Literata',Georgia,'Times New Roman',serif;
-  --ui:'Zen Kaku Gothic New','Hiragino Sans','Yu Gothic',system-ui,sans-serif;
+  --read:'Literata',Georgia,'Yu Mincho','Hiragino Mincho ProN',serif;
+  --ui:system-ui,-apple-system,'Hiragino Sans','Hiragino Kaku Gothic ProN','Yu Gothic UI','Meiryo UI','BIZ UDPGothic',sans-serif;
   --num:'IBM Plex Mono',ui-monospace,Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -92,6 +93,7 @@ h1.t{font-family:var(--read);font-weight:600;font-size:1.55rem;line-height:1.3;m
 .grab{width:40px;height:4px;background:var(--line);border-radius:4px;margin:4px auto 10px}
 .sheet h2{font-size:16px;margin:0 0 4px;display:flex;justify-content:space-between;align-items:center}
 .grp{border-top:1px solid var(--line);padding-block:14px;display:grid;gap:10px}
+.grp>*{min-width:0}
 .grp:first-of-type{border-top:0}
 .lab{font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--muted)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
@@ -188,6 +190,69 @@ pre.fmt{background:var(--bg);border:1px solid var(--line);border-radius:10px;pad
 details.chunks{margin-top:12px}
 details.chunks .tbl{margin-top:10px}
 .tag.long{background:var(--accent);color:var(--accent-fg)}
+/* ---------- desktop ---------- */
+.kb{display:none;font-family:var(--num);font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:0 5px;line-height:1.6}
+.navfoot{display:none}
+kbd{font-family:var(--num);font-size:12px;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--surface)}
+.help{position:fixed;inset:0;z-index:40;display:grid;place-items:center;background:rgba(5,10,20,.45);padding:16px}
+.help .box{background:var(--surface);border-radius:16px;padding:18px 20px;width:min(560px,100%);max-height:86vh;overflow:auto;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.help h2{margin:0 0 10px;font-size:17px;display:flex;justify-content:space-between;align-items:center}
+.help table{width:100%;border-collapse:collapse;font-size:13.5px}
+.help td{padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.help td:first-child{white-space:nowrap;width:42%}
+.help th{text-align:left;font-size:11.5px;color:var(--muted);padding:12px 4px 4px;letter-spacing:.06em}
+.keyhint{display:none;font-size:12px;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){
+  .s:hover{background:var(--chip)} .s.on:hover{background:var(--mark)}
+  .choice:hover{border-color:var(--accent)}
+  .btn:hover,.pill:hover,.ib:hover{border-color:var(--accent)}
+  .item:hover{border-color:var(--accent)}
+  .keyhint{display:block}
+}
+@media (min-width:1000px){
+  :root{--side:236px}
+  body{padding-left:0;padding-right:0}
+  .wrap{max-width:none;margin:0;padding-left:var(--side)}
+  header.top{position:fixed;top:0;left:0;bottom:0;width:var(--side);z-index:7;flex-direction:column;align-items:stretch;gap:18px;
+    padding:calc(22px + env(safe-area-inset-top,0px)) 14px 16px;border-bottom:0;border-right:1px solid var(--line);background:var(--surface)}
+  .brand{display:block!important;flex:none;font-size:16px;padding:0 10px;white-space:normal}
+  .tabs{flex-direction:column;background:transparent;padding:0;border-radius:0;gap:2px;margin:0}
+  .tabs button{display:flex;justify-content:space-between;align-items:center;text-align:left;border-radius:10px;padding:10px 12px;font-size:14.5px;color:var(--fg)}
+  .tabs button[aria-selected="true"]{background:var(--chip);color:var(--accent);box-shadow:none;font-weight:700}
+  .tabs button:hover{background:var(--chip)}
+  .kb{display:inline-block}
+  .navfoot{display:grid;gap:8px;margin-top:auto;padding:0 6px;font-size:12px;color:var(--muted)}
+  .navfoot button{justify-self:start;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 10px;font-size:12.5px}
+  main{max-width:860px;margin:0 auto;padding:30px 40px 200px}
+  body.v-probs main,body.v-lib main{max-width:1180px}
+  body.v-result main{max-width:960px}
+  .bar{left:var(--side)}
+  .bar .in{max-width:860px}
+  .s{font-size:1.28rem}
+  h1.t{font-size:1.8rem}
+  .problist,.lib{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .gloss{left:calc(50% + var(--side)/2);bottom:140px}
+  .toast{left:calc(50% + var(--side)/2)}
+  /* test: passage left, questions right */
+  body.v-test main{max-width:1320px}
+  #v-test{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,420px);column-gap:32px;align-items:start}
+  #v-test>*{grid-column:1}
+  #v-test .qbox{grid-column:2;grid-row:1 / span 6;position:sticky;top:24px;bottom:auto;border:1px solid var(--line);border-radius:16px;
+    max-height:calc(100vh - 48px);padding:16px 18px;box-shadow:0 10px 30px rgba(10,20,40,.08)}
+  #t-fold{display:none}
+  #v-test .passage{max-width:72ch}
+  .keyhint{margin-top:4px}
+}
+@media (min-width:1280px){
+  :root{--panel:330px}
+  body.v-reader .wrap{padding-right:var(--panel)}
+  body.v-reader .bar{right:var(--panel)}
+  body.v-reader .sheet{display:block!important;position:fixed;top:0;right:0;bottom:0;left:auto;width:var(--panel);max-height:none;border-radius:0;
+    border-left:1px solid var(--line);box-shadow:none;z-index:6;padding:calc(18px + env(safe-area-inset-top,0px)) 18px 24px}
+  body.v-reader .backdrop{display:none!important}
+  body.v-reader .sheet .grab,body.v-reader #sheet-close{display:none}
+  body.v-reader .gloss,body.v-reader .toast{left:calc(50% + (var(--side) - var(--panel))/2)}
+}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
@@ -197,15 +262,19 @@ details.chunks .tbl{margin-top:10px}
   <header class="top">
     <div class="brand" id="brand">聞き読みプレーヤー</div>
     <nav class="tabs" role="tablist">
-      <button id="tab-reader" role="tab" aria-selected="true" data-view="reader">再生</button>
-      <button id="tab-probs" role="tab" aria-selected="false" data-view="probs">問題</button>
-      <button id="tab-lib" role="tab" aria-selected="false" data-view="lib">一覧</button>
-      <button id="tab-add" role="tab" aria-selected="false" data-view="add">追加</button>
+      <button id="tab-reader" role="tab" aria-selected="true" data-view="reader">再生<span class="kb">Ctrl+1</span></button>
+      <button id="tab-probs" role="tab" aria-selected="false" data-view="probs">問題<span class="kb">Ctrl+2</span></button>
+      <button id="tab-lib" role="tab" aria-selected="false" data-view="lib">一覧<span class="kb">Ctrl+3</span></button>
+      <button id="tab-add" role="tab" aria-selected="false" data-view="add">追加<span class="kb">Ctrl+N</span></button>
     </nav>
+    <div class="navfoot">
+      <button id="help-open">キーボード操作 <span class="kb">?</span></button>
+      <span id="appver"></span>
+    </div>
   </header>
 
   <main>
-    <div id="nosupport" class="warn" hidden>このブラウザは読み上げ機能に対応していません。iPhoneのSafariかAndroidのChromeで開いてください。</div>
+    <div id="nosupport" class="warn" hidden>このブラウザは読み上げ機能に対応していません。自分で追加した長文は読み上げできませんが、問題集のAI音声は再生できます。</div>
 
     <section class="view" id="v-reader">
       <h1 class="t" id="r-title"></h1>
@@ -236,6 +305,7 @@ details.chunks .tbl{margin-top:10px}
         <div class="qhead"><span id="t-q2"></span><button id="t-fold" aria-expanded="true">本文を広く見る</button></div>
         <p class="qtext" id="t-qtext"></p>
         <div class="choices" id="t-choices"></div>
+        <div class="keyhint">キーボードの A〜D（または 1〜4）でも選べます</div>
       </div>
       <div style="margin-top:18px"><button class="btn" id="t-quit">やめる</button></div>
     </section>
@@ -246,7 +316,13 @@ details.chunks .tbl{margin-top:10px}
 
     <section class="view" id="v-lib" hidden>
       <h1 class="t">長文ライブラリ</h1>
-      <div class="meta">この端末のブラウザに保存されます</div>
+      <div class="meta" id="lib-where">この端末のブラウザに保存されます</div>
+      <div class="acts2" style="margin-top:10px">
+        <button class="btn" id="bk-export">バックアップを書き出す</button>
+        <label class="btn" for="bk-file" style="cursor:pointer">バックアップから読み込む</label>
+        <input type="file" id="bk-file" accept="application/json,.json" hidden>
+      </div>
+      <p class="small" style="margin:4px 0 0">追加した長文・成績・設定を1つのファイルにまとめます。iPhone版とWindows版の間で引っ越すときにも使えます。</p>
       <div class="lib" id="lib"></div>
     </section>
 
@@ -299,7 +375,7 @@ details.chunks .tbl{margin-top:10px}
     <div class="grp">
       <div class="lab">AI音声（問題集・Kokoro）</div>
       <select id="kvoice" aria-label="AI音声の選択"></select>
-      <p class="small" style="margin:0">問題集は前もって作ったAI音声で再生します。画面をロックしても止まりません。</p>
+      <p class="small" style="margin:0"><span id="kv-note">問題集は前もって作ったAI音声で再生します。画面をロックしても止まりません。</span></p>
     </div>
 
     <div class="grp">
@@ -352,6 +428,31 @@ details.chunks .tbl{margin-top:10px}
   <button id="gl-close">閉じる</button>
 </div>
 <div class="toast" id="toast" hidden></div>
+<div class="help" id="help" hidden role="dialog" aria-label="キーボード操作">
+  <div class="box">
+    <h2>キーボード操作 <button class="btn" id="help-close">閉じる（Esc）</button></h2>
+    <table>
+      <tr><th colspan="2">再生</th></tr>
+      <tr><td><kbd>Space</kbd></td><td>再生 / 一時停止</td></tr>
+      <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>前の文 / 次の文（かたまりずつのときはかたまり）</td></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>速くする / 遅くする（10 WPM ずつ。倍率のときは 0.25 ずつ）</td></tr>
+      <tr><td><kbd>L</kbd></td><td>今の文をループ</td></tr>
+      <tr><td><kbd>Home</kbd></td><td>最初の文へ</td></tr>
+      <tr><th colspan="2">表示</th></tr>
+      <tr><td><kbd>J</kbd></td><td>日本語訳の表示 / 非表示</td></tr>
+      <tr><td><kbd>K</kbd></td><td>区切り（／）の表示 / 非表示</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>+</kbd> / <kbd>-</kbd> / <kbd>0</kbd></td><td>文字の拡大 / 縮小 / 元に戻す（Windows版）</td></tr>
+      <tr><td><kbd>F11</kbd></td><td>全画面（Windows版）</td></tr>
+      <tr><th colspan="2">画面</th></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>1</kbd> / <kbd>2</kbd> / <kbd>3</kbd></td><td>再生 / 問題 / 一覧</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>N</kbd></td><td>長文を追加</td></tr>
+      <tr><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td>（追加画面で）保存して開く</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>設定や説明を閉じる</td></tr>
+      <tr><th colspan="2">テスト</th></tr>
+      <tr><td><kbd>A</kbd>〜<kbd>D</kbd> または <kbd>1</kbd>〜<kbd>4</kbd></td><td>選択肢を選ぶ</td></tr>
+    </table>
+  </div>
+</div>
 
 <script>
 (async function(){
@@ -482,6 +583,9 @@ function pickBest(){
   settings.voiceURI=list[0]?list[0].voiceURI:''; saveS();
 }
 function currentVoice(){ return voices.find(v=>v.voiceURI===settings.voiceURI&&langOf(v).startsWith(settings.accent.toLowerCase()))||null }
+const UA=navigator.userAgent,IS_WIN=/Windows/.test(UA),IS_DESK=!!(window.desktop&&window.desktop.isDesktop);
+const ADD_VOICE=IS_WIN?'Windowsは「設定 → 時刻と言語 → 言語と地域 → 英語（イギリス／米国）→ 言語のオプション → 音声」から追加できます。追加したらアプリを再起動してください。'
+  :/iPhone|iPad|Macintosh/.test(UA)?'iPhoneは「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」から追加できます。':'端末の設定から英語の音声を追加してください。';
 function renderVoiceSel(){
   const sel=$('voice'); const p=pool();
   if(!currentVoice()&&p.length)pickBest();
@@ -490,7 +594,7 @@ function renderVoiceSel(){
   sel.innerHTML=sorted.map(v=>`<option value="${esc(v.voiceURI)}"${v.voiceURI===settings.voiceURI?' selected':''}>${esc(v.name)}（${gl[genderOf(v)]}）</option>`).join('')||'<option>この端末に該当する声がありません</option>';
   const note=$('voice-note'); const acc=settings.accent==='en-GB'?'イギリス英語':'アメリカ英語'; const gen=settings.gender==='male'?'男性':'女性';
   if(!voices.length){note.hidden=false;note.textContent='声を読み込み中です。表示されない場合は一度「この声で試す」を押してください。'}
-  else if(!p.length){note.hidden=false;note.textContent=`この端末には${acc}の声がありません。iPhoneは「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」から追加できます。`}
+  else if(!p.length){note.hidden=false;note.textContent=`この端末には${acc}の声がありません。${ADD_VOICE}`}
   else if(!p.some(v=>genderOf(v)===settings.gender)){note.hidden=false;note.textContent=`${acc}の${gen}の声が見つかりませんでした（名前から判定しています）。一覧から選ぶか、端末の設定で声を追加してください。`}
   else note.hidden=true;
 }
@@ -679,7 +783,7 @@ function renderReader(){
   r.innerHTML=doc.sentences.map((s,i)=>`<p class="s${/^Document \d+:/.test(s.text)?' doch':''}" data-i="${i}"><span class="no">${i+1}</span>`+
     s.chunks.map((c,j)=>`<span class="c" data-c="${j}">${markGloss(c,re)}</span>`).join('<span class="sl">/</span> ')+
     (s.ja?`<button class="jab" data-ja="${i}" aria-label="${i+1}文目の訳">訳</button><span class="ja">${esc(s.ja)}</span>`:'')+`</p>`).join('');
-  hiS=hiC=null; applyDisplay(); updateUI(); kPrepare(t);
+  hiS=hiC=null; applyDisplay(); updateUI(); kPrepare(t); if(typeof setTitle==='function')setTitle();
 }
 function applyDisplay(){
   $('reader').classList.toggle('nochunk',!settings.showChunks);
@@ -696,6 +800,7 @@ function updateUI(){
   $('ic-play').innerHTML=playing?'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>':'<path d="M7 4v16l13-8z"/>';
   $('b-play').setAttribute('aria-label',playing?'一時停止':'再生');
   $('b-loop1').setAttribute('aria-pressed',loopOne);
+  if(window.desktop){try{window.desktop.state({playing,progress:n?(pos.si+1)/n:0})}catch(e){}}
 }
 function updateChip(){
   $('sc-main').textContent=settings.mode==='wpm'?`${settings.wpm} WPM`:`×${settings.rate.toFixed(2)}`;
@@ -769,7 +874,14 @@ $('b-loop1').addEventListener('click',()=>{loopOne=!loopOne;updateUI();toast(loo
 
 /* ---------- views ---------- */
 const VIEWS=['reader','probs','lib','add','test','result'];
+let curView='reader';
+function setTitle(){const base='聞き読みプレーヤー';
+  const t=curView==='test'&&test?`テスト：${doc?doc.title:''}`:(curView==='reader'||curView==='result')&&doc?doc.title:({probs:'問題集',lib:'長文ライブラリ',add:'長文を追加'})[curView];
+  document.title=t?`${t} - ${base}`:base}
 function showView(v){
+  curView=v;document.body.className=document.body.className.replace(/\bv-\w+/g,'').trim()+' v-'+v;
+  if(v!=='reader'&&!$('sheet').hidden&&matchMedia('(min-width:1280px)').matches)closeSheet();
+  setTitle();
   VIEWS.forEach(k=>{$('v-'+k).hidden=k!==v;const tb=$('tab-'+k);if(tb)tb.setAttribute('aria-selected',k===v||(k==='probs'&&(v==='test'||v==='result')))});
   $('bar').hidden=v==='test'; $('gloss').hidden=true;
   if(v!=='test')stopTick();
@@ -896,14 +1008,84 @@ function renderResult(score,sec,words,rw){
 }
 
 /* ---------- misc ---------- */
+/* ---------- keyboard ---------- */
+function openHelp(){$('help').hidden=false;$('help-close').focus()}
+function closeHelp(){$('help').hidden=true}
+$('help-open').addEventListener('click',openHelp);$('help-close').addEventListener('click',closeHelp);
+$('help').addEventListener('click',e=>{if(e.target===$('help'))closeHelp()});
+function speedStep(dir){
+  if(settings.mode==='wpm')setWpm(settings.wpm+dir*10);
+  else{const i=rates.indexOf(settings.rate);const j=Math.max(0,Math.min(rates.length-1,(i<0?2:i)+dir));settings.rate=rates[j];saveS();redraw.forEach(f=>f());updateChip();updateSpeedNote()}
+  toast(settings.mode==='wpm'?`${settings.wpm} WPM`:`×${settings.rate.toFixed(2)}`);
+}
+document.addEventListener('keydown',e=>{
+  const tag=(e.target.tagName||'').toLowerCase();
+  const typing=tag==='input'||tag==='textarea'||tag==='select'||e.target.isContentEditable;
+  if(e.key==='Escape'){if(!$('help').hidden)return closeHelp();if(!$('gloss').hidden){$('gloss').hidden=true;return}if(!$('sheet').hidden)return closeSheet();return}
+  if(e.ctrlKey&&!e.altKey&&!e.shiftKey){
+    const map={'1':'reader','2':'probs','3':'lib'};
+    if(map[e.key]){e.preventDefault();if(map[e.key]==='reader'&&!doc)renderReader();showView(map[e.key]);return}
+    if(e.key==='n'||e.key==='N'){e.preventDefault();if(editId===null)resetForm();showView('add');setTimeout(()=>$('in-raw').focus(),0);return}
+    if(e.key==='Enter'&&curView==='add'){e.preventDefault();$('save').click();return}
+    return;
+  }
+  if(typing||e.altKey||e.metaKey||e.ctrlKey)return;
+  if(e.key==='?'){e.preventDefault();openHelp();return}
+  if(curView==='test'&&test){
+    const k='abcd1234'.indexOf(e.key.toLowerCase());
+    if(k>=0){e.preventDefault();const b=document.querySelector(`#t-choices .choice[data-k="${k%4}"]`);if(b)b.click()}
+    return;
+  }
+  if(curView!=='reader')return;
+  if(e.target.closest&&e.target.closest('button')&&(e.key===' '||e.key==='Enter'))return;
+  switch(e.key){
+    case ' ':e.preventDefault();playing?stop():play();break;
+    case 'ArrowLeft':e.preventDefault();$('b-prev').click();break;
+    case 'ArrowRight':e.preventDefault();$('b-next').click();break;
+    case 'ArrowUp':e.preventDefault();speedStep(1);break;
+    case 'ArrowDown':e.preventDefault();speedStep(-1);break;
+    case 'Home':e.preventDefault();if(doc)jump(0,0);break;
+    case 'l':case 'L':$('b-loop1').click();break;
+    case 'j':case 'J':$('tg-ja').click();break;
+    case 'k':case 'K':$('tg-chunk').click();break;
+  }
+});
+if(window.desktop&&window.desktop.onCommand){window.desktop.onCommand(c=>{if(c==='play')playing?stop():play();else if(c==='prev')$('b-prev').click();else if(c==='next')$('b-next').click()})}
+
+/* ---------- backup ---------- */
+$('bk-export').addEventListener('click',()=>{
+  const data={app:'listen-read',v:1,exported:new Date().toISOString(),texts:texts.filter(t=>!t.sample),pstats,settings};
+  const blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
+  const d=new Date(),ymd=`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}`;
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`listen-read-backup-${ymd}.json`;document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000);toast('バックアップを書き出しました');
+});
+$('bk-file').addEventListener('change',async e=>{
+  const f=e.target.files&&e.target.files[0];e.target.value='';if(!f)return;
+  try{
+    const d=JSON.parse(await f.text());if(d.app!=='listen-read')throw new Error('形式が違います');
+    let added=0,updated=0;
+    for(const t of (d.texts||[])){if(!t||!t.id||!t.raw)continue;const i=texts.findIndex(x=>x.id===t.id);if(i<0){texts.push(t);added++}else{texts[i]=t;updated++}}
+    texts=texts.filter(t=>!t.sample||texts.length===1);saveT();
+    for(const [id,st] of Object.entries(d.pstats||{})){const pt=probTexts.find(x=>x.prob.id===id);if(!pt||!st)continue;
+      pt.attempts=Math.max(pt.attempts||0,st.attempts||0);pt.plays=Math.max(pt.plays||0,st.plays||0);
+      if(st.best!=null)pt.best=pt.best==null?st.best:Math.max(pt.best,st.best);
+      if((st.lastAt||0)>(pt.lastAt||0)){pt.lastAt=st.lastAt;pt.lastWpm=st.lastWpm;pt.readWpm=st.readWpm;pt.lastScore=st.lastScore}}
+    savePS();renderLib();toast(`読み込みました（長文 追加${added}・更新${updated}、成績を統合）`);
+  }catch(err){toast('読み込めませんでした：'+(err.message||err))}
+});
+
 let tt=null;function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>{t.hidden=true},2200)}
 let wake=null;
 async function requestWake(){try{if('wakeLock' in navigator&&!wake){wake=await navigator.wakeLock.request('screen');wake.addEventListener('release',()=>{wake=null})}}catch(e){}}
 function releaseWake(){try{wake&&wake.release()}catch(e){}wake=null}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&playing)requestWake()});
 
+if(IS_DESK||!/iPhone|iPad|Android/.test(UA)){$('kv-note').textContent='問題集は前もって作ったAI音声で再生します。ほかの画面に切り替えたり最小化したりしても止まりません。'}
+if(IS_DESK){$('appver').textContent='Windows版 '+(window.desktop.version||'');$('lib-where').textContent='このパソコンのアプリ内に保存されます'}
+document.body.classList.add('v-reader');
 renderReader(); applyDisplay(); updateChip(); updateSpeedNote();
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+if('serviceWorker' in navigator&&!IS_DESK){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 })();
 </script>
 </body>

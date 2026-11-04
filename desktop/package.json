@@ -17,10 +17,32 @@
   "build": {
     "appId": "io.github.kouhalove32.listenread",
     "productName": "ListenRead",
-    "directories": { "output": "dist" },
-    "files": ["main.js", "package.json"],
-    "extraResources": [{ "from": "web", "to": "web" }],
-    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }], "icon": "web/icon-512.png" },
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json",
+      "assets/**"
+    ],
+    "extraResources": [
+      {
+        "from": "web",
+        "to": "web"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "web/icon-512.png"
+    },
     "nsis": {
       "oneClick": true,
       "perMachine": false,

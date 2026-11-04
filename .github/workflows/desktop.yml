@@ -37,6 +37,7 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force desktop/web | Out-Null
           Copy-Item index.html, manifest.webmanifest, icon-180.png, icon-192.png, icon-512.png desktop/web/
+          Copy-Item -Recurse fonts desktop/web/fonts
           Copy-Item -Recurse data desktop/web/data
           Copy-Item -Recurse audio desktop/web/audio
       - name: Build installer
