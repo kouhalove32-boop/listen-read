@@ -64,6 +64,41 @@ def parse(raw):
     return sents
 
 
+# ---------- spoken form (what the voice says; the screen keeps the original) ----------
+ONES = 'zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split()
+TENS = {2: 'twenty', 3: 'thirty', 4: 'forty', 5: 'fifty'}
+
+
+def num_words(n):
+    if n < 20:
+        return ONES[n]
+    t, o = divmod(n, 10)
+    return TENS[t] + ('' if o == 0 else '-' + ONES[o])
+
+
+def _time(m):
+    h, mi = int(m.group(1)), int(m.group(2))
+    if h > 23 or mi > 59:
+        return m.group(0)
+    hw = num_words(h if h <= 12 else h - 12) if h else 'twelve'
+    if mi == 0:
+        return hw                      # 9:00 -> nine
+    if mi < 10:
+        return f'{hw} oh {ONES[mi]}'   # 9:05 -> nine oh five
+    return f'{hw} {num_words(mi)}'     # 1:30 -> one thirty
+
+
+def _phone(m):
+    say = lambda d: ' '.join('oh' if c == '0' else ONES[int(c)] for c in d)
+    return f'{say(m.group(1))}, {say(m.group(2))}'
+
+
+def spoken(text):
+    text = re.sub(r'\b(\d{1,2}):(\d{2})\b', _time, text)
+    text = re.sub(r'\b(\d{3})-(\d{4})\b', _phone, text)
+    return text
+
+
 # ---------- synthesis ----------
 _pipes = {}
 
@@ -144,7 +179,9 @@ def encode_mp3(audio, path):
 def build(problem, voice, outdir):
     sents = parse(problem['raw'])
     texts = [' '.join(c) for c in sents]
-    h = hashlib.sha1(json.dumps([GEN_VERSION, voice, texts]).encode()).hexdigest()[:16]
+    said = [[spoken(c) for c in chunks] for chunks in sents]
+    # hash what is actually spoken, so only passages whose speech changed are regenerated
+    h = hashlib.sha1(json.dumps([GEN_VERSION, voice, [' '.join(c) for c in said]]).encode()).hexdigest()[:16]
     jpath = os.path.join(outdir, voice, problem['id'] + '.json')
     mpath = jpath[:-5] + '.mp3'
     if os.path.exists(jpath) and os.path.exists(mpath):
@@ -154,13 +191,13 @@ def build(problem, voice, outdir):
         except Exception:
             pass
     parts, meta, t, speech, wcount = [], [], 0.0, 0.0, 0
-    for chunks, text in zip(sents, texts):
+    for chunks, text, schunks in zip(sents, texts, said):
         head = bool(DOC_HEAD.match(text))
         if head and parts:
             parts.append(np.zeros(int(SR * HEAD_GAP), np.float32)); t += HEAD_GAP
-        a, toks = synth(text, voice)
+        a, toks = synth(' '.join(schunks), voice)
         d = len(a) / SR
-        ct = chunk_times(chunks, toks, d)
+        ct = chunk_times(schunks, toks, d)
         # trim leading/trailing silence reported by timestamps
         meta.append({'t': text, 's': round(t, 3), 'e': round(t + d, 3),
                      'c': [[round(t + x, 3), round(t + y, 3)] for x, y in ct]})
