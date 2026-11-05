@@ -51,6 +51,8 @@ function thumbar() {
   ]);
 }
 ipcMain.on('app-version', (e) => { e.returnValue = app.getVersion(); });
+// Windows Settings > Time & language > Speech, where English (UK/US) voices are added.
+ipcMain.on('open-speech-settings', () => { shell.openExternal('ms-settings:speech'); });
 ipcMain.on('player-state', (_e, s) => {
   if (!win) return;
   win.setProgressBar(s.playing ? Math.max(0.01, Math.min(1, s.progress)) : -1);

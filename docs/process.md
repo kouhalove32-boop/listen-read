@@ -44,3 +44,4 @@ npm test            # JS（node --test）と Python（pytest）をまとめて�
 - 文の分割を意図して変えたときは `node tools/update_golden.mjs` で正解データを作り直し、Python 側（`tools/textproc.py`）も合わせる
 - PR と main への push で `.github/workflows/test.yml` が走る
 - 教材（`data/problems.json`）を編集したら `python tools/check_problems.py` で形式を確認する。CI でも、音声生成の前に必ず実行される
+- 画面の起動と声の選び方は `npm run test:e2e`（Playwright。`python3 -m http.server 8765` を起動しておく）。CI では別ジョブで実行する

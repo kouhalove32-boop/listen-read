@@ -5,4 +5,5 @@ contextBridge.exposeInMainWorld('desktop', {
   version: ipcRenderer.sendSync('app-version'),
   state: (s) => ipcRenderer.send('player-state', { playing: !!s.playing, progress: Number(s.progress) || 0 }),
   onCommand: (cb) => ipcRenderer.on('player-command', (_e, c) => cb(c)),
+  openSpeechSettings: () => ipcRenderer.send('open-speech-settings'),
 });
