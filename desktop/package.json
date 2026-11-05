@@ -50,5 +50,6 @@
       "shortcutName": "聞き読みプレーヤー",
       "uninstallDisplayName": "聞き読みプレーヤー"
     }
-  }
+  },
+  "license": "MIT"
 }
