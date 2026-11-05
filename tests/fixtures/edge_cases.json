@@ -1,0 +1,10 @@
+[
+  {"id": "quotes", "raw": "He said, \"We open at 9:00 A.M.\" Then he left. (See the notice.) Next line!"},
+  {"id": "translation-keeps-line", "raw": "First one. Second one.\n= 1つ目。2つ目。\nThird one. Fourth one."},
+  {"id": "title-and-words", "raw": "TITLE: Sample\n# Not a title after body? \nThe meeting / starts / at 10.\nWORDS:\nagenda = 議題\n- venue：会場"},
+  {"id": "chunk-slashes", "raw": "Please submit/ the form /by Friday.  It is / due / soon."},
+  {"id": "numbers-start", "raw": "Sales rose 5%. 2026 was a good year. Call 555-0193 today."},
+  {"id": "separators", "raw": "---\n```\nOnly this line.\n```\n\n   \nAnd this one."},
+  {"id": "doc-heading", "raw": "Document 1: E-mail\nHello there. Thanks!\nDocument 2: Form\nName / Date"},
+  {"id": "crlf", "raw": "Line one.\r\nLine two? Yes."}
+]

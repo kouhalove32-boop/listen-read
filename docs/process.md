@@ -36,3 +36,10 @@
 ## ブランチと版
 - `main` は常に公開してよい状態に保つ。作業は `feat/…` `fix/…` `chore/…` のブランチで行い、PR でマージする
 - Web 版は main へのマージで即反映される。Windows 版は `desktop-v1.0.<run>` として自動でリリースされる
+
+## テスト
+```
+npm test            # JS（node --test）と Python（pytest）をまとめて実行
+```
+- 文の分割を意図して変えたときは `node tools/update_golden.mjs` で正解データを作り直し、Python 側（`tools/textproc.py`）も合わせる
+- PR と main への push で `.github/workflows/test.yml` が走る
