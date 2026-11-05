@@ -103,6 +103,10 @@ h1.t{font-family:var(--read);font-weight:600;font-size:1.55rem;line-height:1.3;m
 .seg button[aria-pressed="true"]{background:var(--surface);color:var(--accent);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.14)}
 .seg.num button{font-family:var(--num);font-variant-numeric:tabular-nums}
 select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg)}
+.about{margin-top:28px;border-top:1px solid var(--line);padding-top:12px;font-size:13px;color:var(--muted);max-width:720px}
+.about summary{cursor:pointer;font-weight:600;color:var(--fg)}
+.about p{margin:8px 0;line-height:1.7}
+.about a{color:inherit}
 .note{font-size:12.5px;color:var(--muted);background:var(--chip);border-radius:10px;padding:10px 12px}
 .wpmbox{display:flex;align-items:center;gap:10px}
 .wpmbox input[type=range]{flex:1;min-width:0;accent-color:var(--accent)}
@@ -354,6 +358,14 @@ kbd{font-family:var(--num);font-size:12px;border:1px solid var(--line);border-bo
       </div>
       <p class="small" style="margin:4px 0 0">追加した長文・成績・設定を1つのファイルにまとめます。iPhone版とWindows版の間で引っ越すときにも使えます。</p>
       <div class="lib" id="lib"></div>
+      <details class="about" id="about">
+        <summary>このアプリについて</summary>
+        <p>TOEIC Part 7 の長文を、文字を目で追いながら狙った速さで聞く「聞き読み」の練習アプリです。</p>
+        <p><b>非公式アプリです。</b>TOEIC は ETS の登録商標です。このアプリは ETS および IIBC とは関係がなく、承認を受けたものではありません。収録している英文・設問・解説はすべてオリジナルで、公式問題ではありません。</p>
+        <p>学習の記録や追加した長文は、この端末の中だけに保存されます。外部には送信しません。</p>
+        <p>アプリのソースコードは MIT ライセンスです。音声は Kokoro-82M（Apache License 2.0）で生成しています。フォントは Literata と IBM Plex Mono（SIL Open Font License 1.1）です。</p>
+        <p class="small"><a href="https://github.com/kouhalove32-boop/listen-read/blob/main/LICENSE" target="_blank" rel="noopener">ライセンス</a> ・ <a href="https://github.com/kouhalove32-boop/listen-read/blob/main/THIRD_PARTY_NOTICES.md" target="_blank" rel="noopener">利用しているもの一覧</a> ・ <a href="https://github.com/kouhalove32-boop/listen-read" target="_blank" rel="noopener">ソースコード</a></p>
+      </details>
     </section>
 
     <section class="view" id="v-add" hidden>
