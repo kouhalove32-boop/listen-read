@@ -25,3 +25,19 @@ jobs:
         run: node --test tests/*.test.mjs
       - name: Python tests (tools/textproc.py, parity with JS)
         run: python -m pytest -q tests
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Browser smoke test (startup, voice fallback)
+        run: |
+          python3 -m http.server 8765 >/dev/null 2>&1 &
+          sleep 1
+          npm run test:e2e

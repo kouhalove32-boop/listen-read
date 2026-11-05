@@ -425,7 +425,8 @@ kbd{font-family:var(--num);font-size:12px;border:1px solid var(--line);border-bo
       <div class="row"><span>英語</span><div class="seg" id="seg-accent"></div></div>
       <div class="row"><span>性別</span><div class="seg" id="seg-gender"></div></div>
       <select id="voice" aria-label="声の選択"></select>
-      <div class="note" id="voice-note" hidden></div>
+      <div class="note" id="voice-note" hidden><span id="voice-note-text"></span>
+        <button class="btn" id="voice-settings" hidden style="margin-top:8px">Windowsの音声設定を開く</button></div>
       <button class="btn" id="test-voice" style="justify-self:start">この声で試す</button>
     </div>
 
@@ -581,34 +582,42 @@ const FEM=/\b(samantha|karen|moira|tessa|serena|kate|stephanie|martha|allison|av
 const MAL=/\b(daniel|alex|fred|tom|aaron|arthur|oliver|gordon|rishi|guy|davis|ryan|thomas|george|david|mark|reed|eddy|rocko|grandpa|ralph|albert|junior|male|james|brian|matthew|joey|justin|evan|nathan|noah|eric|christopher|roger|andrew|brandon|jacob|tony|jason|alfie|elliot|ethan|harry|lewis|steffan|william|liam)\b/i;
 function genderOf(v){const n=v.name.replace(/Google US English$/i,'Google US English Female');if(FEM.test(n))return 'female';if(MAL.test(n))return 'male';return '?'}
 const langOf=v=>(v.lang||'').replace('_','-').toLowerCase();
-let voices=[];
+// Declared before loadVoices() runs: renderVoiceSel() reads them on the first call.
+const UA=navigator.userAgent,IS_DESK=!!(window.desktop&&window.desktop.isDesktop),IS_WIN=/Windows/.test(UA)||IS_DESK;
+const ADD_VOICE=IS_WIN?'Windowsの「設定 → 時刻と言語 → 音声認識 → 音声を追加する」で「English (United Kingdom)」や「English (United States)」を追加できます。追加したらアプリを再起動してください。'
+  :/iPhone|iPad|Macintosh/.test(UA)?'iPhoneは「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」から追加できます。':'端末の設定から英語の音声を追加してください。';
+let voices=[], voicesTried=false;
 function loadVoices(){ if(!synth)return; voices=synth.getVoices().filter(v=>/^en-(us|gb)/.test(langOf(v))); renderVoiceSel(); updateChip(); }
-if(synth){ loadVoices(); synth.addEventListener?synth.addEventListener('voiceschanged',loadVoices):(synth.onvoiceschanged=loadVoices); let k=0; const iv=setInterval(()=>{loadVoices(); if(voices.length||++k>10)clearInterval(iv)},400); }
+if(synth){ loadVoices(); synth.addEventListener?synth.addEventListener('voiceschanged',loadVoices):(synth.onvoiceschanged=loadVoices); let k=0; const iv=setInterval(()=>{loadVoices(); if(voices.length||++k>10){clearInterval(iv);voicesTried=true;renderVoiceSel()}},400); }
 const quality=v=>/(premium|enhanced|natural|neural|online)/i.test(v.name)?1:0;
 function pool(){return voices.filter(v=>langOf(v).startsWith(settings.accent.toLowerCase()))}
+// Voices we may actually use: the chosen accent, or any English voice when that accent is missing
+// (e.g. Japanese Windows ships only US voices, or none). Better a US voice than silence.
+function usable(){const p=pool();return p.length?p:voices}
 function pickBest(){
-  const p=pool(); const g=p.filter(v=>genderOf(v)===settings.gender);
+  const p=usable(); const g=p.filter(v=>genderOf(v)===settings.gender);
   const list=(g.length?g:p).slice().sort((a,b)=>quality(b)-quality(a)||(b.localService?1:0)-(a.localService?1:0));
   settings.voiceURI=list[0]?list[0].voiceURI:''; saveS();
 }
-function currentVoice(){ return voices.find(v=>v.voiceURI===settings.voiceURI&&langOf(v).startsWith(settings.accent.toLowerCase()))||null }
-const UA=navigator.userAgent,IS_WIN=/Windows/.test(UA),IS_DESK=!!(window.desktop&&window.desktop.isDesktop);
-const ADD_VOICE=IS_WIN?'Windowsは「設定 → 時刻と言語 → 言語と地域 → 英語（イギリス／米国）→ 言語のオプション → 音声」から追加できます。追加したらアプリを再起動してください。'
-  :/iPhone|iPad|Macintosh/.test(UA)?'iPhoneは「設定 → アクセシビリティ → 読み上げコンテンツ → 声 → 英語」から追加できます。':'端末の設定から英語の音声を追加してください。';
+function currentVoice(){ return usable().find(v=>v.voiceURI===settings.voiceURI)||null }
 function renderVoiceSel(){
-  const sel=$('voice'); const p=pool();
+  const sel=$('voice'); const p=usable(); const exact=pool().length>0;
   if(!currentVoice()&&p.length)pickBest();
   const gl={female:'女性',male:'男性','?':'性別不明'};
   const sorted=p.slice().sort((a,b)=>(genderOf(a)===settings.gender?0:1)-(genderOf(b)===settings.gender?0:1)||a.name.localeCompare(b.name));
-  sel.innerHTML=sorted.map(v=>`<option value="${esc(v.voiceURI)}"${v.voiceURI===settings.voiceURI?' selected':''}>${esc(v.name)}（${gl[genderOf(v)]}）</option>`).join('')||'<option>この端末に該当する声がありません</option>';
+  sel.innerHTML=sorted.map(v=>`<option value="${esc(v.voiceURI)}"${v.voiceURI===settings.voiceURI?' selected':''}>${esc(v.name)}（${gl[genderOf(v)]}）</option>`).join('')||'<option>この端末に英語の声がありません</option>';
   const note=$('voice-note'); const acc=settings.accent==='en-GB'?'イギリス英語':'アメリカ英語'; const gen=settings.gender==='male'?'男性':'女性';
-  if(!voices.length){note.hidden=false;note.textContent='声を読み込み中です。表示されない場合は一度「この声で試す」を押してください。'}
-  else if(!p.length){note.hidden=false;note.textContent=`この端末には${acc}の声がありません。${ADD_VOICE}`}
-  else if(!p.some(v=>genderOf(v)===settings.gender)){note.hidden=false;note.textContent=`${acc}の${gen}の声が見つかりませんでした（名前から判定しています）。一覧から選ぶか、端末の設定で声を追加してください。`}
-  else note.hidden=true;
+  const other=settings.accent==='en-GB'?'アメリカ英語':'イギリス英語';
+  let msg='', add=false;
+  if(!voices.length){msg=voicesTried?`この端末には英語の声がありません。${ADD_VOICE}`:'声を読み込み中です…';add=voicesTried}
+  else if(!exact){msg=`この端末には${acc}の声がないため、${other}の声で読み上げます。${ADD_VOICE}`;add=true}
+  else if(!p.some(v=>genderOf(v)===settings.gender)){msg=`${acc}の${gen}の声が見つかりませんでした（名前から判定しています）。一覧から選ぶか、端末の設定で声を追加してください。`;add=true}
+  note.hidden=!msg; $('voice-note-text').textContent=msg;
+  $('voice-settings').hidden=!(add&&IS_DESK&&window.desktop.openSpeechSettings);
 }
 (function(){const sel=$('kvoice');sel.innerHTML=KVOICES.map(v=>`<option value="${v[0]}"${v[0]===settings.kvoice?' selected':''}>${v[1]}（${v[2]}・${v[3]}）</option>`).join('');
   sel.addEventListener('change',e=>{settings.kvoice=e.target.value;saveS();stop();kPrepare(cur())})})();
+$('voice-settings').addEventListener('click',()=>window.desktop.openSpeechSettings());
 $('voice').addEventListener('change',e=>{settings.voiceURI=e.target.value;saveS();updateChip();updateSpeedNote()});
 
 /* ---------- speed ---------- */
