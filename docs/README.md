@@ -7,5 +7,6 @@
 | [architecture/overview.md](architecture/overview.md) | 今の構成、データの約束事、品質特性、技術的負債 |
 | [adr/](adr/) | 設計判断の記録（なぜそうしたか） |
 | [process.md](process.md) | スプリントの回し方、DoR / DoD、ラベル |
+| [sprints/](sprints/) | スプリントごとのゴール、レビュー、ふりかえり |
 
 やることの一覧（バックログ）は [GitHub Issues](https://github.com/kouhalove32-boop/listen-read/issues) にある。

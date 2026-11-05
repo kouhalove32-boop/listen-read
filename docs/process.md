@@ -3,7 +3,7 @@
 ## スプリント（1 週間）
 | いつ | 何をする | 成果物 |
 |---|---|---|
-| 週のはじめ | **計画**：ゴールを 1 文で決め、Issue を選ぶ | マイルストーン「Sprint N」と、そのゴール |
+| 週のはじめ | **計画**：ゴールを 1 文で決め、Issue を選ぶ | マイルストーン「Sprint N」（説明欄にゴール） |
 | 週の途中 | **開発**：1 Issue ＝ 1 ブランチ ＝ 1 PR | PR（CI が通ること） |
 | 週の終わり | **レビュー**：実機（iPhone と Windows）で動かして確認 | リリース（Pages と exe） |
 | 週の終わり | **ふりかえり**：よかったこと、困ったこと、次に試すこと | `docs/sprints/sprint-N.md` |
@@ -30,6 +30,7 @@
 | 種別 | `type:story` `type:bug` `type:tech-debt` `type:spike`（調査） `type:docs` |
 | 優先度 | `P1`（今すぐ） `P2`（次のスプリント） `P3`（いつか） |
 | 大きさ | `size:S` `size:M` `size:L` |
+| リリース | `release:R1` `release:R2` `release:R3`（ストーリーマップの区切り） |
 | 領域 | `area:web` `area:desktop` `area:audio` `area:content` `area:ci` |
 
 ## ブランチと版
