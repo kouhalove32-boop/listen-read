@@ -1,0 +1,31 @@
+name: Spike voices (temporary)
+on:
+  push:
+    branches: [spike/4-voices]
+jobs:
+  probe:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: SAPI5 voices (System.Speech)
+        shell: powershell
+        run: |
+          Add-Type -AssemblyName System.Speech
+          (New-Object System.Speech.Synthesis.SpeechSynthesizer).GetInstalledVoices() | % { $_.VoiceInfo.Name + ' | ' + $_.VoiceInfo.Culture }
+      - name: OneCore voices (WinRT)
+        shell: powershell
+        run: |
+          [Windows.Media.SpeechSynthesis.SpeechSynthesizer,Windows.Media.SpeechSynthesis,ContentType=WindowsRuntime] | Out-Null
+          [Windows.Media.SpeechSynthesis.SpeechSynthesizer]::AllVoices | % { $_.DisplayName + ' | ' + $_.Language }
+      - name: Registry
+        shell: powershell
+        run: |
+          'SAPI5:'; Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\Speech\Voices\Tokens' | % { $_.PSChildName }
+          'OneCore:'; Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\Speech_OneCore\Voices\Tokens' | % { $_.PSChildName }
+      - name: Electron speechSynthesis.getVoices()
+        shell: bash
+        run: |
+          cd spike && npm init -y >/dev/null && npm i electron@44.7.2 --no-audit --no-fund >/dev/null
+          npx electron probe-main.js 2>&1 | grep ELECTRON_VOICES || true
