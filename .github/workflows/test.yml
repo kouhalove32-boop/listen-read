@@ -19,6 +19,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install pytest
+      - name: Validate problems.json
+        run: python tools/check_problems.py
       - name: JS tests (src/parser.js)
         run: node --test tests/*.test.mjs
       - name: Python tests (tools/textproc.py, parity with JS)

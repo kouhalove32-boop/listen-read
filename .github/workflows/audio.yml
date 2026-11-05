@@ -7,6 +7,7 @@ on:
       - data/problems.json
       - tools/gen_audio.py
       - tools/textproc.py
+      - tools/check_problems.py
       - .github/workflows/audio.yml
   workflow_dispatch:
 
@@ -18,7 +19,18 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate problems.json before spending time on audio
+        run: python tools/check_problems.py
+
   gen:
+    needs: check
     runs-on: ubuntu-latest
     timeout-minutes: 240
     strategy:
