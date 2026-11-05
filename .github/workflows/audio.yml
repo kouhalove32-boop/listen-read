@@ -6,6 +6,7 @@ on:
     paths:
       - data/problems.json
       - tools/gen_audio.py
+      - tools/textproc.py
       - .github/workflows/audio.yml
   workflow_dispatch:
 

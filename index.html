@@ -484,7 +484,8 @@ kbd{font-family:var(--num);font-size:12px;border:1px solid var(--line);border-bo
   </div>
 </div>
 
-<script>
+<script type="module">
+import {parse, countWords} from './src/parser.js';
 (async function(){
 'use strict';
 try{window.PROBS=await (await fetch('data/problems.json',{cache:'no-cache'})).json()}catch(e){window.PROBS=[]}
@@ -562,40 +563,6 @@ let sess={w:0,ms:0}, liveWpm=0, editId=null;
 const saveS=()=>store.set('lr.settings',settings), saveT=()=>store.set('lr.texts',texts);
 const cur=()=>allTexts().find(t=>t.id===currentId);
 
-/* ---------- parser ---------- */
-function splitSentences(line){
-  return line.split(/(?<=[.!?]["”’)]?)\s+(?=["“‘(]?[A-Z0-9])/).map(x=>x.trim()).filter(Boolean);
-}
-function parse(raw){
-  const lines=String(raw||'').replace(/\r/g,'').split('\n');
-  let title='', mode='body'; const units=[], words={};
-  for(let L of lines){
-    const line=L.trim(); if(!line||/^-{3,}$/.test(line)||/^```/.test(line))continue;
-    let m;
-    if(mode==='body'&&(m=line.match(/^(?:TITLE\s*[:：]|#\s+)(.+)$/i))){title=m[1].trim();continue}
-    if(/^(?:#+\s*)?(WORDS|VOCAB(ULARY)?|語注|単語)\s*[:：]?$/i.test(line)){mode='words';continue}
-    if(mode==='words'){
-      m=line.match(/^[-・*]?\s*(.+?)\s*(?:=|＝|:|：|\t)\s*(.+)$/);
-      if(m)words[m[1].toLowerCase().trim()]=m[2].trim();
-      continue;
-    }
-    if(/^[=＝]/.test(line)){ if(units.length)units[units.length-1].ja=(units[units.length-1].ja?units[units.length-1].ja+' ':'')+line.replace(/^[=＝]\s*/,''); continue}
-    units.push({en:line,ja:''});
-  }
-  const sentences=[];
-  for(const u of units){
-    const pieces=u.ja?[u.en]:splitSentences(u.en);
-    for(const p of pieces){
-      const chunks=p.split(/\s+\/\s+|\s*\/\s*(?=\S)/).map(x=>x.trim()).filter(Boolean);
-      if(!chunks.length)continue;
-      const offsets=[];let o=0;chunks.forEach(c=>{offsets.push(o);o+=c.length+1});
-      sentences.push({chunks,offsets,text:chunks.join(' '),ja:u.ja});
-    }
-  }
-  if(!title&&sentences.length){title=sentences[0].text.split(/\s+/).slice(0,6).join(' ')+'…'}
-  return {title,sentences,words};
-}
-const countWords=s=>s.split(/\s+/).filter(w=>/[A-Za-z0-9]/.test(w)).length;
 
 /* ---------- voices ---------- */
 const FEM=/\b(samantha|karen|moira|tessa|serena|kate|stephanie|martha|allison|ava|susan|victoria|zoe|nicky|fiona|flo|grandma|sandy|shelley|aria|jenny|zira|libby|sonia|mia|hazel|emma|michelle|joanna|kendra|kimberly|salli|ivy|amy|female|catherine|lisa|natasha|clara|nora|ana|jane|sara|sarah|elizabeth|maisie|olivia|ashley|cora|emily|nancy|amber|isla|bella|abbi|hollie)\b/i;
